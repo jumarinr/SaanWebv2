@@ -89,6 +89,9 @@ public class AdminLogin extends HttpServlet {
                     ad.forward(request, response);
                     break;
                 case 1:
+                    session.setAttribute("usua", usua);
+                    RequestDispatcher e = request.getRequestDispatcher("/menuEstu");
+                    e.forward(request, response);
                     break;
                 case 2:
                     session.setAttribute("usua", usua);
