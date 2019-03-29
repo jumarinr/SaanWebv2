@@ -39,7 +39,7 @@
 
                 <!-- Mejores grupos -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="./inicio">
+                    <a class="nav-link collapsed" href="./mejoresGrupos">
                         <img class="img-profile rounded-circle" src="https://cdn1.iconfinder.com/data/icons/unigrid-bluetone-human-vol-1/60/011_007_collective_group_masses_people_company-128.png">
                         <span style="font-size: 70%;">${mensaje.get("megru")}</span>
                     </a>
