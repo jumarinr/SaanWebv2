@@ -76,8 +76,10 @@
           <!-- Begin Page Content -->
                  <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Estudiantes que van perdiendo</h6>
             </div>
+                     <p>${materiasxestudiante}</p>
+            <c:if test="${not empty materiasxestudiante}">
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -85,20 +87,14 @@
                     <tr>
                       <th>Nombre</th>
                       <th>Materia</th>
-                      <th>Grupo</th>
-                      <th>Identificacion</th>
-                      <th>Correo</th>
-                      <th>Nota</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Tiger Nixon</td>
-                      <td>Estadistica 1</td>
-                      <td>2</td>
-                      <td>1289138</td>
-                      <td>yaper@unal.edu.co</td>
-                      <td>2.91</td>
+                        <c:forEach items="${materiasxestudiante}" var="mat">
+                            <td>${mat}</td>
+                            <td>${mat}</td>
+                        </c:forEach>
                     </tr>
                     <tr>
                       <td>Garrett Winters</td>
@@ -112,6 +108,7 @@
                 </table>
               </div>
             </div>
+            </c:if>
           </div>
           <!-- /.container-fluid -->
 

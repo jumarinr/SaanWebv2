@@ -43,32 +43,34 @@ public class Estudiante extends Persona {
         return Persona.eliminar(personas, estudiantes, profesores, correo);
     }
 
-    public static String VanPerdiendo(Matricula mat, Grupo gru) {
-        List<Nota> not = mat.getNotas();
-        if (!not.isEmpty()) {
-            int sum = 0;
-            int sum2 = 0;
-            for (Nota nota : not) {
-                if (nota.getMatricula().getGrupo() == gru) {
-                    sum += ((nota.getPorcentaje() / 100) * nota.getValor());
-                    sum2 += (nota.getPorcentaje() / 100);
+    public static ArrayList<Estudiante> VanPerdiendo(Materia materia) {
+        ArrayList<Estudiante> retorno = new ArrayList<>();
+        for (Grupo gru : materia.getGrupos()) {
+            for (Matricula mat : gru.getMatriculas()) {
+                List<Nota> not = mat.getNotas();
+                if (!not.isEmpty()) {
+                    int sum = 0;
+                    int sum2 = 0;
+                    for (Nota nota : not) {
+                        if (nota.getMatricula().getGrupo() == gru) {
+                            sum += ((nota.getPorcentaje() / 100) * nota.getValor());
+                            sum2 += (nota.getPorcentaje() / 100);
 
+                        }
+                    }
+                    int prom;
+                    if (sum2 != 0 && sum != 0) {
+                        prom = sum / sum2;
+                    } else {
+                        prom = 0;
+                    }
+                    if (prom < 3 && prom != 0) {
+                        retorno.add(mat.getEstudiante());
+                    }
                 }
             }
-            int prom;
-            if (sum2 != 0 && sum != 0) {
-                prom = sum / sum2;
-            } else {
-                prom = 0;
-            }
-            if (prom < 3 && prom != 0) {
-                return mat.getEstudiante().getIdentificacion() + " " + mat.getEstudiante().getNombre();
-            } else {
-                return (Mensajes.mensaje.get("Ganosinno"));
-            }
-        } else {
-            return (Mensajes.mensaje.get("Noestnot"));
         }
+        return retorno;
     }
 
 }

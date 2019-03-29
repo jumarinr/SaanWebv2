@@ -80,45 +80,38 @@
 
 
           <!-- Begin Page Content -->
+          <c:if test="${not empty grupos}">
                  <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Mejores grupos</h6>
             </div>
+            
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    
                   <thead>
                     <tr>
                       <th>Materia</th>
-                      <th>Grupo</th>
+                      <th>Numero</th>
                       <th>Docente</th>
-                      <th>Identificacion</th>
-                      <th>Promedio</th>
-                      <th>Mejor Nota</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Programacion Orientada a Objetos</td>
-                      <td>1</td>
-                      <td>Daniel Gara</td>
-                      <td>213414</td>
-                      <td>4.1</td>
-                      <td>4.9</td>
+                        <c:forEach items="${grupos}" var="grp">
+                            <td>${grp.getMateria().getNombre()}</td>
+                            <td>${grp.getNumero()}</td>
+                            <td>${grp.getProfesor().getNombre()}</td>
+                        </c:forEach>
                     </tr>
-                    <tr>
-                      <td>Investigacion de operaciones</td>
-                      <td>2</td>
-                      <td>AWAD</td>
-                      <td>219</td>
-                      <td>3.6</td>
-                      <td>4</td>
-                    </tr>
+
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
+            </c:if>
           <!-- /.container-fluid -->
 
       </div>
