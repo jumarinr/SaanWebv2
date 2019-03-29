@@ -13,7 +13,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/SAAN">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./inicio">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -86,8 +86,8 @@
                 <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones</h6>
-                        <a class="collapse-item" href="#">Registrar</a>
-                        <a class="collapse-item" href="#">Consultar</a>
+                        <a class="collapse-item" href="./administrador_registrarMateria">Registrar</a>
+                        <a class="collapse-item" href="./administrador_buscarMateria">Consultar</a>
                     </div>
                 </div>
             </li>

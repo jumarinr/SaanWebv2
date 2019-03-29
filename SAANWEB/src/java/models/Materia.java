@@ -93,7 +93,7 @@ public class Materia {
         }
         materias.add(materia);
         Materia.guardarCambios(materias);
-        return Mensajes.mensaje.get("err");
+        return Mensajes.mensaje.get("reg");
     }
 
     public static String eliminar(List<Materia> materias, List<Grupo> grupos,
@@ -113,21 +113,25 @@ public class Materia {
         int ini = 0;
         int fin = 0;
         try {
-            File myObj = new File("materias.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                inf += data;
+            File file = new File("materias.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            } else {
+                Scanner myReader = new Scanner(file);
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    inf += data;
+                }
+                myReader.close();
             }
-            myReader.close();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println("An error occurred.");
         }
         while (inf.indexOf(">", fin + 1) != -1 && fin < inf.length() - 1) {
             ini = inf.indexOf("<", fin);
             fin = inf.indexOf(">", ini);
             String[] mat = inf.substring(ini + 1, fin).split(",");
-            materias.add(new Materia(Integer.valueOf(mat[0]), mat[1], Short.valueOf(mat[2])));
+            Materia.registrar(materias, new Materia(Integer.parseInt(mat[0]), mat[1], Integer.parseInt(mat[2])));
         }
     }
 
@@ -136,7 +140,7 @@ public class Materia {
             FileWriter file = new FileWriter("materias.txt");
             file.write("");
             for (Materia materia : materias) {
-                file.write("<" + String.valueOf(materia.getId()) + "," + materia.getNombre() + "," + String.valueOf(materia.getCreditos()) + ">");
+                file.write("<" + Integer.toString(materia.getId()) + "," + materia.getNombre() + "," + Integer.toString(materia.getCreditos()) + ">");
             }
             file.close();
         } catch (IOException e) {
