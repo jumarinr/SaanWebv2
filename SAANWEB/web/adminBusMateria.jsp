@@ -36,7 +36,28 @@
                             ${mat.getCreditos()}
                             <br/><br/>
                             <h5>Grupos</h5>
-                            
+                            <c:if test="${not empty mat.getGrupos()}">
+                                <table class="table" style="margin-top: -10px;width: auto;">
+                                    <thead>
+                                        <tr>
+                                                   <th scope="col">Numero</th>
+                                                   <th scope="col">Documento profesor</th>
+                                            <th scope="col">Nombre Profesor</th>
+                                                   <th scope="col">Cantidad estudiantes</th>
+                                               </tr>
+                                    </thead>
+                                    <tbody>
+                                           <c:forEach items="${mat.getGrupos()}" var="gru">
+                                                   <tr>
+                                                           <td><a href="./administrador_buscarGrupo?num=${gru.getNumero()}&id=${mat.getId()}">${gru.getNumero()}</a></td>
+                                                <td><a href="./administrador_buscarProfesor?id=${gru.getProfesor().getIdentificacion()}">${gru.getProfesor().getIdentificacion()}</a></td>
+                                                <td>${gru.getProfesor().getNombre()}</td>
+                                                <td>${gru.getMatriculas().size()}</td>
+                                                       </tr>
+                                               </c:forEach>
+                                        </tbody>
+                                    </table>
+                            </c:if>
                             <c:if test="${empty mat.getGrupos()}">
                                 Ninguno
                             </c:if>
