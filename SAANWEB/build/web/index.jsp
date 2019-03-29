@@ -182,12 +182,12 @@
                       <div class="card shadow mb-4">
                           <!-- Card Header - Dropdown -->
                           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                              <h6 class="m-0 font-weight-bold text-primary">Recuerden siempre</h6>
+                              <h6 class="m-0 font-weight-bold text-primary">Cuando...</h6>
 
                           </div>
                           <!-- Card Body -->
                           <div class="card-body">
-                              <p style="font-size: 70%">No robar nunca computadores de los vecinos</p>
+                              <p style="font-size: 100%"> Tu profesor sube las notas y no te avisa</p>
                               <img style="width:51%; height: 50.5%" src="https://media.giphy.com/media/wvQIqJyNBOCjK/giphy.gif">
                           </div>
                       </div>

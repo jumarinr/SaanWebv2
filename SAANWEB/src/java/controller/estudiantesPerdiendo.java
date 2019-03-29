@@ -7,12 +7,18 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Estudiante;
+import models.Grupo;
+import models.Materia;
 import util.Mensajes;
 
 /**
@@ -34,7 +40,26 @@ public class estudiantesPerdiendo extends HttpServlet {
  @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Materia> materias = new ArrayList<Materia>();
+        HttpSession session = request.getSession();
+        List<String[]> materiaxestudiante = new ArrayList<>();
+        if(session.getAttribute("materias") != null) {
+            materias = (ArrayList<Materia>) session.getAttribute("materias");
+            for (Materia mat: materias){
+                List<Grupo> grupo = mat.getGrupos();
+                String aux[] = new String[2];
+                aux[0] = mat.getNombre();
+                for(Estudiante est: Estudiante.VanPerdiendo(mat)){
+                    aux[1] = Long.toString(est.getIdentificacion());
+                    materiaxestudiante.add(aux);
+                }
+                
+            }
+        }
+        request.setAttribute("materiasxestudiante", materiaxestudiante);
         request.setAttribute("mensaje", Mensajes.mensaje);
+        request.setAttribute("usua", session.getAttribute("usua"));
+
         RequestDispatcher view = request.getRequestDispatcher("estudiantesPerdiendo.jsp");
         view.forward(request, response);
     }

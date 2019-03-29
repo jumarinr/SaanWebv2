@@ -39,7 +39,7 @@
 
                 <!-- Mejores grupos -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="./inicio">
+                    <a class="nav-link collapsed" href="./mejoresGrupos">
                         <img class="img-profile rounded-circle" src="https://cdn1.iconfinder.com/data/icons/unigrid-bluetone-human-vol-1/60/011_007_collective_group_masses_people_company-128.png">
                         <span style="font-size: 70%;">${mensaje.get("megru")}</span>
                     </a>
@@ -76,8 +76,10 @@
           <!-- Begin Page Content -->
                  <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Estudiantes que van perdiendo</h6>
             </div>
+                     <p>${materiasxestudiante}</p>
+            <c:if test="${not empty materiasxestudiante}">
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -85,20 +87,14 @@
                     <tr>
                       <th>Nombre</th>
                       <th>Materia</th>
-                      <th>Grupo</th>
-                      <th>Identificacion</th>
-                      <th>Correo</th>
-                      <th>Nota</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Tiger Nixon</td>
-                      <td>Estadistica 1</td>
-                      <td>2</td>
-                      <td>1289138</td>
-                      <td>yaper@unal.edu.co</td>
-                      <td>2.91</td>
+                        <c:forEach items="${materiasxestudiante}" var="mat">
+                            <td>${mat}</td>
+                            <td>${mat}</td>
+                        </c:forEach>
                     </tr>
                     <tr>
                       <td>Garrett Winters</td>
@@ -112,6 +108,7 @@
                 </table>
               </div>
             </div>
+            </c:if>
           </div>
           <!-- /.container-fluid -->
 
