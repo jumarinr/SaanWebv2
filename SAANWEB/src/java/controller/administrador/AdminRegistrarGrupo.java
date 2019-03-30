@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import models.Estudiante;
 import models.Grupo;
 import models.Materia;
@@ -92,22 +91,23 @@ public class AdminRegistrarGrupo extends HttpServlet {
         int num = Integer.parseInt(request.getParameter("numero"));
         int idMateria = Integer.parseInt(request.getParameter("id"));
         long docProfesor = Long.parseLong(request.getParameter("doc"));
-        
-        if(Materia.buscarMateria(materias, idMateria) == null){
-            JOptionPane.showMessageDialog(null, "La materia no esta registrada",
-                    "SAAN",JOptionPane.ERROR_MESSAGE);
+        String imprimir = "";
+        boolean seguir = true;
+        if (Materia.buscarMateria(materias, idMateria) == null) {
+            imprimir = "La materia no esta registrada";
+            seguir = false;
         }
-        if(Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
-                profesores, docProfesor) == null){
-            JOptionPane.showMessageDialog(null, "EL profesor no esta registrada",
-                    "SAAN",JOptionPane.ERROR_MESSAGE);
+        if (Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
+                profesores, docProfesor) == null) {
+            imprimir = "El profesor no esta registrada";
+            seguir = false;
         }
-        
-        Grupo grupo = new Grupo(num,(Profesor) Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
-                profesores, docProfesor), Materia.buscarMateria(materias, idMateria));
-
-        JOptionPane.showMessageDialog(null, Grupo.registrar(grupos, grupo), "SAAN", JOptionPane.INFORMATION_MESSAGE);
-
+        if (seguir) {
+            Grupo grupo = new Grupo(num, (Profesor) Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
+                    profesores, docProfesor), Materia.buscarMateria(materias, idMateria));
+            imprimir = Grupo.registrar(grupos, grupo);
+        }
+        request.setAttribute("imprimir", imprimir);
         session.setAttribute("grupos", grupos);
         session.setAttribute("materias", materias);
         session.setAttribute("profesor", profesores);

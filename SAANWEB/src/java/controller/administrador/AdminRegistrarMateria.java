@@ -6,7 +6,6 @@
 package controller.administrador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -16,13 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
-import models.Estudiante;
 import models.Materia;
-import models.Persona;
-import models.Profesor;
 import util.Mensajes;
-import util.extra;
 
 /**
  *
@@ -85,8 +79,8 @@ public class AdminRegistrarMateria extends HttpServlet {
         int cre = Integer.parseInt(request.getParameter("creditos"));
         Materia mat = new Materia(id, nom, cre);
 
-        JOptionPane.showMessageDialog(null, Materia.registrar(materias, mat), "SAAN", JOptionPane.INFORMATION_MESSAGE);
-
+        String imprimir = Materia.registrar(materias, mat);
+        request.setAttribute("imprimir", imprimir);
         session.setAttribute("materias", materias);
         request.setAttribute("materias", materias);
         request.setAttribute("mensaje", Mensajes.mensaje);

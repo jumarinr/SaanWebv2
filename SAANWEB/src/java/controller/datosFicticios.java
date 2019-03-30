@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import models.Estudiante;
 import models.Grupo;
 import models.Materia;
@@ -168,8 +167,7 @@ public class datosFicticios extends HttpServlet {
         session.setAttribute("personas", personas);
         session.setAttribute("grupos", grupos);
         
-        JOptionPane.showMessageDialog(null, "Datos ficticios generados","SAAN",
-                JOptionPane.INFORMATION_MESSAGE);
+        request.setAttribute("imprimir", "Datos ficticios generados");
         
         request.setAttribute("usua", session.getAttribute("usua"));
 

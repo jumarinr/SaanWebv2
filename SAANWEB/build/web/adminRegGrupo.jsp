@@ -32,24 +32,26 @@
                     <!-- Card Body -->
                     <c:if test="${not empty grupos}">
                         <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: 100%;">
-                                <thead>
-                                    <tr>
-                                               <th scope="col">Numero</th>
-                                               <th scope="col">Id materia</th>
-                                               <th scope="col">Documento profesor</th>
-                                           </tr>
-                                </thead>
-                                <tbody>
-                                       <c:forEach items="${grupos}" var="gru">
-                                               <tr>
-                                                       <td><a href="./administrador_buscarGrupo?num=${gru.getNumero()}&id=${gru.getMateria().getId()}">${gru.getNumero()}</a></td>
-                                                       <td><a href="./administrador_buscarMateria?id=${gru.getMateria().getId()}">${gru.getMateria().getId()}</a></td>
-                                                       <td><a href="./administrador_buscarProfesor?id=${gru.getProfesor().getIdentificacion()}">${gru.getProfesor().getIdentificacion()}</a></td>
-                                                   </tr>
-                                           </c:forEach>
-                                    </tbody>
-                                </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                                   <th scope="col">Numero</th>
+                                                   <th scope="col">Id materia</th>
+                                                   <th scope="col">Documento profesor</th>
+                                               </tr>
+                                    </thead>
+                                    <tbody>
+                                           <c:forEach items="${grupos}" var="gru">
+                                                   <tr>
+                                                <td><a href="./administrador_buscarGrupo?num=${gru.getNumero()}&id=${gru.getMateria().getId()}">${gru.getNumero()}</a></td>
+                                                           <td><a href="./administrador_buscarMateria?id=${gru.getMateria().getId()}">${gru.getMateria().getId()}</a></td>
+                                                           <td><a href="./administrador_buscarProfesor?id=${gru.getProfesor().getIdentificacion()}">${gru.getProfesor().getIdentificacion()}</a></td>
+                                                       </tr>
+                                               </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                     </c:if>
                 </div>

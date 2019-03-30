@@ -25,26 +25,28 @@
                     <!-- Card Body -->
                     <c:if test="${not empty profesores}">
                         <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: auto;">
-                                <thead>
-                                    <tr>
-                                               <th scope="col">Nombre</th>
-                                               <th scope="col">Identificación</th>
-                                               <th scope="col">Correo</th>
-                                        <th scope="col">Contraseña</th>
-                                           </tr>
-                                </thead>
-                                <tbody>
-                                       <c:forEach items="${profesores}" var="pro">
-                                               <tr>
-                                                       <td>${pro.getNombre()}</td>
-                                                       <td>${pro.getIdentificacion()}</td>
-                                                       <td>${pro.getCorreo()}</td>
-                                            <td>${pro.getClave()}</td>
-                                                   </tr>
-                                           </c:forEach>
-                                    </tbody>
-                                </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                                   <th scope="col">Nombre</th>
+                                                   <th scope="col">Identificación</th>
+                                                   <th scope="col">Correo</th>
+                                            <th scope="col">Contraseña</th>
+                                               </tr>
+                                    </thead>
+                                    <tbody>
+                                           <c:forEach items="${profesores}" var="pro">
+                                                   <tr>
+                                                           <td>${pro.getNombre()}</td>
+                                                           <td>${pro.getIdentificacion()}</td>
+                                                           <td>${pro.getCorreo()}</td>
+                                                <td>${pro.getClave()}</td>
+                                                       </tr>
+                                               </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                     </c:if>
                 </div>
@@ -61,27 +63,27 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <c:if test="${not empty usu}">
-                        <form method="POST" action="./administrador_modificarProfesor">
-                            <div class="form-group">
-                                <label for="ide">Identificación</label>
-                                <input value="${usu.getIdentificacion()}" type="number" class="form-control" id="identificacion" name="identificacion" placeholder="Ingrese el documento de identidad" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="nom">Nombre</label>
-                                <input value="${usu.getNombre()}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cor">Correo</label>
-                                <input value="${usu.getCorreo()}" type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="Ingrese el correo electronico" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="con">Contraseña</label>
-                                <input value="${usu.getClave()}" type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la contraseña">
-                            </div>
-                            <input id="doc" name="doc" type="hidden" value="${usu.getIdentificacion()}">
-                             <input id="cor" name="cor" type="hidden" value="${usu.getCorreo()}">
-                            <button type="submit" class="btn btn-primary">Modificar</button>
-                        </form>
+                            <form method="POST" action="./administrador_modificarProfesor">
+                                <div class="form-group">
+                                    <label for="ide">Identificación</label>
+                                    <input value="${usu.getIdentificacion()}" type="number" class="form-control" id="identificacion" name="identificacion" placeholder="Ingrese el documento de identidad" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nom">Nombre</label>
+                                    <input value="${usu.getNombre()}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cor">Correo</label>
+                                    <input value="${usu.getCorreo()}" type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="Ingrese el correo electronico" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="con">Contraseña</label>
+                                    <input value="${usu.getClave()}" type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la contraseña">
+                                </div>
+                                <input id="doc" name="doc" type="hidden" value="${usu.getIdentificacion()}">
+                                <input id="cor" name="cor" type="hidden" value="${usu.getCorreo()}">
+                                <button type="submit" class="btn btn-primary">Modificar</button>
+                            </form>
                         </c:if>
                     </div>
                 </div>

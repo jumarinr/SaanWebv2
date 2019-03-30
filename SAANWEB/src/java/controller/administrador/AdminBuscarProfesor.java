@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import models.Estudiante;
 import models.Matricula;
 import models.Nota;
@@ -62,12 +61,12 @@ public class AdminBuscarProfesor extends HttpServlet {
             Profesor pro = null;
             if (extra.isInteger(id)) {
                 pro = (Profesor) Profesor.buscarPersona(new ArrayList<Persona>(),
-                       new ArrayList<Estudiante>(), profesores, Long.parseLong(id));
+                        new ArrayList<Estudiante>(), profesores, Long.parseLong(id));
             } else if (extra.esEmailCorrecto(id)) {
                 pro = (Profesor) Profesor.buscarPersona(new ArrayList<Persona>(),
-                       new ArrayList<Estudiante>(), profesores, id);
+                        new ArrayList<Estudiante>(), profesores, id);
             } else {
-                JOptionPane.showMessageDialog(null, "Correo invalido", "SAAN", JOptionPane.ERROR_MESSAGE);
+                request.setAttribute("imprimir", "Correo invalido");
             }
             request.setAttribute("usu", pro);
         }
@@ -96,13 +95,10 @@ public class AdminBuscarProfesor extends HttpServlet {
         }
         if (request.getParameter("doc") != null) {
             long doc = Long.parseLong(request.getParameter("doc"));
-            if (JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este registro",
-                    "SAAN", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(null, Profesor.eliminar(new ArrayList<Persona>(),
-                        new ArrayList<Estudiante>(), profesores, doc), "SAAN",
-                        JOptionPane.INFORMATION_MESSAGE);
-                session.setAttribute("profesores", profesores);
-            }
+            String imprimir = Profesor.eliminar(new ArrayList<Persona>(),
+                    new ArrayList<Estudiante>(), profesores, doc);
+            request.setAttribute("imprimir", imprimir);
+            session.setAttribute("profesores", profesores);
         }
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));

@@ -32,26 +32,28 @@
                     <!-- Card Body -->
                     <c:if test="${not empty estudiantes}">
                         <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: auto;">
-                                <thead>
-                                    <tr>
-                                               <th scope="col">Nombre</th>
-                                               <th scope="col">Identificación</th>
-                                               <th scope="col">Correo</th>
-                                        <th scope="col">Contraseña</th>
-                                           </tr>
-                                </thead>
-                                <tbody>
-                                       <c:forEach items="${estudiantes}" var="est">
-                                               <tr>
-                                                       <td>${est.getNombre()}</td>
-                                                       <td><a href="./administrador_buscarEstudiante?id=${est.getIdentificacion()}">${est.getIdentificacion()}</a></td>
-                                                       <td>${est.getCorreo()}</td>
-                                            <td>${est.getClave()}</td>
-                                                   </tr>
-                                           </c:forEach>
-                                    </tbody>
-                                </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                                   <th scope="col">Nombre</th>
+                                                   <th scope="col">Identificación</th>
+                                                   <th scope="col">Correo</th>
+                                            <th scope="col">Contraseña</th>
+                                               </tr>
+                                    </thead>
+                                    <tbody>
+                                           <c:forEach items="${estudiantes}" var="est">
+                                                   <tr>
+                                                           <td>${est.getNombre()}</td>
+                                                           <td><a href="./administrador_buscarEstudiante?id=${est.getIdentificacion()}">${est.getIdentificacion()}</a></td>
+                                                           <td>${est.getCorreo()}</td>
+                                                <td>${est.getClave()}</td>
+                                                       </tr>
+                                               </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                     </c:if>
                 </div>

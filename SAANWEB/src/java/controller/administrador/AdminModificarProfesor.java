@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import models.Estudiante;
 import models.Persona;
 import models.Profesor;
@@ -100,22 +99,20 @@ public class AdminModificarProfesor extends HttpServlet {
         String cor = request.getParameter("cor").toLowerCase();
         String clave = request.getParameter("clave");
         boolean seguir = true;
+        String imprimir = "";
         if (!extra.esEmailCorrecto(correo)) {
-            JOptionPane.showMessageDialog(null, "Correo invalido", "SAAN",
-                    JOptionPane.ERROR_MESSAGE);
+            imprimir = "Correo invalido";
             seguir = false;
         }
         if (documento != doc) {
             if (Persona.buscarPersona(personas, estudiantes, profesores, documento) != null) {
-                JOptionPane.showMessageDialog(null, "El documento ya esta registrado",
-                        "SAAN", JOptionPane.ERROR_MESSAGE);
+                imprimir = "EL documento ya esta registrado";
                 seguir = false;
             }
         }
         if (!correo.equals(cor)) {
             if (Persona.buscarPersona(personas, estudiantes, profesores, correo) != null) {
-                JOptionPane.showMessageDialog(null, "El correo ya esta registrado",
-                        "SAAN", JOptionPane.ERROR_MESSAGE);
+                imprimir = "El correo ya esta registrado";
                 seguir = false;
             }
         }
@@ -127,10 +124,10 @@ public class AdminModificarProfesor extends HttpServlet {
             p.setIdentificacion(documento);
             p.setClave(clave);
             p.setCorreo(correo);
-            JOptionPane.showMessageDialog(null, "Profesor modificado", "SAAN",
-                    JOptionPane.INFORMATION_MESSAGE);
+            imprimir = "Profesor modificado";
             session.setAttribute("profesores", profesores);
         }
+        request.setAttribute("imprimir", imprimir);
         request.setAttribute("usu", p);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));

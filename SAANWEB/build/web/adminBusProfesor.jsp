@@ -38,12 +38,12 @@
                             <h5>Contraseña:</h5>
                             ${usu.getClave()}
                             <br/><br/>
-                            <h5>Grupos en los que enseña</h5>
+                            <h5>Materias en las que enseña</h5>
                             <c:if test="${not empty usu.getGrupos()}">
                                   <table class="table" style="margin-top: -10px;width: auto;">
                                     <thead>
                                         <tr>
-                                                   <th scope="col">Codigo</th>
+                                                   <th scope="col">Id</th>
                                                    <th scope="col">Nombre</th>
                                                    <th scope="col">Grupo</th>
                                                </tr>

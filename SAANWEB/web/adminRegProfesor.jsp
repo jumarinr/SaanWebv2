@@ -32,26 +32,28 @@
                     <!-- Card Body -->
                     <c:if test="${not empty profesores}">
                         <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: auto;">
-                                <thead>
-                                    <tr>
-                                               <th scope="col">Nombre</th>
-                                               <th scope="col">Identificación</th>
-                                               <th scope="col">Correo</th>
-                                        <th scope="col">Contraseña</th>
-                                           </tr>
-                                </thead>
-                                <tbody>
-                                       <c:forEach items="${profesores}" var="pro">
-                                               <tr>
-                                                       <td>${pro.getNombre()}</td>
-                                                       <td><a href="./administrador_buscarProfesor?id=${pro.getIdentificacion()}">${pro.getIdentificacion()}</a></td>
-                                                       <td>${pro.getCorreo()}</td>
-                                            <td>${pro.getClave()}</td>
-                                                   </tr>
-                                           </c:forEach>
-                                    </tbody>
-                                </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                                   <th scope="col">Nombre</th>
+                                                   <th scope="col">Identificación</th>
+                                                   <th scope="col">Correo</th>
+                                            <th scope="col">Contraseña</th>
+                                               </tr>
+                                    </thead>
+                                    <tbody>
+                                           <c:forEach items="${profesores}" var="pro">
+                                                   <tr>
+                                                           <td>${pro.getNombre()}</td>
+                                                           <td><a href="./administrador_buscarProfesor?id=${pro.getIdentificacion()}">${pro.getIdentificacion()}</a></td>
+                                                           <td>${pro.getCorreo()}</td>
+                                                <td>${pro.getClave()}</td>
+                                                       </tr>
+                                               </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                     </c:if>
                 </div>
@@ -85,8 +87,8 @@
                                 <input type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la contraseña">
                             </div>
                             <button type="submit" class="btn btn-primary">Registrar</button>
-                        </form>                    </div>
-
+                        </form>                    
+                    </div>
                 </div>
             </div>
         </div>

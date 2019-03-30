@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import models.Estudiante;
 import models.Persona;
 import models.Profesor;
@@ -90,15 +89,14 @@ public class AdminRegistrarEstudiante extends HttpServlet {
         String correo = request.getParameter("correo").toLowerCase();
         String clave = request.getParameter("clave");
         Estudiante p = new Estudiante(nombre, documento, correo, clave);
-
+        String imprimir = "";
         if (extra.esEmailCorrecto(correo)) {
-            JOptionPane.showMessageDialog(null, Estudiante.registrar(personas,
-                    estudiantes, profesores, p), "SAAN", JOptionPane.INFORMATION_MESSAGE);
+            imprimir = Estudiante.registrar(personas,
+                    estudiantes, profesores, p);
         } else {
-            JOptionPane.showMessageDialog(null, "Correo invalido", "SAAN",
-                    JOptionPane.ERROR_MESSAGE);
+            imprimir = "Correo invalido";
         }
-
+        request.setAttribute("imprimir", imprimir);
         session.setAttribute("estudiantes", estudiantes);
         request.setAttribute("estudiantes", estudiantes);
         request.setAttribute("mensaje", Mensajes.mensaje);

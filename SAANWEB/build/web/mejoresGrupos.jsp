@@ -3,17 +3,6 @@
     Created on : 27/03/2019, 12:38:07 AM
     Author     : juann
 --%>
-
-<%-- 
-    Document   : estudiantesPerdiendo
-    Created on : 27/03/2019, 12:17:58 AM
-    Author     : juann
---%>
-<%--
-    Document   : index
-    Created on : 17/03/2019, 09:27:33 PM
-    Author     : juann
---%>
     <%@ include file="header2.jsp" %>
     <body id="page-top">
         

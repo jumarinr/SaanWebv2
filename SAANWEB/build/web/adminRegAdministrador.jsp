@@ -32,26 +32,28 @@
                     <!-- Card Body -->
                     <c:if test="${not empty administradores}">
                         <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: auto;">
-                                <thead>
-                                    <tr>
-                                               <th scope="col">Nombre</th>
-                                               <th scope="col">Identificación</th>
-                                               <th scope="col">Correo</th>
-                                        <th scope="col">Contraseña</th>
-                                           </tr>
-                                </thead>
-                                <tbody>
-                                       <c:forEach items="${administradores}" var="adm">
-                                               <tr>
-                                                       <td>${adm.getNombre()}</td>
-                                                       <td><a href="./administrador_buscarAdministrador?id=${adm.getIdentificacion()}">${adm.getIdentificacion()}</a></td>
-                                                       <td>${adm.getCorreo()}</td>
-                                            <td>${adm.getClave()}</td>
-                                                   </tr>
-                                           </c:forEach>
-                                    </tbody>
-                                </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                                   <th scope="col">Nombre</th>
+                                                   <th scope="col">Identificación</th>
+                                                   <th scope="col">Correo</th>
+                                            <th scope="col">Contraseña</th>
+                                               </tr>
+                                    </thead>
+                                    <tbody>
+                                           <c:forEach items="${administradores}" var="adm">
+                                                   <tr>
+                                                           <td>${adm.getNombre()}</td>
+                                                           <td><a href="./administrador_buscarAdministrador?id=${adm.getIdentificacion()}">${adm.getIdentificacion()}</a></td>
+                                                           <td>${adm.getCorreo()}</td>
+                                                <td>${adm.getClave()}</td>
+                                                       </tr>
+                                               </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                     </c:if>
                 </div>

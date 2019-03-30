@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import util.Mensajes;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +98,7 @@ public class AdminLogin extends HttpServlet {
                     pr.forward(request, response);
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "SAAN", JOptionPane.ERROR_MESSAGE);
+                    request.setAttribute("imprimir", "Usuario y/o contraseña incorrectos");
                     request.setAttribute("mensaje", Mensajes.mensaje);
                     RequestDispatcher view = request.getRequestDispatcher("login.jsp");
                     view.forward(request, response);

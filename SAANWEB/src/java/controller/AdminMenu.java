@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.administrador;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +14,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import util.Mensajes;
+import models.*;
 
 /**
  *
  * @author Juan Pablo
  */
-@WebServlet(urlPatterns = {"/menuAdministrador"})
-public class AdminMenuAdministrador extends HttpServlet {
+@WebServlet(urlPatterns = {"/adminMenu"})
+public class AdminMenu extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +32,6 @@ public class AdminMenuAdministrador extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -47,10 +45,17 @@ public class AdminMenuAdministrador extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("menuAdmin.jsp");
-        view.forward(request, response);
+        Persona usuario = (Persona) session.getAttribute("usua");
+        if(usuario instanceof Estudiante){
+            RequestDispatcher view = request.getRequestDispatcher("/menuEstu");
+            view.forward(request, response);
+        }else if(usuario instanceof Profesor){
+            RequestDispatcher view = request.getRequestDispatcher("/menuprof");
+            view.forward(request, response);
+        }else{
+            RequestDispatcher view = request.getRequestDispatcher("/menuAdministrador");
+            view.forward(request, response);
+        }
     }
 
     /**
@@ -64,11 +69,6 @@ public class AdminMenuAdministrador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("menuAdmin.jsp");
-        view.forward(request, response);
     }
 
     /**

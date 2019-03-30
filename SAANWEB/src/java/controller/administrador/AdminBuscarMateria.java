@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import models.Grupo;
 import models.Materia;
 import models.Matricula;
@@ -100,15 +99,13 @@ public class AdminBuscarMateria extends HttpServlet {
         }
         if (request.getParameter("id") != null) {
             int id = Integer.parseInt(request.getParameter("id"));
-            if (JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este registro",
-                    "SAAN", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(null, Materia.eliminar(materias, grupos, matriculas, notas, id), "SAAN",
-                        JOptionPane.INFORMATION_MESSAGE);
+                String imprimir = Materia.eliminar(materias, grupos, matriculas, notas, id);
+                request.setAttribute("imprimir", imprimir);
                 session.setAttribute("materias", materias);
                 session.setAttribute("grupos", grupos);
                 session.setAttribute("matriculas", matriculas);
                 session.setAttribute("notas", notas);
-            }
+        
         }
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));

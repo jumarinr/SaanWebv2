@@ -38,13 +38,5 @@ public class extra {
         }
         return false;
     }
-    
-    public static void AplicarLookAndFeel(){
-        try {
-            UIManager.setLookAndFeel(new UpperEssentialLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

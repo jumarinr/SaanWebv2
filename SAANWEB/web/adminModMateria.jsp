@@ -24,25 +24,27 @@
                     </div>
                     <!-- Card Body -->
                     <c:if test="${not empty materias}">
-                        <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: 100%;">
-                                <thead>
-                                    <tr>
-                                               <th scope="col">Id</th>
-                                               <th scope="col">Nombre</th>
-                                               <th scope="col">Creditos</th>
-                                           </tr>
-                                </thead>
-                                <tbody>
-                                       <c:forEach items="${materias}" var="mat">
-                                               <tr>
-                                                       <td><a href="./administrador_buscarMateria?id=${mat.getId()}">${mat.getId()}</a></td>
-                                                       <td>${mat.getNombre()}</td>
-                                            <td>${mat.getCreditos()}</td>
-                                                   </tr>
-                                           </c:forEach>
-                                    </tbody>
-                                </table>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                                   <th scope="col">Id</th>
+                                                   <th scope="col">Nombre</th>
+                                                   <th scope="col">Creditos</th>
+                                               </tr>
+                                    </thead>
+                                    <tbody>
+                                           <c:forEach items="${materias}" var="mat">
+                                                   <tr>
+                                                           <td><a href="./administrador_buscarMateria?id=${mat.getId()}">${mat.getId()}</a></td>
+                                                           <td>${mat.getNombre()}</td>
+                                                <td>${mat.getCreditos()}</td>
+                                                       </tr>
+                                               </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                     </c:if>
                 </div>

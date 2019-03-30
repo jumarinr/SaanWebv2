@@ -53,7 +53,6 @@ public class AdminIndex extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        extra.AplicarLookAndFeel();
         //se crea listas
         List<Nota> notas = new ArrayList<Nota>();
         List<Materia> materias = new ArrayList<Materia>();

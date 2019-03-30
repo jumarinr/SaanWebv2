@@ -16,13 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
-import models.Estudiante;
 import models.Materia;
-import models.Persona;
-import models.Profesor;
 import util.Mensajes;
-import util.extra;
 
 /**
  *
@@ -88,6 +83,7 @@ public class AdminModificarMateria extends HttpServlet {
         if (session.getAttribute("materias") != null) {
             materias = (ArrayList<Materia>) session.getAttribute("materias");
         }
+        String imprimir = "";
         int id = Integer.parseInt(request.getParameter("id"));
         String nom = request.getParameter("nombre");
         int cre = Integer.parseInt(request.getParameter("creditos"));
@@ -95,9 +91,7 @@ public class AdminModificarMateria extends HttpServlet {
         boolean seguir = true;
         if (id != idAnterior) {
             if (Materia.buscarMateria(materias, id) != null) {
-                JOptionPane.showMessageDialog(null, "El id ya esta registrado",
-                        "SAAN", JOptionPane.ERROR_MESSAGE);
-                seguir = false;
+                imprimir = "El id ya esta registrado";
             }
         }
         Materia m = Materia.buscarMateria(materias, idAnterior);
@@ -107,10 +101,10 @@ public class AdminModificarMateria extends HttpServlet {
             m.setNombre(nom);
             m.setCreditos(cre);
             Materia.guardarCambios(materias);
-            JOptionPane.showMessageDialog(null, "Materia modificada", "SAAN",
-                    JOptionPane.INFORMATION_MESSAGE);
+            imprimir = "Materia modificada";
             session.setAttribute("materias", materias);
         }
+        request.setAttribute("imprimir", imprimir);
         request.setAttribute("mat", m);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
