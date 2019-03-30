@@ -2,6 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/controller/administrador/AdminModificarEstudiante.java</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/web/adminModMateria.jsp</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/models/Nota.java</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/controller/administrador/AdminModificarMateria.java</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/models/Matricula.java</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/web/profRegNota.jsp</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/controller/profesor/buscarnota.java</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/util/Mensajes.java</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/controller/profesor/modnota.java</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/web/profModNota.jsp</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/controller/datosFicticios.java</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/web/profBuscarNota.jsp</file>
+            <file>file:/D:/java/SaanWebv2/SAANWEB/src/java/controller/AdminIndex.java</file>
+        </group>
     </open-files>
 </project-private>

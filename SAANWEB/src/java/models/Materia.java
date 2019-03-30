@@ -72,7 +72,7 @@ public class Materia {
 
     @Override
     public String toString() {
-        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", creditos=" + creditos + ", grupos=" + grupos + '}';
+        return "id=" + id + ", nombre=" + nombre + ", creditos=" + creditos;
     }
 
     public static Materia buscarMateria(List<Materia> materias, int id) {

@@ -12,6 +12,7 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
+
         <!-- Content Row -->
         <div class="row">
 
@@ -20,33 +21,23 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Profesores</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Materia</h6>
                     </div>
                     <!-- Card Body -->
-                    <c:if test="${not empty profesores}">
-                        <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: auto;">
-                                <thead>
-                                    <tr>
-                                               <th scope="col">Nombre</th>
-                                               <th scope="col">Identificación</th>
-                                               <th scope="col">Correo</th>
-                                        <th scope="col">Contraseña</th>
-                                           </tr>
-                                </thead>
-                                <tbody>
-                                       <c:forEach items="${profesores}" var="pro">
-                                               <tr>
-                                                       <td>${pro.getNombre()}</td>
-                                                       <td>${pro.getIdentificacion()}</td>
-                                                       <td>${pro.getCorreo()}</td>
-                                            <td>${pro.getClave()}</td>
-                                                   </tr>
-                                           </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                    </c:if>
+                    <div style="font-size: 100%" class="card-body">
+                        <c:if test="${not empty Mat}">   
+                            <h5>Id: </h5>
+                            ${Mat.getId()}
+                            <h5>Nombre: </h5>
+                            ${Mat.getNombre()}
+                            <br/><br/>
+                            <h5>Creditos: </h5>
+                            ${Mat.getCreditos()}                            
+                        </c:if>
+                        <c:if test="${empty Mat}">
+                            No encontrado    
+                        </c:if>
+                    </div>
                 </div>
             </div>
 
@@ -55,34 +46,18 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Edición</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Busqueda</h6>
 
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <c:if test="${not empty usu}">
-                        <form method="POST" action="./administrador_modificarProfesor">
+                        <form method="GET" action="./buscarmateria">
                             <div class="form-group">
-                                <label for="ide">Identificación</label>
-                                <input value="${usu.getIdentificacion()}" type="number" class="form-control" id="identificacion" name="identificacion" placeholder="Ingrese el documento de identidad" required>
+                                <label for="id">Id</label>
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Ingrese el id" required>
                             </div>
-                            <div class="form-group">
-                                <label for="nom">Nombre</label>
-                                <input value="${usu.getNombre()}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cor">Correo</label>
-                                <input value="${usu.getCorreo()}" type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="Ingrese el correo electronico" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="con">Contraseña</label>
-                                <input value="${usu.getClave()}" type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la contraseña">
-                            </div>
-                            <input id="doc" name="doc" type="hidden" value="${usu.getIdentificacion()}">
-                             <input id="cor" name="cor" type="hidden" value="${usu.getCorreo()}">
-                            <button type="submit" class="btn btn-primary">Modificar</button>
-                        </form>
-                        </c:if>
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </form>                    
                     </div>
                 </div>
             </div>

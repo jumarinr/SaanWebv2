@@ -7,6 +7,8 @@ package controller.profesor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Matricula;
+import models.Nota;
 import util.Mensajes;
 
 /**
@@ -36,6 +40,20 @@ public class mejoresnotas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        List<Matricula> matriculas = new ArrayList<Matricula>();        
+        if(request.getParameter("materia") != null && request.getParameter("grupo") != null){                  
+            int id_materia = Integer.parseInt(request.getParameter("materia"));
+            int num_grup = Integer.parseInt(request.getParameter("grupo"));            
+            
+            System.err.println(id_materia);
+            System.err.println(num_grup);            
+            
+            if (session.getAttribute("matriculas") != null) {
+                matriculas = (ArrayList<Matricula>) session.getAttribute("matriculas");
+            }            
+            ArrayList<Nota> Nots = Nota.MejoresNotas((ArrayList<Matricula>) matriculas, id_materia, num_grup);
+            request.setAttribute("Nots", Nots);
+        }                      
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
         response.setContentType("text/html;charset=UTF-8");

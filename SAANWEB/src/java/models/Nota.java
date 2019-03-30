@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class Nota {
 
-    private int porcentaje;
+    private double porcentaje;
     private double valor;
     private int id;
     private Matricula matricula;
@@ -24,11 +24,11 @@ public class Nota {
         this.setMatricula(matricula);
     }
 
-    public int getPorcentaje() {
+    public double getPorcentaje() {
         return porcentaje;
     }
 
-    public void setPorcentaje(int porcentaje) {
+    public void setPorcentaje(double porcentaje) {
         if (porcentaje > 0) {
             this.porcentaje = porcentaje;
         }
@@ -96,14 +96,14 @@ public class Nota {
 
     }
 
-    public static void enviarCorreoActualizarNota(short opc, int id, double nota, double porcentaje, Estudiante estudiante, Materia materia) {
+    public static void enviarCorreoActualizarNota(String opc, int id, double nota, double porcentaje, Estudiante estudiante, Materia materia) {
         String correo_enviar = estudiante.getCorreo();
         String cuerpo = "";
         String asunto = "";
         if (Mensajes.mensaje.get(opc).equals("borro")) {
             cuerpo = Mensajes.mensaje.get("cuerpo_borro") + id + Mensajes.mensaje.get("cuerpo_borro2") + materia.toString();
         } else {
-            cuerpo = Mensajes.mensaje.get("cuerpo_resto") + materia.toString() + Mensajes.mensaje.get("cuerpo_resto2") + String.valueOf(id) + Mensajes.mensaje.get("cuerpo_resto3") + String.valueOf(nota) + Mensajes.mensaje.get("cuerpo_resto4") + String.valueOf(porcentaje);
+            cuerpo = Mensajes.mensaje.get("cuerpo_resto") + materia.toString() + Mensajes.mensaje.get("cuerpo_resto2") + String.valueOf(id) + Mensajes.mensaje.get("cuerpo_resto3") + String.valueOf(nota) + Mensajes.mensaje.get("cuerpo_resto4") + String.valueOf(porcentaje) + '%';
             asunto = Mensajes.mensaje.get("asunto") + Mensajes.mensaje.get(opc) + Mensajes.mensaje.get("asunto2");
         }
         EnvioDeCorreo.EnvioDeMail(correo_enviar, asunto, cuerpo);

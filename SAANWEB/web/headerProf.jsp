@@ -14,7 +14,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/SAAN">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./inicio">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -41,9 +41,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones</h6>
-                        <a class="collapse-item" href="./regnota">Registrar</a>
-                        <a class="collapse-item" href="./modnota">Modificar</a>
-                        <a class="collapse-item" href="./borrnota">Borrar</a>
+                        <a class="collapse-item" href="./regnota">Registrar</a>                       
                         <a class="collapse-item" href="./buscarnota">Buscar</a>
                         <a class="collapse-item" href="./mejoresnotas">Ver mejores notas</a>
                     </div>

@@ -7,6 +7,8 @@ package controller.profesor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Grupo;
+import models.Materia;
 import util.Mensajes;
 
 /**
@@ -35,10 +39,22 @@ public class buscarmateria extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Materia> materias = new ArrayList<Materia>();
         HttpSession session = request.getSession();
+        if(request.getParameter("id") != null){
+            int id = Integer.parseInt(request.getParameter("id"));                    
+            System.err.println(id);                    
+            
+            if (session.getAttribute("materias") != null) {
+                materias = (ArrayList<Materia>)session.getAttribute("materias");
+            }
+            Materia materia = Materia.buscarMateria(materias, id);
+            if (materia != null) {
+                request.setAttribute("Mat", materia);
+            }
+        }      
         request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("usua", session.getAttribute("usua"));                         
         RequestDispatcher view = request.getRequestDispatcher("profBuscarMateria.jsp");
         view.forward(request, response);
     }
