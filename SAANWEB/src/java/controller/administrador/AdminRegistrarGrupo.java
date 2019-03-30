@@ -17,18 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
+import models.Estudiante;
 import models.Grupo;
 import models.Materia;
-import models.Matricula;
-import models.Nota;
+import models.Persona;
+import models.Profesor;
 import util.Mensajes;
 import util.extra;
 
 /**
-
+ *
+ * @author Juan Pablo
  */
-@WebServlet(urlPatterns = {"/administrador_buscarMateria"})
-public class AdminBuscarMateria extends HttpServlet {
+@WebServlet(urlPatterns = {"/administrador_registrarGrupo"})
+public class AdminRegistrarGrupo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,21 +53,15 @@ public class AdminBuscarMateria extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Materia> materias = new ArrayList<Materia>();
+        List<Grupo> grupos = new ArrayList<Grupo>();
         HttpSession session = request.getSession();
-        if (session.getAttribute("materias") != null) {
-            materias = (ArrayList<Materia>) session.getAttribute("materias");
+        if (session.getAttribute("grupos") != null) {
+            grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
         }
-        if (request.getParameter("id") != null) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            Materia mat = Materia.buscarMateria(materias, id);
-            if (mat != null) {
-                request.setAttribute("mat", mat);
-            }
-        }
+        request.setAttribute("grupos", grupos);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("adminBusMateria.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("adminRegGrupo.jsp");
         view.forward(request, response);
     }
 
@@ -80,39 +76,45 @@ public class AdminBuscarMateria extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Eliminar
         List<Materia> materias = new ArrayList<Materia>();
-        List<Nota> notas = new ArrayList<Nota>();
-        List<Matricula> matriculas = new ArrayList<Matricula>();
         List<Grupo> grupos = new ArrayList<Grupo>();
+        List<Profesor> profesores = new ArrayList<>();
         HttpSession session = request.getSession();
-        if(session.getAttribute("notas") != null) {
-            notas = (ArrayList<Nota>) session.getAttribute("notas");
-        }
-        if(session.getAttribute("materias") != null) {
-            materias = (ArrayList<Materia>) session.getAttribute("materias");
-        }
-        if(session.getAttribute("matriculas") != null) {
-            matriculas = (ArrayList<Matricula>) session.getAttribute("matriculas");
-        }
-        if(session.getAttribute("grupos") != null) {
+        if (session.getAttribute("grupos") != null) {
             grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
         }
-        if (request.getParameter("id") != null) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            if (JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este registro",
-                    "SAAN", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(null, Materia.eliminar(materias, grupos, matriculas, notas, id), "SAAN",
-                        JOptionPane.INFORMATION_MESSAGE);
-                session.setAttribute("materias", materias);
-                session.setAttribute("grupos", grupos);
-                session.setAttribute("matriculas", matriculas);
-                session.setAttribute("notas", notas);
-            }
+        if (session.getAttribute("materias") != null) {
+            materias = (ArrayList<Materia>) session.getAttribute("materias");
         }
+        if (session.getAttribute("grupos") != null) {
+            profesores = (ArrayList<Profesor>) session.getAttribute("profesores");
+        }
+        int num = Integer.parseInt(request.getParameter("numero"));
+        int idMateria = Integer.parseInt(request.getParameter("id"));
+        long docProfesor = Long.parseLong(request.getParameter("doc"));
+        
+        if(Materia.buscarMateria(materias, idMateria) == null){
+            JOptionPane.showMessageDialog(null, "La materia no esta registrada",
+                    "SAAN",JOptionPane.ERROR_MESSAGE);
+        }
+        if(Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
+                profesores, docProfesor) == null){
+            JOptionPane.showMessageDialog(null, "EL profesor no esta registrada",
+                    "SAAN",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        Grupo grupo = new Grupo(num,(Profesor) Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
+                profesores, docProfesor), Materia.buscarMateria(materias, idMateria));
+
+        JOptionPane.showMessageDialog(null, Grupo.registrar(grupos, grupo), "SAAN", JOptionPane.INFORMATION_MESSAGE);
+
+        session.setAttribute("grupos", grupos);
+        session.setAttribute("materias", materias);
+        session.setAttribute("profesor", profesores);
+        request.setAttribute("grupos", grupos);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("adminBusMateria.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("adminRegGrupo.jsp");
         view.forward(request, response);
     }
 

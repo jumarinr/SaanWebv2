@@ -117,46 +117,44 @@ public class Grupo {
         }
     }
 
-    public static String mejoresGrupos(Materia mat) {
-        List<Grupo> n = mat.getGrupos();
-        if (!n.isEmpty()) {
-            HashMap<Integer, Grupo> a = new HashMap<Integer, Grupo>();
-            for (Grupo grupo : n) {
-                int cont = 0;
-                List<Matricula> b = grupo.getMatriculas();
-                if (!b.isEmpty()) {
-                    for (Matricula matricula : b) {
-                        List<Nota> c = matricula.getNotas();
-                        int cont2 = 0;
-                        if (!c.isEmpty()) {
-                            for (Nota nota : c) {
-                                cont2 += nota.getValor();
+    public static ArrayList<Grupo> mejoresGrupos(List<Materia> materias) {
+        ArrayList<Grupo> retorno = new ArrayList<>();
+        for (Materia mat : materias) {
+            List<Grupo> grupos = mat.getGrupos();
+            if (!grupos.isEmpty()) {
+                HashMap<Integer, Grupo> promedioPorGrupo = new HashMap<Integer, Grupo>();
+                for (Grupo grupo : grupos) {
+                    int cont = 0;
+                    List<Matricula> matriculas = grupo.getMatriculas();
+                    if (!matriculas.isEmpty()) {
+                        for (Matricula matricula : matriculas) {
+                            List<Nota> notas = matricula.getNotas();
+                            int cont2 = 0;
+                            if (!notas.isEmpty()) {
+                                for (Nota nota : notas) {
+                                    cont2 += nota.getValor();
+                                }
+                            } else {
+                                cont2 = 0;
                             }
-                        } else {
-                            cont2 = 0;
+                            cont += cont2;
                         }
-                        cont += cont2;
+                        promedioPorGrupo.put(cont / matriculas.size(), grupo);
+                    } else {
+                        promedioPorGrupo.put(0, grupo);
                     }
-                    a.put(cont / b.size(), grupo);
-                } else {
-                    a.put(0, grupo);
+                }
+                int mayor = 0;
+                for (Map.Entry<Integer, Grupo> i : promedioPorGrupo.entrySet()) {
+                    if (i.getKey() > mayor) {
+                        mayor = i.getKey();
+                    }
+                }
+                if (mayor != 0) {
+                    retorno.add(promedioPorGrupo.get(mayor));
                 }
             }
-            int mayor = 0;
-            for (Map.Entry<Integer, Grupo> i : a.entrySet()) {
-                if (i.getKey() > mayor) {
-                    mayor = i.getKey();
-                }
-            }
-            if (mayor != 0) {
-                return Mensajes.mensaje.get("ideMat") + mat.getId() + "\n" + Mensajes.mensaje.get("gru") + a.get(mayor).getNumero();
-            } else {
-                return Mensajes.mensaje.get("ideMat") + mat.getId() + "\n" + Mensajes.mensaje.get("Nonotas");
-            }
-
-        } else {
-            return Mensajes.mensaje.get("ideMat") + mat.getId() + "\n" + Mensajes.mensaje.get("Nogrup");
         }
+        return retorno;
     }
-
 }
