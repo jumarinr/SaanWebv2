@@ -1,9 +1,4 @@
-<%-- 
-    Document   : profBuscarGrupo
-    Created on : 27/03/2019, 01:52:12 AM
-    Author     : pipel
---%>
-<%@ include file="headerProf.jsp" %>
+<%@ include file="headerEstu.jsp" %>
 
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
@@ -20,39 +15,28 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Grupo</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Nota</h6>
                     </div>
                     <!-- Card Body -->
                     <div style="font-size: 100%" class="card-body">
-                        <c:if test="${not empty Gru}">
-                            <h5>Número:</h5>
-                            ${Gru.getNumero()}
+                        <c:if test="${not empty Not}">
+                            <h5>Id:</h5>
+                            ${Not.getId()}
                             <br/><br/>
-                            <h5>Profesor</h5>
-                            <h6>Id:</h6>
-                            ${Gru.getProfesor().getIdentificacion()}
+                            <h5>Porcentaje:</h5>
+                            ${Not.getPorcentaje()}
                             <br/><br/>
-                            <h6>Nombre: </h6>
-                            ${Gru.getProfesor().getNombre()}
+                            <h5>Valor:</h5>
+                            ${Not.getValor()}
                             <br/><br/>
-                            <h6>Correo: </h6>
-                            ${Gru.getProfesor().getCorreo()}
-                            <br/><br/>
-                            <h5>Materia</h5>
-                            <h6>Nombre: </h6>
-                            ${Gru.getMateria().getNombre()}
-                            <br/><br/>
-                            <h6>Creditos: </h6>
-                            ${Gru.getMateria().getCreditos()}
                         </c:if>
-                        <c:if test="${empty Gru}">
+                         <c:if test="${empty Not}">
                             No encontrado    
                         </c:if>
                     </div>
                 </div>
             </div>
-
-            <!-- Pie Chart -->
+            
             <div class="col-xl-4 col-lg-5">
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
@@ -62,15 +46,23 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <form method="GET" action="./buscargrupo">
+                        <form method="GET" action="./estuBuscarNotas">
                             <div class="form-group">
-                                <label for="id">Id</label>
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Ingrese el id" required>
+                                <label for="ide">Documento</label>
+                                <input type="text" class="form-control" id="doc" name="doc" placeholder="Ingrese su documento" required>
                             </div>
                             <div class="form-group">
-                                <label for="materia">Id Materia</label>
-                                <input type="text" class="form-control" id="materia" name="materia" placeholder="Ingrese el id de la materia" required>
-                            </div>    
+                                <label for="ide">Id Materia</label>
+                                <input type="text" class="form-control" id="idM" name="idM" placeholder="Ingrese el id de la materia" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ide">Id Grupo</label>
+                                <input type="text" class="form-control" id="idG" name="idG" placeholder="Ingrese el id del grupo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ide">Id Nota</label>
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Ingrese el id de la nota" required>
+                            </div>
                             <button type="submit" class="btn btn-primary">Buscar</button>
                         </form>                    
                     </div>
@@ -86,3 +78,5 @@
 
 <!-- Footer -->
 <%@ include file="footer.jsp" %>
+
+

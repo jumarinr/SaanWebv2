@@ -31,7 +31,7 @@ public class Mensajes {
             put("menu", "Menú");
             put("Ganosinno", "El estudiante no va perdiendo o no tiene notas");
             put("Noestnot", "Estudiante sin notas");
-            put("resgistro","resgitro");
+            put("registro","registro");
             put("modifico", "modifico");
             put("borro", "borro");
             put("cuerpo_borro", "se le borro la nota con identificación ");

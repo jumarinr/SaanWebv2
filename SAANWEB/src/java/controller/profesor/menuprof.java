@@ -62,7 +62,12 @@ public class menuprof extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
+            throws ServletException, IOException { 
+        HttpSession session = request.getSession();
+        request.setAttribute("mensaje", Mensajes.mensaje);
+        request.setAttribute("usua", session.getAttribute("usua"));
+        RequestDispatcher view = request.getRequestDispatcher("menuProf.jsp");
+        view.forward(request, response);
     }
 
     /**

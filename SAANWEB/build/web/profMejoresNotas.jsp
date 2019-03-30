@@ -23,29 +23,29 @@
                         <h6 class="m-0 font-weight-bold text-primary">Profesores</h6>
                     </div>
                     <!-- Card Body -->
-                    <c:if test="${not empty profesores}">
+                    <c:if test="${not empty Nots}">
                         <div class="card-body">    
                             <table class="table" style="margin-top: -10px;width: auto;">
                                 <thead>
                                     <tr>
-                                               <th scope="col">Nombre</th>
-                                               <th scope="col">Identificación</th>
-                                               <th scope="col">Correo</th>
-                                        <th scope="col">Contraseña</th>
+                                               <th scope="col">Id</th>
+                                               <th scope="col">Porcentaje</th>
+                                               <th scope="col">Valor</th>                                        
                                            </tr>
                                 </thead>
                                 <tbody>
-                                       <c:forEach items="${profesores}" var="pro">
+                                       <c:forEach items="${Nots}" var="Not">
                                                <tr>
-                                                       <td>${pro.getNombre()}</td>
-                                                       <td>${pro.getIdentificacion()}</td>
-                                                       <td>${pro.getCorreo()}</td>
-                                            <td>${pro.getClave()}</td>
-                                                   </tr>
+                                                       <td>${Not.getId()}</td>
+                                                       <td>${Not.getPorcentaje()}</td>
+                                                       <td>${Not.Valor()}</td>                                                                                               </tr>
                                            </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
+                    </c:if>
+                    <c:if test="${empty Nots}">
+                        No hay notas que mostrar
                     </c:if>
                 </div>
             </div>
@@ -61,22 +61,14 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <c:if test="${not empty usu}">
-                        <form method="POST" action="./administrador_modificarProfesor">
+                        <form method="GET" action="">
                             <div class="form-group">
-                                <label for="ide">Identificación</label>
-                                <input value="${usu.getIdentificacion()}" type="number" class="form-control" id="identificacion" name="identificacion" placeholder="Ingrese el documento de identidad" required>
+                                <label for="grupo">Id grupo</label>
+                                <input type="text" class="form-control" id="grupo" name="grupo" aria-describedby="emailHelp" placeholder="Ingrese id el grupo" required>
                             </div>
                             <div class="form-group">
-                                <label for="nom">Nombre</label>
-                                <input value="${usu.getNombre()}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cor">Correo</label>
-                                <input value="${usu.getCorreo()}" type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="Ingrese el correo electronico" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="con">Contraseña</label>
-                                <input value="${usu.getClave()}" type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la contraseña">
+                                <label for="materia">Id materia</label>
+                                <input type="text" class="form-control" id="materia" name="materia" placeholder="Ingrese el id la materia">
                             </div>
                             <input id="doc" name="doc" type="hidden" value="${usu.getIdentificacion()}">
                              <input id="cor" name="cor" type="hidden" value="${usu.getCorreo()}">

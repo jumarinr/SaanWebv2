@@ -27,27 +27,27 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Nota</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Notas</h6>
                     </div>
                     <!-- Card Body -->
-                    <c:if test="${not empty estudiantes}">
+                    <c:if test="${not empty notas}">
                         <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: auto;">
+                            <table class="table" style="margin-top: -10px;width: 100%;">
                                 <thead>
                                     <tr>
                                                <th scope="col">Id</th>
                                                <th scope="col">Valor</th>
                                                <th scope="col">Porcentaje</th>
-                                        <th scope="col">Créditos</th>
                                            </tr>
                                 </thead>
                                 <tbody>
-                                       <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                       <c:forEach items="${notas}" var="Not">
+                                               <tr>
+                                                       <td><a href="./buscarnota?id=${Not.getId()}&materia=${Not.getMatricula().getGrupo().getMateria().getId()}&grupo=${Not.getMatricula().getGrupo().getNumero()}&estudiante=${Not.getMatricula().getEstudiante().getIdentificacion()}">${Not.getId()}</a></td>
+                                                       <td>${Not.getValor()}</td>
+                                            <td>${Not.getPorcentaje()}</td>
+                                                   </tr>
+                                           </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -67,24 +67,24 @@
                     <div class="card-body">
                         <form method="POST" action="./regnota">
                             <div class="form-group">
-                                <label for="id">Id Nota</label>
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Ingrese el id de la nota" required>
+                                <label for="ide">Id</label>
+                                <input type="number" class="form-control" id="id" name="id" placeholder="Ingrese el id" required>
                             </div>
                             <div class="form-group">
-                                <label for="valor">Valor</label>
-                                <input type="text" class="form-control" id="valor" name="valor" placeholder="Ingrese el valor de la nota" required>
+                                <label for="nom">Valor</label>
+                                <input type="text" class="form-control" id="valor" name="valor" placeholder="Ingrese el valor" required>
                             </div>
                             <div class="form-group">
-                                <label for="porcentaje">Porcentaje</label>
-                                <input type="text" class="form-control" id="porcentaje" name="porcentaje" placeholder="Ingrese el porcentaje de la nota" required>
+                                <label for="cre">Porcentaje</label>
+                                <input type="number" class="form-control" id="porcentaje" name="porcentaje" placeholder="Ingrese porcentaje" required>
                             </div>
                             <div class="form-group">
-                                <label for="idmatricula">Id Matrícula</label>
-                                <input type="text" class="form-control" id="idmatricula" name="idmatricula" placeholder="Ingrese el id de la matrícula">
-                            </div>
+                                <label for="idestudiante">Id estudiante</label>
+                                <input type="number" class="form-control" id="idestudiante" name="idestudiante" placeholder="Ingrese el id del estudiante" required>
+                            </div>                            
                             <div class="form-group">
-                                <label for="idestudiante">Id Estudiante</label>
-                                <input type="text" class="form-control" id="idestudiante" name="idestudiante" placeholder="Ingrese el id del estudiante">
+                                <label for="idmateria">Id Materia</label>
+                                <input type="number" class="form-control" id="idmateria" name="idmateria" placeholder="Ingrese el id de la matrícula" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Registrar</button>
                         </form>                    </div>
@@ -98,6 +98,7 @@
 
 </div>
 <!-- End of Main Content -->
+
 
 <!-- Footer -->
 <%@ include file="footer.jsp" %>

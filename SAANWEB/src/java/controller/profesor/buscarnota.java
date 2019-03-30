@@ -7,6 +7,8 @@ package controller.profesor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
+import models.Estudiante;
+import models.Grupo;
+import models.Materia;
+import models.Matricula;
+import models.Nota;
 import util.Mensajes;
 
 /**
@@ -36,10 +44,28 @@ public class buscarnota extends HttpServlet {
      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Nota> notas = new ArrayList<Nota>();
         HttpSession session = request.getSession();
+        if(request.getParameter("id") != null && request.getParameter("materia") != null && request.getParameter("grupo") != null && request.getParameter("estudiante") != null){
+            int id = Integer.parseInt(request.getParameter("id"));        
+            int id_materia = Integer.parseInt(request.getParameter("materia"));
+            int num_grup = Integer.parseInt(request.getParameter("grupo"));
+            int estu = Integer.parseInt(request.getParameter("estudiante"));
+            System.err.println(id);
+            System.err.println(id_materia);
+            System.err.println(num_grup);
+            System.err.println(estu);
+            
+            if (session.getAttribute("notas") != null) {
+                notas = (ArrayList<Nota>)session.getAttribute("notas");
+            }
+            Nota Not = Nota.buscarNota(notas, estu, id_materia, num_grup, id);
+            if (Not != null) {
+                request.setAttribute("Not", Not);
+            }
+        }      
         request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("usua", session.getAttribute("usua"));       
         RequestDispatcher view = request.getRequestDispatcher("profBuscarNota.jsp");
         view.forward(request, response);
     }
@@ -55,7 +81,53 @@ public class buscarnota extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Eliminar
+        List<Materia> materias = new ArrayList<Materia>();
+        List<Nota> notas = new ArrayList<Nota>();
+        List<Matricula> matriculas = new ArrayList<Matricula>();
+        List<Grupo> grupos = new ArrayList<Grupo>();
+        List<Estudiante> estudiantes = new ArrayList<Estudiante>();
         
+        HttpSession session = request.getSession();
+        if(session.getAttribute("notas") != null) {
+            notas = (ArrayList<Nota>) session.getAttribute("notas");
+        }
+        if(session.getAttribute("materias") != null) {
+            materias = (ArrayList<Materia>) session.getAttribute("materias");
+        }
+        if(session.getAttribute("matriculas") != null) {
+            matriculas = (ArrayList<Matricula>) session.getAttribute("matriculas");
+        }
+        if(session.getAttribute("grupos") != null) {
+            grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
+        }
+        if(session.getAttribute("estudiantes") != null){
+            estudiantes = (ArrayList<Estudiante>) session.getAttribute("estudiantes");
+        }
+        
+        if (request.getParameter("id") != null) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int id_materia = Integer.parseInt(request.getParameter("materia"));
+            int num_grup = Integer.parseInt(request.getParameter("grupo"));
+            int estu = Integer.parseInt(request.getParameter("estudiante"));
+            if (JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este registro",
+                    "SAAN", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                Nota Not = Nota.buscarNota(notas, estu, id_materia, num_grup, id);
+                Matricula ma = Matricula.buscar_matricula(matriculas, id_materia, id_materia);
+                Nota.enviarCorreoActualizarNota("borro", id, Not.getValor(), Not.getPorcentaje(), ma.getEstudiante(), ma.getGrupo().getMateria());
+                JOptionPane.showMessageDialog(null, Nota.eliminar(notas, estu, id_materia, num_grup, id), "SAAN",
+                        JOptionPane.INFORMATION_MESSAGE);                
+                session.setAttribute("materias", materias);
+                session.setAttribute("grupos", grupos);
+                session.setAttribute("matriculas", matriculas);
+                session.setAttribute("notas", notas);
+                session.setAttribute("estudiantes", estudiantes);
+            }
+        }
+        request.setAttribute("mensaje", Mensajes.mensaje);
+        request.setAttribute("usua", session.getAttribute("usua"));
+        RequestDispatcher view = request.getRequestDispatcher("profBuscarNota.jsp");
+        view.forward(request, response);
     }
 
     /**

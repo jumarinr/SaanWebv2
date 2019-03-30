@@ -63,14 +63,14 @@ public class regnota extends HttpServlet {
         if(session.getAttribute("matriculas") != null){
             matriculas = (ArrayList<Matricula>) session.getAttribute("matriculas");
         }
-        session.setAttribute("notas", notas);
+        
         request.setAttribute("notas", notas);
-        session.setAttribute("matriculas", matriculas);
         request.setAttribute("matriculas", matriculas);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
         RequestDispatcher view = request.getRequestDispatcher("profRegNota.jsp");
         view.forward(request, response);
+        
     }
 
     /**
@@ -96,12 +96,13 @@ public class regnota extends HttpServlet {
         int id = Integer.valueOf(request.getParameter("id"));
         double valor = Double.valueOf(request.getParameter("valor"));
         int porcentaje = Integer.valueOf(request.getParameter("porcentaje"));
-        int idmatricula = Integer.valueOf(request.getParameter("idmatricula"));
+        int idmateria = Integer.valueOf(request.getParameter("idmateria"));
         int idestudiante = Integer.valueOf(request.getParameter("idestudiante"));
-        Matricula matricula = Matricula.buscar_matricula(matriculas, idestudiante, idmatricula);
+        Matricula matricula = Matricula.buscar_matricula(matriculas, idestudiante, idmateria);
         if( matricula != null){
             String res = Nota.registrar(notas, new Nota(porcentaje, valor, id, matricula));
             if (res.equals(Mensajes.mensaje.get("reg"))){
+                Nota.enviarCorreoActualizarNota("registro", id, valor, porcentaje, matricula.getEstudiante(), matricula.getGrupo().getMateria());
                 JOptionPane.showMessageDialog(null, res, "SAAN", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
@@ -116,8 +117,8 @@ public class regnota extends HttpServlet {
         session.setAttribute("notas", notas);
         session.setAttribute("matriculas", matriculas);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("profRegNota.jsp");
-        view.forward(request, response);
+        RequestDispatcher view = request.getRequestDispatcher("./regnota");
+        view.forward(request, response);        
     }
 
     /**

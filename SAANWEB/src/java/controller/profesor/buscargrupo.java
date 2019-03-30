@@ -7,6 +7,8 @@ package controller.profesor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Grupo;
+import models.Nota;
 import util.Mensajes;
 
 /**
@@ -35,10 +39,24 @@ public class buscargrupo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Grupo> grupos = new ArrayList<Grupo>();
         HttpSession session = request.getSession();
+        if(request.getParameter("id") != null && request.getParameter("materia") != null){
+            int id = Integer.parseInt(request.getParameter("id"));        
+            int id_materia = Integer.parseInt(request.getParameter("materia"));            
+            System.err.println(id);
+            System.err.println(id_materia);            
+            
+            if (session.getAttribute("grupos") != null) {
+                grupos = (ArrayList<Grupo>)session.getAttribute("grupos");
+            }
+            Grupo grupo = Grupo.buscarGrupo(grupos, id, id_materia);
+            if (grupo != null) {
+                request.setAttribute("Gru", grupo);
+            }
+        }      
         request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("usua", session.getAttribute("usua"));                         
         RequestDispatcher view = request.getRequestDispatcher("profBuscarGrupo.jsp");
         view.forward(request, response);
     }
