@@ -102,18 +102,10 @@ public class regnota extends HttpServlet {
         if( matricula != null){
             String res = Nota.registrar(notas, new Nota(porcentaje, valor, id, matricula));
             if (res.equals(Mensajes.mensaje.get("reg"))){
-                Nota.enviarCorreoActualizarNota("registro", id, valor, porcentaje, matricula.getEstudiante(), matricula.getGrupo().getMateria());
-                JOptionPane.showMessageDialog(null, res, "SAAN", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "id de nota ya existente", "SAAN",
-                    JOptionPane.ERROR_MESSAGE);
-            }
+                Nota.enviarCorreoActualizarNota("registro", id, valor, porcentaje, matricula.getEstudiante(), matricula.getGrupo().getMateria());                
+            }            
         }        
-        else{
-            JOptionPane.showMessageDialog(null, "Id de estudiante o matrícula inválidos", "SAAN",
-                    JOptionPane.ERROR_MESSAGE);
-        }  
+
         session.setAttribute("notas", notas);
         session.setAttribute("matriculas", matriculas);
         request.setAttribute("usua", session.getAttribute("usua"));

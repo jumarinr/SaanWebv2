@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Estudiante;
 import models.Persona;
 import models.Profesor;
 import util.Mensajes;
@@ -61,7 +62,10 @@ public class cambiarnombre extends HttpServlet {
         request.setAttribute("usua", session.getAttribute("usua"));        
         if(request.getParameter("name") != null){
             String nombre = request.getParameter("name");
-            //Persona.buscarPersona(session.getAttribute("persona"), session.getAttribute("estudiantes"), session.getAttribute("profesores"), request.getParameter("usua").getIdentificacion());
+            Persona user = (Persona)session.getAttribute("usua");
+            long id = user.getIdentificacion();
+            Persona oc = Persona.buscarPersona((ArrayList<Persona>) session.getAttribute("personas"), (ArrayList<Estudiante>) session.getAttribute("estudiantes"), (ArrayList<Profesor>)session.getAttribute("profesores"), id);
+            oc.setNombre(nombre);
         }
         RequestDispatcher view = request.getRequestDispatcher("profCambiarNombre.jsp");
         view.forward(request, response);

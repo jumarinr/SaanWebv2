@@ -7,6 +7,7 @@ package controller.profesor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Estudiante;
+import models.Persona;
+import models.Profesor;
 import util.Mensajes;
 
 /**
@@ -37,8 +41,7 @@ public class cambiarcontrasena extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("usua", session.getAttribute("usua"));        
         RequestDispatcher view = request.getRequestDispatcher("profCambiarContrasena.jsp");
         view.forward(request, response);
     }
@@ -54,7 +57,20 @@ public class cambiarcontrasena extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            
+        HttpSession session = request.getSession();
+        request.setAttribute("mensaje", Mensajes.mensaje);
+        request.setAttribute("usua", session.getAttribute("usua"));        
+        if(request.getParameter("password") != null){
+            String password = request.getParameter("password");
+            Persona user = (Persona)session.getAttribute("usua");
+            long id = user.getIdentificacion();
+            Persona oc = Persona.buscarPersona((ArrayList<Persona>) session.getAttribute("personas"), (ArrayList<Estudiante>) session.getAttribute("estudiantes"), (ArrayList<Profesor>)session.getAttribute("profesores"), id);
+            oc.setClave(password);
+        }
+        RequestDispatcher view = request.getRequestDispatcher("profCambiarContrasena.jsp");
+        view.forward(request, response);
+            
     }
 
     /**

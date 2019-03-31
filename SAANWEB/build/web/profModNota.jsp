@@ -4,7 +4,11 @@
     Author     : pipel
 --%>
 <%@ include file="headerProf.jsp" %>
-
+<script>
+    function notify() {
+        alert("Se ha modificado la nota exitosamente");
+    }
+</script>
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
 
@@ -56,7 +60,7 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <c:if test="${not empty Not}">
-                            <form method="POST" action="./modnota?id=${Not.getId()}&materia=${Not.getMatricula().getGrupo().getMateria().getId()}&grupo=${Not.getMatricula().getGrupo().getNumero()}&estudiante=${Not.getMatricula().getEstudiante().getIdentificacion()}">
+                            <form method="POST" action="./modnota?id=${Not.getId()}&materia=${Not.getMatricula().getGrupo().getMateria().getId()}&grupo=${Not.getMatricula().getGrupo().getNumero()}&estudiante=${Not.getMatricula().getEstudiante().getIdentificacion()}" onsubmit="notify()">
                                 <div class="form-group">
                                     <label for="valor">Valor</label>
                                     <input value="${Not.getValor()}" type="text" class="form-control" id="valor" name="valor" placeholder="Ingrese el valor" required>

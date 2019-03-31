@@ -94,6 +94,7 @@
                         <h6 class="collapse-header">Opciones</h6>
                         <a class="collapse-item" href="./cambiarcontrasena">Cambiar contraseña</a>
                         <a class="collapse-item" href="./cambiarnombre">Cambiar nombre</a>
+                        <a class="collapse-item" href="./menuprof">Ver perfil</a>
                     </div>
                 </div>
             </li>

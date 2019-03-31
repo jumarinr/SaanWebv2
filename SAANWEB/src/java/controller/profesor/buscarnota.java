@@ -50,11 +50,7 @@ public class buscarnota extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));        
             int id_materia = Integer.parseInt(request.getParameter("materia"));
             int num_grup = Integer.parseInt(request.getParameter("grupo"));
-            int estu = Integer.parseInt(request.getParameter("estudiante"));
-            System.err.println(id);
-            System.err.println(id_materia);
-            System.err.println(num_grup);
-            System.err.println(estu);
+            int estu = Integer.parseInt(request.getParameter("estudiante"));            
             
             if (session.getAttribute("notas") != null) {
                 notas = (ArrayList<Nota>)session.getAttribute("notas");
@@ -112,9 +108,7 @@ public class buscarnota extends HttpServlet {
             int estu = Integer.parseInt(request.getParameter("estudiante"));
             Nota Not = Nota.buscarNota(notas, estu, id_materia, num_grup, id);
             Matricula ma = Not.getMatricula();
-            //String opc, int id, double nota, double porcentaje, Estudiante estudiante, Materia materia                System.err.println("borró"); 
-            System.err.println(Not);
-            System.err.println(ma);
+            
             Nota.enviarCorreoActualizarNota("borro", id, Not.getValor(), Not.getPorcentaje(), ma.getEstudiante(), ma.getGrupo().getMateria());                                
             Nota.eliminar(notas, estu, id_materia, num_grup, id);             
             session.setAttribute("materias", materias);

@@ -5,6 +5,11 @@
 --%>
 
 <%@ include file="headerProf.jsp" %>
+<script>
+    function notify() {
+        alert("Se ha registrado la nota exitosamente");
+    }
+</script>
 
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
@@ -43,7 +48,7 @@
                                 <button type="submit" class="btn btn-primary">Modificar</button>
                             </form>
                             <br/>
-                            <form method="POST" action="./buscarnota">
+                            <form method="POST" action="./buscarnota" onsubmit="notify()">
                                 <input id="id" name="id" type="hidden" value="${Not.getId()}">
                                 <input id="materia" name="materia" type="hidden" value="${Not.getMatricula().getGrupo().getMateria().getId()}">
                                 <input id="grupo" name="grupo" type="hidden" value="${Not.getMatricula().getGrupo().getNumero()}">

@@ -86,9 +86,7 @@ public class modnota extends HttpServlet {
             int materia = Integer.parseInt(request.getParameter("materia"));
             int grupo = Integer.parseInt(request.getParameter("grupo"));
 
-            Nota Not = Nota.buscarNota(notas, estudiante, materia, grupo, id);        
-                JOptionPane.showMessageDialog(null, "Nota modificada", "SAAN",
-                        JOptionPane.INFORMATION_MESSAGE);            
+            Nota Not = Nota.buscarNota(notas, estudiante, materia, grupo, id);                                 
             int index = notas.indexOf(Not);
             if (request.getParameter("valor") != null){
                 double valor = Double.parseDouble(request.getParameter("valor"));                

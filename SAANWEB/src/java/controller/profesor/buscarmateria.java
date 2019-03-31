@@ -42,8 +42,7 @@ public class buscarmateria extends HttpServlet {
         List<Materia> materias = new ArrayList<Materia>();
         HttpSession session = request.getSession();
         if(request.getParameter("id") != null){
-            int id = Integer.parseInt(request.getParameter("id"));                    
-            System.err.println(id);                    
+            int id = Integer.parseInt(request.getParameter("id"));                                                
             
             if (session.getAttribute("materias") != null) {
                 materias = (ArrayList<Materia>)session.getAttribute("materias");
