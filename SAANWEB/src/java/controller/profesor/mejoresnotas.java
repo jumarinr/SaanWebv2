@@ -55,10 +55,11 @@ public class mejoresnotas extends HttpServlet {
             request.setAttribute("Nots", Nots);
         }                      
         request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        response.setContentType("text/html;charset=UTF-8");
+        System.err.println(session.getAttribute("usu"));
+        System.err.println(session.getAttribute("usua"));        
+        request.setAttribute("usua", session.getAttribute("usua"));        
         RequestDispatcher view = request.getRequestDispatcher("profMejoresNotas.jsp");
-        view.forward(request, response);
+        view.forward(request, response);        
     }
 
     /**

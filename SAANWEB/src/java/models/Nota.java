@@ -99,8 +99,10 @@ public class Nota {
     public static void enviarCorreoActualizarNota(String opc, int id, double nota, double porcentaje, Estudiante estudiante, Materia materia) {
         String correo_enviar = estudiante.getCorreo();
         String cuerpo = "";
-        String asunto = "";
+        String asunto = "Eliminación de nota";
+        System.err.println("borró");
         if (Mensajes.mensaje.get(opc).equals("borro")) {
+            System.err.println("borró");
             cuerpo = Mensajes.mensaje.get("cuerpo_borro") + id + Mensajes.mensaje.get("cuerpo_borro2") + materia.toString();
         } else {
             cuerpo = Mensajes.mensaje.get("cuerpo_resto") + materia.toString() + Mensajes.mensaje.get("cuerpo_resto2") + String.valueOf(id) + Mensajes.mensaje.get("cuerpo_resto3") + String.valueOf(nota) + Mensajes.mensaje.get("cuerpo_resto4") + String.valueOf(porcentaje) + '%';
@@ -113,31 +115,32 @@ public class Nota {
         ArrayList<Nota> notas = new ArrayList<Nota>();
         for (Matricula matricula : matriculas) {
             if (matricula.getGrupo().getNumero() == num_grupo && matricula.getGrupo().getMateria().getId() == id_materia) {
-                for (Nota n : matricula.getNotas()) {
+                for (Nota n : (ArrayList<Nota>)matricula.getNotas()) {
                     notas.add(n);
                 }
 
             }
         }
-        Collections.sort(notas, new Comparator() {
-            public double compare(Nota n1, Nota n2) {
-                return new Double(n2.getValor()).compareTo(new Double(n1.getValor()));
-            }
-
-            @Override
-            public int compare(Object o1, Object o2) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+        
+        Collections.sort(notas, (o1, o2) -> {            
+            if (o1.getValor() > o2.getValor())
+                return 1;
+            if (o1.getValor() < o2.getValor())
+                return -1;
+            return 0;
         });
+        ArrayList<Nota> ol = new ArrayList<Nota>();        
+        
         if (notas.size() < 3 && notas.size() > 0) {
-            return notas;
-        } else if (notas.size() >= 3) {
-            for (int i = 0; i < notas.size(); i++) {
-                if (i >= 3) {
-                    notas.remove(i);
-                }
+            for(int i=notas.size()-1; i>=0; i--){
+                ol.add(notas.get(i));
             }
-            return notas;
+            return ol;
+        } else if (notas.size() >= 3) {
+            ol.add(notas.get(notas.size()-1));
+            ol.add(notas.get(notas.size()-2));
+            ol.add(notas.get(notas.size()-3));
+            return ol;
         }
         return null;
 

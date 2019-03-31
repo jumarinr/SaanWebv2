@@ -7,6 +7,8 @@ package controller.profesor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,14 +16,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Estudiante;
+import models.Grupo;
+import models.Matricula;
 import util.Mensajes;
+import util.EnvioDeCorreo;
 
 /**
  *
  * @author pipel
  */
 @WebServlet(name = "crearevento", urlPatterns = {"/crearevento"})
-public class crearevento extends HttpServlet {
+public class crearevento extends HttpServlet {  
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,8 +43,7 @@ public class crearevento extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("usua", session.getAttribute("usua"));        
         RequestDispatcher view = request.getRequestDispatcher("profCrearEvento.jsp");
         view.forward(request, response);
     }
@@ -54,7 +59,29 @@ public class crearevento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        RequestDispatcher view;
+        HttpSession session = request.getSession();
+        List<Grupo> grupos = new ArrayList<Grupo>();        
+        if (session.getAttribute("grupos") != null) {
+            grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
+        }
+        if (request.getParameter("name") != null && request.getParameter("fecha") != null && request.getParameter("detalles") != null && request.getParameter("materia") != null && request.getParameter("grupo") != null) {
+            String name = request.getParameter("name");
+            String fecha = request.getParameter("fecha");
+            String detalles = request.getParameter("detalles");
+            int id_materia =  Integer.parseInt(request.getParameter("materia"));
+            int num_grup = Integer.parseInt(request.getParameter("grupo"));
+            String asunto = "Correo creado " + fecha+". Con detalles: "+detalles+". ID materia: "+id_materia+". Num grupo: "+num_grup+".";
+            Grupo gru = Grupo.buscarGrupo(grupos, num_grup, id_materia);
+            ArrayList<Matricula> matriculas = (ArrayList<Matricula>) gru.getMatriculas();
+            matriculas.forEach((t) -> {
+                EnvioDeCorreo.EnvioDeMail(t.getEstudiante().getCorreo(), name, asunto);
+            });
+        }
+        request.setAttribute("mensaje", Mensajes.mensaje);
+        request.setAttribute("usua", session.getAttribute("usua"));        
+        view = request.getRequestDispatcher("profCrearEvento.jsp");
+        view.forward(request, response);
     }
 
     /**

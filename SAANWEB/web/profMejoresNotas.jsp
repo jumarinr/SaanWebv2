@@ -20,7 +20,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Profesores</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Notas</h6>
                     </div>
                     <!-- Card Body -->
                     <c:if test="${not empty Nots}">
@@ -34,18 +34,19 @@
                                            </tr>
                                 </thead>
                                 <tbody>
-                                       <c:forEach items="${Nots}" var="Not">
+                                       <c:forEach items="${Nots}" var="Nota">
                                                <tr>
-                                                       <td>${Not.getId()}</td>
-                                                       <td>${Not.getPorcentaje()}</td>
-                                                       <td>${Not.Valor()}</td>                                                                                               </tr>
+                                                       <td><a href="./buscarnota?id=${Nota.getId()}&materia=${Nota.getMatricula().getGrupo().getMateria().getId()}&grupo=${Nota.getMatricula().getGrupo().getNumero()}&estudiante=${Nota.getMatricula().getEstudiante().getIdentificacion()}">${Nota.getId()}</a></td>
+                                                       <td>${Nota.getPorcentaje()}</td>
+                                                       <td>${Nota.getValor()}</td>                                                                                               
+                                        </tr>
                                            </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                     </c:if>
                     <c:if test="${empty Nots}">
-                        No hay notas que mostrar
+                        <p style="padding: 5% 5%">No hay notas que mostrar</p>
                     </c:if>
                 </div>
             </div>
@@ -60,8 +61,8 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <c:if test="${not empty usu}">
-                        <form method="GET" action="">
+                        <c:if test="${not empty usua}">
+                        <form method="GET" action="./mejoresnotas">
                             <div class="form-group">
                                 <label for="grupo">Id grupo</label>
                                 <input type="text" class="form-control" id="grupo" name="grupo" aria-describedby="emailHelp" placeholder="Ingrese id el grupo" required>
@@ -69,9 +70,7 @@
                             <div class="form-group">
                                 <label for="materia">Id materia</label>
                                 <input type="text" class="form-control" id="materia" name="materia" placeholder="Ingrese el id la materia">
-                            </div>
-                            <input id="doc" name="doc" type="hidden" value="${usu.getIdentificacion()}">
-                             <input id="cor" name="cor" type="hidden" value="${usu.getCorreo()}">
+                            </div>                            
                             <button type="submit" class="btn btn-primary">Modificar</button>
                         </form>
                         </c:if>

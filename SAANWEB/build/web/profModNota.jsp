@@ -34,7 +34,7 @@
                                 </thead>
                                 <tbody>
                                        <tr>
-                                                       <td><a href="/buscarnota?id=${Not.getId()}&materia=${Not.getMatricula().getGrupo().getMateria().getId()}&grupo=${Not.getMatricula().getGrupo().getNumero()}&estudiante=${Not.getMatricula().getEstudiante().getIdentificacion()}">${Not.getId()}</a></td>
+                                                       <td><a href="./buscarnota?id=${Not.getId()}&materia=${Not.getMatricula().getGrupo().getMateria().getId()}&grupo=${Not.getMatricula().getGrupo().getNumero()}&estudiante=${Not.getMatricula().getEstudiante().getIdentificacion()}">${Not.getId()}</a></td>
                                                        <td>${Not.getValor()}</td>
                                             <td>${Not.getPorcentaje()}</td>
                                                    </tr>

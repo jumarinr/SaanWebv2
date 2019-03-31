@@ -25,7 +25,7 @@
                   </div>
                     <form action="./login" method="POST" class="user">
                     <div class="form-group">
-                      <input type="text" onchange="correos()" required class="form-control form-control-user" id="id" name="id" aria-describedby="emailHelp" placeholder="Ingrese su documento o email">
+                        <input type="text" onchange="correos()" required class="form-control form-control-user" id="id" name="id" aria-describedby="emailHelp" placeholder="Ingrese su documento o email" autofocus>
                     </div>
                     <div class="form-group">
                         <input type="password" required class="form-control form-control-user" id="clave" name="clave" placeholder="Escriba una contraseña">

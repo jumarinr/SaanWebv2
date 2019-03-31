@@ -105,24 +105,23 @@ public class buscarnota extends HttpServlet {
             estudiantes = (ArrayList<Estudiante>) session.getAttribute("estudiantes");
         }
         
-        if (request.getParameter("id") != null) {
+        if (request.getParameter("id") != null && request.getParameter("materia") != null && request.getParameter("grupo") != null && request.getParameter("estudiante") != null) {
             int id = Integer.parseInt(request.getParameter("id"));
             int id_materia = Integer.parseInt(request.getParameter("materia"));
             int num_grup = Integer.parseInt(request.getParameter("grupo"));
             int estu = Integer.parseInt(request.getParameter("estudiante"));
-            if (JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este registro",
-                    "SAAN", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                Nota Not = Nota.buscarNota(notas, estu, id_materia, num_grup, id);
-                Matricula ma = Matricula.buscar_matricula(matriculas, id_materia, id_materia);
-                Nota.enviarCorreoActualizarNota("borro", id, Not.getValor(), Not.getPorcentaje(), ma.getEstudiante(), ma.getGrupo().getMateria());
-                JOptionPane.showMessageDialog(null, Nota.eliminar(notas, estu, id_materia, num_grup, id), "SAAN",
-                        JOptionPane.INFORMATION_MESSAGE);                
-                session.setAttribute("materias", materias);
-                session.setAttribute("grupos", grupos);
-                session.setAttribute("matriculas", matriculas);
-                session.setAttribute("notas", notas);
-                session.setAttribute("estudiantes", estudiantes);
-            }
+            Nota Not = Nota.buscarNota(notas, estu, id_materia, num_grup, id);
+            Matricula ma = Not.getMatricula();
+            //String opc, int id, double nota, double porcentaje, Estudiante estudiante, Materia materia                System.err.println("borró"); 
+            System.err.println(Not);
+            System.err.println(ma);
+            Nota.enviarCorreoActualizarNota("borro", id, Not.getValor(), Not.getPorcentaje(), ma.getEstudiante(), ma.getGrupo().getMateria());                                
+            Nota.eliminar(notas, estu, id_materia, num_grup, id);             
+            session.setAttribute("materias", materias);
+            session.setAttribute("grupos", grupos);
+            session.setAttribute("matriculas", matriculas);
+            session.setAttribute("notas", notas);
+            session.setAttribute("estudiantes", estudiantes);
         }
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));

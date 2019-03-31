@@ -20,27 +20,28 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Profesores</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Eventos</h6>
                     </div>
                     <!-- Card Body -->
-                    <c:if test="${not empty profesores}">
+                    <c:if test="${not empty Events}">
                         <div class="card-body">    
                             <table class="table" style="margin-top: -10px;width: auto;">
                                 <thead>
                                     <tr>
                                                <th scope="col">Nombre</th>
-                                               <th scope="col">Identificación</th>
-                                               <th scope="col">Correo</th>
-                                        <th scope="col">Contraseña</th>
+                                               <th scope="col">Fecha</th>
+                                               <th scope="col">Detalles</th>
+                                               <th scope="col">ID materia</th>
+                                               <th scope="col">Num grupo</th>
                                            </tr>
                                 </thead>
                                 <tbody>
-                                       <c:forEach items="${profesores}" var="pro">
+                                       <c:forEach items="${Events}" var="event">
                                                <tr>
-                                                       <td>${pro.getNombre()}</td>
-                                                       <td>${pro.getIdentificacion()}</td>
-                                                       <td>${pro.getCorreo()}</td>
-                                            <td>${pro.getClave()}</td>
+                                                       <td></td>
+                                                       <td></td>
+                                                       <td></td>
+                                            <td></td>
                                                    </tr>
                                            </c:forEach>
                                     </tbody>
@@ -55,32 +56,34 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Edición</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Creación Evento</h6>
 
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <c:if test="${not empty usu}">
-                        <form method="POST" action="./administrador_modificarProfesor">
+                        <c:if test="${not empty usua}">
+                        <form method="POST" action="./crearevento">
                             <div class="form-group">
-                                <label for="ide">Identificación</label>
-                                <input value="${usu.getIdentificacion()}" type="number" class="form-control" id="identificacion" name="identificacion" placeholder="Ingrese el documento de identidad" required>
+                                <label for="name">Nombre</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre del evento" required>
                             </div>
                             <div class="form-group">
-                                <label for="nom">Nombre</label>
-                                <input value="${usu.getNombre()}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
+                                <label for="fecha">Fecha</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Ingrese la fecha de un evento" required>
                             </div>
                             <div class="form-group">
-                                <label for="cor">Correo</label>
-                                <input value="${usu.getCorreo()}" type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="Ingrese el correo electronico" required>
+                                <label for="detalles">Detalles</label>
+                                <input type="text" class="form-control" id="detalles" name="detalles" aria-describedby="emailHelp" placeholder="Describa los detalles del evento" required>
                             </div>
                             <div class="form-group">
-                                <label for="con">Contraseña</label>
-                                <input value="${usu.getClave()}" type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la contraseña">
+                                <label for="materia">ID materia</label>
+                                <input type="text" class="form-control" id="materia" name="materia" placeholder="Ingrese el id de la materia">
+                            </div>                            
+                            <div class="form-group">
+                                <label for="grupo">Num grupo</label>
+                                <input type="text" class="form-control" id="grupo" name="grupo" placeholder="Ingrese el número de grupo">
                             </div>
-                            <input id="doc" name="doc" type="hidden" value="${usu.getIdentificacion()}">
-                             <input id="cor" name="cor" type="hidden" value="${usu.getCorreo()}">
-                            <button type="submit" class="btn btn-primary">Modificar</button>
+                            <button type="submit" class="btn btn-primary">Registrar evento</button>
                         </form>
                         </c:if>
                     </div>
