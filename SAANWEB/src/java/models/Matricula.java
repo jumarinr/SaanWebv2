@@ -128,7 +128,7 @@ public class Matricula {
             mat.getGrupo().getMatriculas().remove(mat);
             mat.getEstudiante().getMatriculas().remove(mat);
             matriculas.remove(mat);
-            return Mensajes.mensaje.get("reg");
+            return Mensajes.mensaje.get("eli");
         }
         return Mensajes.mensaje.get("err");
     }

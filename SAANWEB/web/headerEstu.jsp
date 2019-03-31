@@ -8,7 +8,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/SAAN">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./inicio">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -48,9 +48,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones</h6>
                         <a class="collapse-item" href="#">Registrar</a>
-                        <a class="collapse-item" href="#">Modificar</a>
-                        <a class="collapse-item" href="#">Borrar</a>
-                        <a class="collapse-item" href="#">Buscar</a>
+                        <a class="collapse-item" href="./estuBuscarMatricula">Buscar</a>
                         <a class="collapse-item" href="#">Listar</a>
                     </div>
                 </div>
@@ -63,7 +61,7 @@
                 <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones</h6>
-                        <a class="collapse-item" href="#">Buscar</a>                        
+                        <a class="collapse-item" href="./estuBuscarGrupo">Buscar</a>                        
                     </div>
                 </div>
             </li>
@@ -75,7 +73,7 @@
                 <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones</h6>
-                        <a class="collapse-item" href="#">Buscar</a>
+                        <a class="collapse-item" href="./estuBuscarMateria">Buscar</a>
                     </div>
                 </div>
             </li>
