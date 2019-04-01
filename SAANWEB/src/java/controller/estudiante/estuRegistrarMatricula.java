@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.administrador;
+package controller.estudiante;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,17 +19,17 @@ import javax.servlet.http.HttpSession;
 import models.Estudiante;
 import models.Grupo;
 import models.Materia;
+import models.Matricula;
 import models.Persona;
 import models.Profesor;
 import util.Mensajes;
-import util.extra;
 
 /**
  *
- * @author Juan Pablo
+ * @author USUARIO
  */
-@WebServlet(urlPatterns = {"/administrador_registrarGrupo"})
-public class AdminRegistrarGrupo extends HttpServlet {
+@WebServlet (urlPatterns = {"/estuRegistrarMatricula"})
+public class estuRegistrarMatricula extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,6 +40,9 @@ public class AdminRegistrarGrupo extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -52,15 +55,15 @@ public class AdminRegistrarGrupo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Grupo> grupos = new ArrayList<Grupo>();
+        List<Matricula> matriculas = new ArrayList<Matricula>();
         HttpSession session = request.getSession();
-        if (session.getAttribute("grupos") != null) {
-            grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
+        if (session.getAttribute("matriculas") != null) {
+            matriculas = (ArrayList<Matricula>) session.getAttribute("matriculas");
         }
-        request.setAttribute("grupos", grupos);
+        request.setAttribute("matriculas", matriculas);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("adminRegGrupo.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("estuRegistrarMatricula.jsp");
         view.forward(request, response);
     }
 
@@ -75,47 +78,53 @@ public class AdminRegistrarGrupo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Matricula> matriculas = new ArrayList<Matricula>();
         List<Materia> materias = new ArrayList<Materia>();
         List<Grupo> grupos = new ArrayList<Grupo>();
-        List<Profesor> profesores = new ArrayList<>();
+        List<Estudiante> estudiantes = new ArrayList<>();
         HttpSession session = request.getSession();
+         if (session.getAttribute("matriculas") != null) {
+            matriculas = (ArrayList<Matricula>) session.getAttribute("matriculas");
+        }
         if (session.getAttribute("grupos") != null) {
             grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
         }
         if (session.getAttribute("materias") != null) {
             materias = (ArrayList<Materia>) session.getAttribute("materias");
         }
-        if (session.getAttribute("profesores") != null) {
-            profesores = (ArrayList<Profesor>) session.getAttribute("profesores");
+        if (session.getAttribute("estudiantes") != null) {
+            estudiantes = (ArrayList<Estudiante>) session.getAttribute("estudiantes");
         }
-        int num = Integer.parseInt(request.getParameter("numero"));
-        int idMateria = Integer.parseInt(request.getParameter("id"));
-        long docProfesor = Long.parseLong(request.getParameter("doc"));
+        int sem = Integer.parseInt(request.getParameter("Semestre"));
+        long doc= Long.parseLong(request.getParameter("doc"));
+        int idM= Integer.parseInt(request.getParameter("idM"));
+        int num= Integer.parseInt(request.getParameter("num"));
         String imprimir = "";
         boolean seguir = true;
-        if (Materia.buscarMateria(materias, idMateria) == null) {
+        if (Materia.buscarMateria(materias, idM) == null) {
             imprimir = "La materia no esta registrada";
             seguir = false;
         }
-        if (Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
-                profesores, docProfesor) == null) {
-            imprimir = "El profesor no esta registrado";
+        if(Grupo.buscarGrupo(grupos, num, idM)==null){
+            imprimir = "El grupo no esta registrado";
             seguir = false;
         }
-        if (seguir) {
-            Grupo grupo = new Grupo(num, (Profesor) Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
-                    profesores, docProfesor), Materia.buscarMateria(materias, idMateria));
-            imprimir = Grupo.registrar(grupos, grupo);
+        if(seguir){
+            Matricula matricula = new Matricula(sem,(Estudiante) Estudiante.buscarPersona(new ArrayList<Persona>(), estudiantes,new ArrayList<Profesor>(),doc)
+            ,Grupo.buscarGrupo(grupos, num, idM));
+            imprimir = Matricula.matricular(matriculas, matricula);
         }
-        request.setAttribute("imprimir", imprimir);
-        session.setAttribute("grupos", grupos);
-        session.setAttribute("materias", materias);
-        session.setAttribute("profesor", profesores);
-        request.setAttribute("grupos", grupos);
+         request.setAttribute("imprimir", imprimir);
+         session.setAttribute("matriculas",matriculas);
+         session.setAttribute("grupos", grupos);
+         session.setAttribute("materias", materias);
+         session.setAttribute("estudiantes", estudiantes);
+         request.setAttribute("matriculas",matriculas);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("adminRegGrupo.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("estuRegistrarMatricula.jsp");
         view.forward(request, response);
+        
     }
 
     /**
