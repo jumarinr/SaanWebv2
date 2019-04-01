@@ -20,6 +20,9 @@
                     <!-- Card Body -->
                     <div style="font-size: 100%" class="card-body">
                         <c:if test="${not empty Matr}">
+                            <h5>Nota final:</h5>
+                            ${Matr.getNotaFinal()}
+                            <br/><br/>
                             <h5>Semestre:</h5>
                             ${Matr.getSemestre()}
                             <br/><br/>
