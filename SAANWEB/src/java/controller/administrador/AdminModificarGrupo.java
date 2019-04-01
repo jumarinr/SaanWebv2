@@ -22,14 +22,13 @@ import models.Materia;
 import models.Persona;
 import models.Profesor;
 import util.Mensajes;
-import util.extra;
 
 /**
  *
  * @author Juan Pablo
  */
-@WebServlet(urlPatterns = {"/administrador_registrarGrupo"})
-public class AdminRegistrarGrupo extends HttpServlet {
+@WebServlet(urlPatterns = {"/administrador_modificarGrupo"})
+public class AdminModificarGrupo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,13 +53,22 @@ public class AdminRegistrarGrupo extends HttpServlet {
             throws ServletException, IOException {
         List<Grupo> grupos = new ArrayList<Grupo>();
         HttpSession session = request.getSession();
+        request.setAttribute("mensaje", Mensajes.mensaje);
+        request.setAttribute("usua", session.getAttribute("usua"));
+        RequestDispatcher view;
         if (session.getAttribute("grupos") != null) {
             grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
         }
-        request.setAttribute("grupos", grupos);
-        request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("adminRegGrupo.jsp");
+        if (request.getParameter("id") != null && request.getParameter("num") != null) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int num = Integer.parseInt(request.getParameter("num"));
+            Grupo gru = Grupo.buscarGrupo(grupos, num, id);
+            request.setAttribute("gru", gru);
+            request.setAttribute("grupos", grupos);
+            view = request.getRequestDispatcher("adminModGrupo.jsp");
+        } else {
+            view = request.getRequestDispatcher("adminBusGrupo.jsp");
+        }
         view.forward(request, response);
     }
 
@@ -88,34 +96,39 @@ public class AdminRegistrarGrupo extends HttpServlet {
         if (session.getAttribute("grupos") != null) {
             profesores = (ArrayList<Profesor>) session.getAttribute("profesores");
         }
-        int num = Integer.parseInt(request.getParameter("numero"));
-        int idMateria = Integer.parseInt(request.getParameter("id"));
-        long docProfesor = Long.parseLong(request.getParameter("doc"));
         String imprimir = "";
+        int num = Integer.parseInt(request.getParameter("numero"));
+        int idMateria = Integer.parseInt(request.getParameter("mat"));
+        long docProfesor = Long.parseLong(request.getParameter("doc"));
+        int numAnterior = Integer.parseInt(request.getParameter("numa"));
         boolean seguir = true;
-        if (Materia.buscarMateria(materias, idMateria) == null) {
-            imprimir = "La materia no esta registrada";
-            seguir = false;
+        if (num != numAnterior) {
+            if (Grupo.buscarGrupo(grupos, num, idMateria) != null) {
+                imprimir = "La materia ya tiene ese numero registrado";
+                seguir = false;
+            }
         }
         if (Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
                 profesores, docProfesor) == null) {
             imprimir = "El profesor no esta registrado";
             seguir = false;
         }
+        Grupo g = Grupo.buscarGrupo(grupos, numAnterior, idMateria);
+        RequestDispatcher view;
         if (seguir) {
-            Grupo grupo = new Grupo(num, (Profesor) Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
-                    profesores, docProfesor), Materia.buscarMateria(materias, idMateria));
-            imprimir = Grupo.registrar(grupos, grupo);
+            g.setProfesor((Profesor)Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
+                    profesores, docProfesor));
+            g.setNumero(num);
+            imprimir = "Grupo modificado";
+            session.setAttribute("grupos", grupos);
         }
         request.setAttribute("imprimir", imprimir);
-        session.setAttribute("grupos", grupos);
-        session.setAttribute("materias", materias);
-        session.setAttribute("profesor", profesores);
-        request.setAttribute("grupos", grupos);
+        request.setAttribute("gru", g);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("adminRegGrupo.jsp");
+        view = request.getRequestDispatcher("adminBusGrupo.jsp");
         view.forward(request, response);
+
     }
 
     /**

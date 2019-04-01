@@ -16,20 +16,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Estudiante;
 import models.Grupo;
 import models.Materia;
-import models.Persona;
-import models.Profesor;
+import models.Matricula;
+import models.Nota;
 import util.Mensajes;
 import util.extra;
 
 /**
  *
- * @author Juan Pablo
  */
-@WebServlet(urlPatterns = {"/administrador_registrarGrupo"})
-public class AdminRegistrarGrupo extends HttpServlet {
+@WebServlet(urlPatterns = {"/administrador_buscarGrupo"})
+public class AdminBuscarGrupo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,10 +55,17 @@ public class AdminRegistrarGrupo extends HttpServlet {
         if (session.getAttribute("grupos") != null) {
             grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
         }
-        request.setAttribute("grupos", grupos);
+        if (request.getParameter("id") != null && request.getParameter("num") != null) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int num = Integer.parseInt(request.getParameter("num"));
+            Grupo gru = Grupo.buscarGrupo(grupos, num, id);
+            if (gru != null) {
+                request.setAttribute("gru", gru);
+            }
+        }
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("adminRegGrupo.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("adminBusGrupo.jsp");
         view.forward(request, response);
     }
 
@@ -75,46 +80,33 @@ public class AdminRegistrarGrupo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Materia> materias = new ArrayList<Materia>();
+        //Eliminar
+        List<Nota> notas = new ArrayList<Nota>();
+        List<Matricula> matriculas = new ArrayList<Matricula>();
         List<Grupo> grupos = new ArrayList<Grupo>();
-        List<Profesor> profesores = new ArrayList<>();
         HttpSession session = request.getSession();
+        if (session.getAttribute("notas") != null) {
+            notas = (ArrayList<Nota>) session.getAttribute("notas");
+        }
+        if (session.getAttribute("matriculas") != null) {
+            matriculas = (ArrayList<Matricula>) session.getAttribute("matriculas");
+        }
         if (session.getAttribute("grupos") != null) {
             grupos = (ArrayList<Grupo>) session.getAttribute("grupos");
         }
-        if (session.getAttribute("materias") != null) {
-            materias = (ArrayList<Materia>) session.getAttribute("materias");
+        if (request.getParameter("id") != null && request.getParameter("num") != null) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int num = Integer.parseInt(request.getParameter("num"));
+            String imprimir = Grupo.eliminar(grupos, matriculas, notas, num, id);
+            request.setAttribute("imprimir", imprimir);
+            session.setAttribute("grupos", grupos);
+            session.setAttribute("matriculas", matriculas);
+            session.setAttribute("notas", notas);
+
         }
-        if (session.getAttribute("grupos") != null) {
-            profesores = (ArrayList<Profesor>) session.getAttribute("profesores");
-        }
-        int num = Integer.parseInt(request.getParameter("numero"));
-        int idMateria = Integer.parseInt(request.getParameter("id"));
-        long docProfesor = Long.parseLong(request.getParameter("doc"));
-        String imprimir = "";
-        boolean seguir = true;
-        if (Materia.buscarMateria(materias, idMateria) == null) {
-            imprimir = "La materia no esta registrada";
-            seguir = false;
-        }
-        if (Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
-                profesores, docProfesor) == null) {
-            imprimir = "El profesor no esta registrado";
-            seguir = false;
-        }
-        if (seguir) {
-            Grupo grupo = new Grupo(num, (Profesor) Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
-                    profesores, docProfesor), Materia.buscarMateria(materias, idMateria));
-            imprimir = Grupo.registrar(grupos, grupo);
-        }
-        request.setAttribute("imprimir", imprimir);
-        session.setAttribute("grupos", grupos);
-        session.setAttribute("materias", materias);
-        session.setAttribute("profesor", profesores);
-        request.setAttribute("grupos", grupos);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("adminRegGrupo.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("adminBusGrupo.jsp");
         view.forward(request, response);
     }
 

@@ -92,7 +92,7 @@
                         <form method="GET" action="./administrador_buscarMateria">
                             <div class="form-group">
                                 <label for="ide">Id</label>
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Ingrese el id" required>
+                                <input type="number" class="form-control" id="id" name="id" placeholder="Ingrese el id" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Buscar</button>
                         </form>                    

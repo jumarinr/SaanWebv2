@@ -101,7 +101,6 @@
                         <h6 class="collapse-header">Opciones</h6>
                         <a class="collapse-item" href="./administrador_registrarGrupo">Registrar</a>
                         <a class="collapse-item" href="./administrador_buscarGrupo">Consultar</a>
-                        <a class="collapse-item" href="#">Comsultar por materia</a>
                     </div>
                 </div>
             </li>
