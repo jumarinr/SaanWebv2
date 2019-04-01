@@ -39,7 +39,7 @@ public class Matricula {
         for (Nota nota : this.getNotas()) {
             not += (nota.getValor() * nota.getPorcentaje()) / 100;
         }
-        not = Double.parseDouble(String.format("%.2f", not));
+        not = Double.parseDouble(String.format("%.2f", not).replaceAll(",", "."));
         this.notaFinal = not;
         return notaFinal;
     }
