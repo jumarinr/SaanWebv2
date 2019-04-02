@@ -68,7 +68,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones</h6>
                         <a class="collapse-item" href="./buscarmateria">Buscar</a>
-                        <a class="collapse-item" href="./generarreporte">Generar reporte</a>                        
+                        <a class="collapse-item" onClick="datosMateria()">Generar reporte</a>                        
                     </div>
                 </div>
             </li>
@@ -80,7 +80,7 @@
                 <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones</h6>
-                       <a class="collapse-item" href="./crearevento">Crear nuevo evento</a>
+                        <a class="collapse-item" href="./crearevento">Crear nuevo evento</a>
                     </div>
                 </div>
             </li>            
@@ -100,6 +100,13 @@
             </li>
         </ul>
         <!-- End of Sidebar -->
+
+        <script>
+            function datosMateria() {
+                var idMate = prompt('Ingrese el id de la materia');
+                location.href = './generarReporte?id='+idMate;
+            }
+        </script>
 
         <!-- Content Wrapper -->
         <%@ include file="header.jsp" %>
