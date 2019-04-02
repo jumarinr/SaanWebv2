@@ -60,6 +60,13 @@ public class estuRegistrarMatricula extends HttpServlet {
         if (session.getAttribute("matriculas") != null) {
             matriculas = (ArrayList<Matricula>) session.getAttribute("matriculas");
         }
+        int borr=0;
+            for (int i = 0; i < matriculas.size()+borr; i++) {
+                if(matriculas.get(i-borr).getEstudiante()!=session.getAttribute("usua")){
+                    matriculas.remove(i-borr);
+                    borr++;
+                }
+            }
         request.setAttribute("matriculas", matriculas);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
