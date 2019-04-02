@@ -33,6 +33,7 @@ public class Mensajes {
             put("Noestnot", "Estudiante sin notas");
             put("registro","registro");
             put("modifico", "modifico");
+            put("matrM","Matricula modificada");
             put("borro", "borro");
             put("cuerpo_borro", "se le borro la nota con identificación ");
             put("cuerpo_borro2", " de la materia ");

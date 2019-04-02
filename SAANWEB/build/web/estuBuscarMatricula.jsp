@@ -56,7 +56,7 @@
                             <br/><br/>
                             <form method="GET" action="./estuModificarMatricula">
                                 <input id="doc" name="doc" type="hidden" value="${Matr.getEstudiante().getIdentificacion()}">
-                                <input id="idM" name="idM" type="hidden" value="${Matr.getGrupo().getMateria().getId()}">
+                                <input id="mat" name="mat" type="hidden" value="${Matr.getGrupo().getMateria().getId()}">
                                 <button type="submit" class="btn btn-primary">Modificar</button>
                             </form>
                             <br/>
@@ -106,5 +106,4 @@
 
 <!-- Footer -->
 <%@ include file="footer.jsp" %>
-
 

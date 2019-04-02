@@ -85,8 +85,8 @@
                 <div id="collapsePages5" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones</h6>
-                        <a class="collapse-item" href="#">Cambiar contraseña</a>
-                        <a class="collapse-item" href="#">Cambiar nombre</a>
+                        <a class="collapse-item" href="./estuCambiarContrasena">Cambiar contraseña</a>
+                        <a class="collapse-item" href="./estuCambiarNombre">Cambiar nombre</a>
                     </div>
                 </div>
             </li>
