@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 import models.Estudiante;
 import models.Grupo;
 import models.Materia;
@@ -24,6 +25,7 @@ import models.Nota;
 import models.Persona;
 import models.Profesor;
 import util.Mensajes;
+import util.generarExcel;
 
 /**
  *
@@ -158,6 +160,12 @@ public class datosFicticios extends HttpServlet {
         Nota.registrar(notas, n7);
         Nota.registrar(notas, n8);
         Nota.registrar(notas, n9);
+        Nota n10 = new Nota(33, 2.3, 1, matr4);
+        Nota n11 = new Nota(33, 4.5, 2, matr4);
+        Nota n12 = new Nota(34, 1.3, 3, matr4);
+        Nota.registrar(notas, n10);
+        Nota.registrar(notas, n11);
+        Nota.registrar(notas, n12);
 
         session.setAttribute("notas", notas);
         session.setAttribute("materias", materias);

@@ -39,7 +39,7 @@ public class Matricula {
         for (Nota nota : this.getNotas()) {
             not += (nota.getValor() * nota.getPorcentaje()) / 100;
         }
-        not = Double.parseDouble(String.format("%.2f", not));
+        not = Double.parseDouble(String.format("%.2f", not).replaceAll(",", "."));
         this.notaFinal = not;
         return notaFinal;
     }
@@ -114,7 +114,7 @@ public class Matricula {
         matriculas.add(matr);
         matr.getGrupo().getMatriculas().add(matr);
         matr.getEstudiante().getMatriculas().add(matr);
-        return Mensajes.mensaje.get("err");
+        return Mensajes.mensaje.get("reg");
     }
 
     public static String cancelar(List<Matricula> matriculas, List<Nota> notas, long id_estudiante, int id_materia) {

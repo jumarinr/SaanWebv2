@@ -85,7 +85,7 @@ public class AdminRegistrarGrupo extends HttpServlet {
         if (session.getAttribute("materias") != null) {
             materias = (ArrayList<Materia>) session.getAttribute("materias");
         }
-        if (session.getAttribute("grupos") != null) {
+        if (session.getAttribute("profesores") != null) {
             profesores = (ArrayList<Profesor>) session.getAttribute("profesores");
         }
         int num = Integer.parseInt(request.getParameter("numero"));
@@ -99,7 +99,7 @@ public class AdminRegistrarGrupo extends HttpServlet {
         }
         if (Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
                 profesores, docProfesor) == null) {
-            imprimir = "El profesor no esta registrada";
+            imprimir = "El profesor no esta registrado";
             seguir = false;
         }
         if (seguir) {

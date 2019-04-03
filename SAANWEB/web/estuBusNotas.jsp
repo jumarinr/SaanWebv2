@@ -29,6 +29,12 @@
                             <h5>Valor:</h5>
                             ${Not.getValor()}
                             <br/><br/>
+                            <h5>Materia:</h5>
+                            ${Not.getMatricula().getGrupo().getMateria().getNombre()}
+                            <br/><br/>
+                            <h5>Grupo:</h5>
+                           ${Not.getMatricula().getGrupo().getNumero()}
+                            <br/><br/>
                         </c:if>
                          <c:if test="${empty Not}">
                             No encontrado    
@@ -78,5 +84,3 @@
 
 <!-- Footer -->
 <%@ include file="footer.jsp" %>
-
-

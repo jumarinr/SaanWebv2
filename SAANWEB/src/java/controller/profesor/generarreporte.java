@@ -7,6 +7,8 @@ package controller.profesor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,13 +16,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Materia;
 import util.Mensajes;
+import util.generarExcel;
 
 /**
  *
  * @author pipel
  */
-@WebServlet(name = "generarreporte", urlPatterns = {"/generarreporte"})
+@WebServlet(name = "generarreporte", urlPatterns = {"/generarReporte"})
 public class generarreporte extends HttpServlet {
 
     /**
@@ -35,11 +39,25 @@ public class generarreporte extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Materia> materias = new ArrayList<Materia>();
         HttpSession session = request.getSession();
+        String imprimir = "";
+        if (session.getAttribute("materias") != null) {
+            materias = (ArrayList<Materia>) session.getAttribute("materias");
+        }
+        if (request.getParameter("id") != null) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            Materia mat = Materia.buscarMateria(materias, id);
+            if (mat != null) {
+                imprimir = generarExcel.generarArchivoDeExcel(mat);
+            }else{
+                imprimir = "La materia no esta registrada";
+            }
+        }
+        request.setAttribute("imprimir", imprimir);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher view = request.getRequestDispatcher("profGenerarReporte.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/menuprof");
         view.forward(request, response);
     }
 
@@ -54,7 +72,7 @@ public class generarreporte extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**

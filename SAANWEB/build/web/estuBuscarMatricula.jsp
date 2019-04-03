@@ -20,6 +20,9 @@
                     <!-- Card Body -->
                     <div style="font-size: 100%" class="card-body">
                         <c:if test="${not empty Matr}">
+                            <h5>Nota final:</h5>
+                            ${Matr.getNotaFinal()}
+                            <br/><br/>
                             <h5>Semestre:</h5>
                             ${Matr.getSemestre()}
                             <br/><br/>
@@ -53,7 +56,7 @@
                             <br/><br/>
                             <form method="GET" action="./estuModificarMatricula">
                                 <input id="doc" name="doc" type="hidden" value="${Matr.getEstudiante().getIdentificacion()}">
-                                <input id="idM" name="idM" type="hidden" value="${Matr.getGrupo().getMateria().getId()}">
+                                <input id="mat" name="mat" type="hidden" value="${Matr.getGrupo().getMateria().getId()}">
                                 <button type="submit" class="btn btn-primary">Modificar</button>
                             </form>
                             <br/>
@@ -103,5 +106,4 @@
 
 <!-- Footer -->
 <%@ include file="footer.jsp" %>
-
 
