@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Forgot Password</title>
+  <title>${mensaje.get("olvido")}</title>
 
   <!-- Custom fonts for this template-->
   <link href="dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,19 +46,21 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">¿Olvido su contraseña?</h1>
-                    <p class="mb-4">Lo entendemos, solo ingrese su correo para recuperarla.
-                    Recibira un codigo en breves momentos en su correo electronico.</p>
+                    <h1 class="h4 text-gray-900 mb-2">${mensaje.get("olvido2")}</h1>
+                    <p class="mb-4">${mensaje.get("olvidoCuerpo")}</p>
                   </div>
                   <form action="./recuperarContrasena" method="POST"  class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user"name="inputEmail" id="inputEmail" aria-describedby="emailHelp" placeholder="Ingrese su correo">
+                      <input type="string" class="form-control form-control-user"name="inputEmail" id="inputEmail" aria-describedby="emailHelp" placeholder="${mensaje.get("placeholderCorreo")}">
                     </div>
-                    <input type="submit"  value="Generar codigo" class="btn btn-primary btn-user btn-block"/>
+                    <input type="submit"  value="${mensaje.get("generarCodigo")}" class="btn btn-primary btn-user btn-block"/>
                   </form>
+                   <c:if test="${not empty error}">
+                      <p>${error}</p>
+                  </c:if>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="./login">¿Ya tienes una cuenta? ¡ingresa aqui!</a>
+                    <a class="small" href="./login">${mensaje.get("yaCuenta")}</a>
                   </div>
                 </div>
               </div>

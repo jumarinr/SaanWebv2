@@ -17,7 +17,7 @@
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">SAAN <sup>WEB</sup></div>
+                    <div class="sidebar-brand-text mx-3"> ${mensaje.get("SAAN")} <sup> ${mensaje.get("SAAN")}</sup></div>
                 </a>
 
                 <!-- Divider -->
@@ -50,7 +50,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="./datosFicticios">
                         <img class="img-profile rounded-circle" src="https://cdn2.iconfinder.com/data/icons/ui-data-storage-sever/64/data-storage-add-256.png">
-                        <span style="font-size: 70%;">Generar datos ficticios</span>
+                        <span style="font-size: 70%;"> ${mensaje.get("generar")}</span>
                     </a>
                 </li>
 
@@ -81,9 +81,9 @@
                     
                   <thead>
                     <tr>
-                      <th>Materia</th>
-                      <th>Numero</th>
-                      <th>Docente</th>
+                      <th> ${mensaje.get("Materia")}</th>
+                      <th> ${mensaje.get("Numero")}</th>
+                      <th> ${mensaje.get("Docente")}</th>
                     </tr>
                   </thead>
                   <tbody>

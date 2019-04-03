@@ -17,7 +17,7 @@
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">SAAN <sup>WEB</sup></div>
+                    <div class="sidebar-brand-text mx-3">${mensaje.get("SAAN")}<sup>${mensaje.get("WEB")}</sup></div>
                 </a>
 
                 <!-- Divider -->
@@ -50,7 +50,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="./datosFicticios">
                         <img class="img-profile rounded-circle" src="https://cdn2.iconfinder.com/data/icons/ui-data-storage-sever/64/data-storage-add-256.png">
-                        <span style="font-size: 70%;">Generar datos ficticios</span>
+                        <span style="font-size: 70%;">${mensaje.get("generar")}</span>
                     </a>
                 </li>
                 <!--Volver al menu de usuario-->
@@ -58,7 +58,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="./adminMenu">
                         <img class="img-profile rounded-circle" src="https://cdn3.iconfinder.com/data/icons/flat-pro-user-management-set-4/32/user-menu-256.png">
-                        <span style="font-size: 70%;">Menu de usuario</span>
+                        <span style="font-size: 70%;">${mensaje.get("menuUser")}</span>
                     </a>
                 </li>
                 </c:if>
@@ -98,16 +98,16 @@
                           <div style="font-size: 100%" class="card-body">
                               <ol>
                                   <li>
-                                      Juan Pablo Moya Alarcón
+                                      ${mensaje.get("juanP")}
                                   </li>
                                   <li>
-                                      Juan Diego Marin Rodriguez
+                                      ${mensaje.get("juanD")}
                                   </li>
                                   <li>
-                                      Juan Felipe Usuga Villegas
+                                      ${mensaje.get("juanU")}
                                   </li>
                                   <li>
-                                      Julian Ospina Murgueitio
+                                      ${mensaje.get("julian")}
                                   </li>
 
                               </ol>
@@ -121,7 +121,7 @@
                       <div class="card shadow mb-4">
                           <!-- Card Header - Dropdown -->
                           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                              <h6 class="m-0 font-weight-bold text-primary">SAAN</h6>
+                              <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("SAAN")}</h6>
 
                           </div>
                           <!-- Card Body -->
@@ -159,7 +159,7 @@
                       <div class="card shadow mb-4">
                           <!-- Card Header - Dropdown -->
                           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                              <h6 class="m-0 font-weight-bold text-primary">Funcionalidades especiales</h6>
+                              <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("funcionalidades")}</h6>
 
                           </div>
                           <!-- Card Body -->
@@ -167,16 +167,25 @@
                           <div style="font-size: 100%" class="card-body">
                               <ol>
                                   <li>
-                                      Enviar correos al actualizar, borrar, modificar y añadir una nota
+                                      ${mensaje.get("enviarAct")}
                                   </li>
                                   <li>
-                                      Generar reportes de excel
+                                      ${mensaje.get("generarRep")}
                                   </li>
                                   <li>
-                                      Mostrar los mejores grupos
+                                      ${mensaje.get("generarRep")}
                                   </li>
                                   <li>
-                                      Mostrar los estudiantes que van perdiendo
+                                      ${mensaje.get("malosEstudiantes")}
+                                  </li>
+                                  <li>
+                                      ${mensaje.get("recuperarcontra")}
+                                  </li>
+                                   <li>
+                                      ${mensaje.get("mejoresNotas")}
+                                  </li>
+                                   <li>
+                                      ${mensaje.get("encontrarCor")}
                                   </li>
 
                               </ol>
@@ -190,12 +199,12 @@
                       <div class="card shadow mb-4">
                           <!-- Card Header - Dropdown -->
                           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                              <h6 class="m-0 font-weight-bold text-primary">Cuando...</h6>
+                              <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("cuando")}</h6>
 
                           </div>
                           <!-- Card Body -->
                           <div class="card-body">
-                              <p style="font-size: 100%"> Tu profesor sube las notas y no te avisa</p>
+                              <p style="font-size: 100%">${mensaje.get("profNota")}</p>
                               <img style="width:51%; height: 50.5%" src="https://media.giphy.com/media/wvQIqJyNBOCjK/giphy.gif">
                           </div>
                       </div>
