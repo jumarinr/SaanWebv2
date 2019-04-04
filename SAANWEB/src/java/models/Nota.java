@@ -99,10 +99,8 @@ public class Nota {
     public static void enviarCorreoActualizarNota(String opc, int id, double nota, double porcentaje, Estudiante estudiante, Materia materia) {
         String correo_enviar = estudiante.getCorreo();
         String cuerpo = "";
-        String asunto = "Eliminación de nota";
-        System.err.println("borró");
+        String asunto = Mensajes.mensaje.get("eliNota");
         if (Mensajes.mensaje.get(opc).equals("borro")) {
-            System.err.println("borró");
             cuerpo = Mensajes.mensaje.get("cuerpo_borro") + id + Mensajes.mensaje.get("cuerpo_borro2") + materia.toString();
         } else {
             cuerpo = Mensajes.mensaje.get("cuerpo_resto") + materia.toString() + Mensajes.mensaje.get("cuerpo_resto2") + String.valueOf(id) + Mensajes.mensaje.get("cuerpo_resto3") + String.valueOf(nota) + Mensajes.mensaje.get("cuerpo_resto4") + String.valueOf(porcentaje) + '%';

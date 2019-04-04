@@ -101,18 +101,18 @@ public class AdminModificarEstudiante extends HttpServlet {
         boolean seguir = true;
         String imprimir = "";
         if (!extra.esEmailCorrecto(correo)) {
-            imprimir = "Correo invalido";
+            imprimir = Mensajes.mensaje.get("corInv");
             seguir = false;
         }
         if (documento != doc) {
             if (Persona.buscarPersona(personas, estudiantes, profesores, documento) != null) {
-                imprimir = "El documento ya esta registrado";
+                imprimir = Mensajes.mensaje.get("docReg");
                 seguir = false;
             }
         }
         if (!correo.equals(cor)) {
             if (Persona.buscarPersona(personas, estudiantes, profesores, correo) != null) {
-                imprimir = "El correo ya esta registrado";
+                imprimir = Mensajes.mensaje.get("corReg");
                 seguir = false;
             }
         }
@@ -124,7 +124,7 @@ public class AdminModificarEstudiante extends HttpServlet {
             p.setIdentificacion(documento);
             p.setClave(clave);
             p.setCorreo(correo);
-            imprimir = "Estudiante modificado";
+            imprimir = Mensajes.mensaje.get("estuMod");
             session.setAttribute("estudiantes", estudiantes);
         }
         request.setAttribute("imprimir", imprimir);
