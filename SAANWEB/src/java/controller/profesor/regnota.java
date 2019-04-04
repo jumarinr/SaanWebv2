@@ -84,6 +84,7 @@ public class regnota extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("imprimir", null);
         List<Nota> notas = new ArrayList<Nota>();
         List<Matricula> matriculas = new ArrayList<Matricula>();
         HttpSession session = request.getSession();
@@ -99,18 +100,28 @@ public class regnota extends HttpServlet {
         int idmateria = Integer.valueOf(request.getParameter("idmateria"));
         int idestudiante = Integer.valueOf(request.getParameter("idestudiante"));
         Matricula matricula = Matricula.buscar_matricula(matriculas, idestudiante, idmateria);
-        if( matricula != null){
-            String res = Nota.registrar(notas, new Nota(porcentaje, valor, id, matricula));
+        String imprimir = "";
+        if( matricula != null && Nota.porcentajeDiferente100((ArrayList<Nota>) notas, idmateria, matricula.getGrupo().getNumero(), idestudiante, porcentaje)){
+            String res = Nota.registrar(notas, new Nota(porcentaje, valor, id, matricula));            
             if (res.equals(Mensajes.mensaje.get("reg"))){
                 Nota.enviarCorreoActualizarNota("registro", id, valor, porcentaje, matricula.getEstudiante(), matricula.getGrupo().getMateria());                
-            }            
-        }        
-
-        session.setAttribute("notas", notas);
-        session.setAttribute("matriculas", matriculas);
+                imprimir = "Nota registrada exitosamente";
+            }
+            else{
+                imprimir = "La nota no pudo ser registrada";
+            }
+        }  
+        else{
+                imprimir = "La nota no pudo ser registrada porque la matrícula no fue encontrada o el porcentaje excede al 100%";
+        }
+        
+        request.setAttribute("imprimir", imprimir);       
+        request.setAttribute("notas", notas);
+        request.setAttribute("matriculas", matriculas);
+        request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
-        RequestDispatcher view = request.getRequestDispatcher("./regnota");
-        view.forward(request, response);        
+        RequestDispatcher view = request.getRequestDispatcher("profRegNota.jsp");
+        view.forward(request, response);     
     }
 
     /**

@@ -99,10 +99,8 @@ public class Nota {
     public static void enviarCorreoActualizarNota(String opc, int id, double nota, double porcentaje, Estudiante estudiante, Materia materia) {
         String correo_enviar = estudiante.getCorreo();
         String cuerpo = "";
-        String asunto = "Eliminación de nota";
-        System.err.println("borró");
-        if (Mensajes.mensaje.get(opc).equals("borro")) {
-            System.err.println("borró");
+        String asunto = "Eliminación de nota";        
+        if (Mensajes.mensaje.get(opc).equals("borro")) {            
             cuerpo = Mensajes.mensaje.get("cuerpo_borro") + id + Mensajes.mensaje.get("cuerpo_borro2") + materia.toString();
         } else {
             cuerpo = Mensajes.mensaje.get("cuerpo_resto") + materia.toString() + Mensajes.mensaje.get("cuerpo_resto2") + String.valueOf(id) + Mensajes.mensaje.get("cuerpo_resto3") + String.valueOf(nota) + Mensajes.mensaje.get("cuerpo_resto4") + String.valueOf(porcentaje) + '%';
@@ -148,13 +146,15 @@ public class Nota {
 
     public static boolean porcentajeDiferente100(ArrayList<Nota> notas, int id_materia, int num_grupo, int id_estudiante, double porcentaje) {
         double sum = 0;
-        for (Nota nota : notas) {
+        for (Nota nota : notas) {            
             if (nota.getMatricula().getGrupo().getNumero() == num_grupo && nota.getMatricula().getGrupo().getMateria().getId() == id_materia && nota.getMatricula().getEstudiante().getIdentificacion() == id_estudiante) {
                 sum += nota.getPorcentaje();
+                System.out.println(nota.getId()+":"+nota.getPorcentaje());
             }
         }
         double total = sum + porcentaje;
-        if (total > 100) {
+        
+        if (total >= 100) {
             return false;
         }
         return true;

@@ -57,7 +57,7 @@ public class cambiarcontrasena extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
+        request.setAttribute("imprimir", null);
         HttpSession session = request.getSession();
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));        
@@ -68,6 +68,8 @@ public class cambiarcontrasena extends HttpServlet {
             Persona oc = Persona.buscarPersona((ArrayList<Persona>) session.getAttribute("personas"), (ArrayList<Estudiante>) session.getAttribute("estudiantes"), (ArrayList<Profesor>)session.getAttribute("profesores"), id);
             oc.setClave(password);
         }
+        String imprimir = "Contraseña modificada exitosamente";
+        request.setAttribute("imprimir", imprimir);
         RequestDispatcher view = request.getRequestDispatcher("profCambiarContrasena.jsp");
         view.forward(request, response);
             

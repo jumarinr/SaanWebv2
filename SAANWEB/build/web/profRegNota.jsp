@@ -5,11 +5,6 @@
 --%>
 
 <%@ include file="headerProf.jsp" %>
-<script>
-    function notify() {
-        alert("Se ha registrado la nota exitosamente");
-    }
-</script>
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
 
@@ -69,7 +64,7 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <form method="POST" action="./regnota" onsubmit="notify()">
+                        <form method="POST" action="./regnota">
                             <div class="form-group">
                                 <label for="ide">Id</label>
                                 <input type="number" class="form-control" id="id" name="id" placeholder="Ingrese el id" required>
@@ -88,7 +83,7 @@
                             </div>                            
                             <div class="form-group">
                                 <label for="idmateria">Id Materia</label>
-                                <input type="number" class="form-control" id="idmateria" name="idmateria" placeholder="Ingrese el id de la matrícula" required>
+                                <input type="number" class="form-control" id="idmateria" name="idmateria" placeholder="Ingrese el id de la materia" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Registrar</button>
                         </form>                    </div>

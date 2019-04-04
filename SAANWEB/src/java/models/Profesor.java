@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import util.EnvioDeCorreo;
 
 /**
  *
@@ -41,6 +42,10 @@ public class Profesor extends Persona {
         return Persona.eliminar(personas, estudiantes, profesores, identificacion);
     }
 
-    public static void encontrarCorreosYEnviar(List lista, Integer grupo, String Asunto, Integer Materia, String Fecha, String nombre, String Detalle) {
+    public static void encontrarCorreosYEnviar(ArrayList<Matricula> matriculas, Integer grupo, Integer Materia, String Fecha, String name, String Detalle) {
+        String asunto = "Correo creado " + Fecha + ". Con detalles: " + Detalle + ". ID materia: " + Materia + ". Num grupo: " + grupo + ".";
+        matriculas.forEach((t) -> {
+                EnvioDeCorreo.EnvioDeMail(t.getEstudiante().getCorreo(), name, asunto);
+            });
     }
 }

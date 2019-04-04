@@ -37,7 +37,7 @@ public class Mensajes {
             put("borro", "borro");
             put("cuerpo_borro", "se le borro la nota con identificación ");
             put("cuerpo_borro2", " de la materia ");
-            put("cuerpo_resto", "Su nota en ");
+            put("cuerpo_resto", "Su nota con ");
             put("cuerpo_resto2", " con identificación de ");
             put("cuerpo_resto3", " fue de ");
             put("cuerpo_resto4", " y vale ");

@@ -4,11 +4,6 @@
     Author     : pipel
 --%>
 <%@ include file="headerProf.jsp" %>
-<script>
-    function notify() {
-        alert("Se ha modificado la nota exitosamente");
-    }
-</script>
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
 

@@ -74,6 +74,7 @@ public class modnota extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("imprimir", null);
         RequestDispatcher view;
         List<Nota> notas = new ArrayList<Nota>();
         HttpSession session = request.getSession();
@@ -89,12 +90,18 @@ public class modnota extends HttpServlet {
             Nota Not = Nota.buscarNota(notas, estudiante, materia, grupo, id);                                 
             int index = notas.indexOf(Not);
             if (request.getParameter("valor") != null){
-                double valor = Double.parseDouble(request.getParameter("valor"));                
+                double valor = Double.parseDouble(request.getParameter("valor"));                                
                 Not.setValor(valor);
+                String imprimir = "Nota modificada exitosamente";
+                request.setAttribute("imprimir", imprimir);
             }
             if(request.getParameter("porcentaje") != null){
                 double porcentaje = Double.parseDouble(request.getParameter("porcentaje")); 
-                Not.setPorcentaje(porcentaje);
+                if (Nota.porcentajeDiferente100((ArrayList<Nota>) notas, materia, grupo, estudiante, porcentaje)) {
+                    Not.setPorcentaje(porcentaje);
+                    String imprimir = "Nota modificada exitosamente";
+                    request.setAttribute("imprimir", imprimir);
+                }                                       
             }
             Nota.enviarCorreoActualizarNota("modifico", id, Not.getValor(), Not.getPorcentaje(), Not.getMatricula().getEstudiante(), Not.getMatricula().getGrupo().getMateria());
             notas.set(index, Not);
@@ -102,6 +109,7 @@ public class modnota extends HttpServlet {
             request.setAttribute("mensaje", Mensajes.mensaje);
             request.setAttribute("usua", session.getAttribute("usua"));
         }
+                
         session.setAttribute("notas", notas);
         view = request.getRequestDispatcher("profModNota.jsp");
         view.forward(request, response);
