@@ -86,6 +86,7 @@ public class Mensajes {
             put("contraConfirm", "Escriba de nuevo la contraseña");
             put("dataRec", "Recupere su contraseña, inserte una nueva.");
             put("codigoO", "Ingrese el codigo que le llego al correo");
+            put("infoEnv", "Cambiar contraseña");
         }
     };
 
