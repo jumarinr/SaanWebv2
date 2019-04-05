@@ -88,7 +88,8 @@ public class Mensajes {
             put("op","Opciones");
             put("camcon","Cambiar contraseña");
             put("camnom","Cambiar nombre");
-            
+            put("conexit","Su contraseña ha sido cambiada exitosamente");
+            put("nomexit","Su nombre ha sido cambiado exitosamente");
         }
     };
 

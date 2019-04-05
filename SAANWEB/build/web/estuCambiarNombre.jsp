@@ -5,12 +5,6 @@
 --%>
 
 <%@ include file="headerEstu.jsp" %>
-<script>
-    function notify() {
-        alert("Su nombre ha sido cambiado exitosamente");
-    }
-    
-</script>
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
 

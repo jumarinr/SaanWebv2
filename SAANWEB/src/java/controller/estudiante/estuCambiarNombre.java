@@ -66,6 +66,8 @@ public class estuCambiarNombre extends HttpServlet {
             long id = user.getIdentificacion();
             Persona oc = Persona.buscarPersona((ArrayList<Persona>) session.getAttribute("personas"), (ArrayList<Estudiante>) session.getAttribute("estudiantes"), (ArrayList<Profesor>)session.getAttribute("profesores"), id);
             oc.setNombre(nombre);
+            String imprimir = Mensajes.mensaje.get("nomexit");
+            request.setAttribute("imprimir",imprimir);
         }
         RequestDispatcher view = request.getRequestDispatcher("estuCambiarNombre.jsp");
         view.forward(request, response);

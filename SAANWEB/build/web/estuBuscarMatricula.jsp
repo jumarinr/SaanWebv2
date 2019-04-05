@@ -82,17 +82,20 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <form method="GET" action="./estuBuscarMatricula">
-                            <div class="form-group">
-                                <label for="ide">${mensaje.get("Doc")}</label>
-                                <input type="text" class="form-control" id="doc" name="doc" placeholder="${mensaje.get("indoc")}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="ide">${mensaje.get("idmat")}</label>
-                                <input type="text" class="form-control" id="idM" name="idM" placeholder="${mensaje.get("inmat")}" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">${mensaje.get("bus")}</button>
-                        </form>                    
+                        <c:if test="${not empty usua}">
+                            <form method="GET" action="./estuBuscarMatricula">
+                                <div class="form-group">
+                                    <label for="ide">${mensaje.get("Doc")}</label>
+                                    <h6>${usua.getIdentificacion()}</h6>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ide">${mensaje.get("idmat")}</label>
+                                    <input type="text" class="form-control" id="idM" name="idM" placeholder="${mensaje.get("inmat")}" required>
+                                </div>
+                                <input id="doc" name="doc" type="hidden" value="${usua.getIdentificacion()}">
+                                <button type="submit" class="btn btn-primary">${mensaje.get("bus")}</button>
+                            </form>   
+                        </c:if>
                     </div>
                 </div>
             </div>
