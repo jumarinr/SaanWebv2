@@ -43,34 +43,17 @@ public class Estudiante extends Persona {
         return Persona.eliminar(personas, estudiantes, profesores, correo);
     }
 
-    public static ArrayList<Estudiante> VanPerdiendo(Materia materia) {
-        ArrayList<Estudiante> retorno = new ArrayList<>();
-        for (Grupo gru : materia.getGrupos()) {
-            for (Matricula mat : gru.getMatriculas()) {
-                List<Nota> not = mat.getNotas();
-                if (!not.isEmpty()) {
-                    int sum = 0;
-                    int sum2 = 0;
-                    for (Nota nota : not) {
-                        if (nota.getMatricula().getGrupo() == gru) {
-                            sum += ((nota.getPorcentaje() / 100) * nota.getValor());
-                            sum2 += (nota.getPorcentaje() / 100);
-
-                        }
-                    }
-                    int prom;
-                    if (sum2 != 0 && sum != 0) {
-                        prom = sum / sum2;
-                    } else {
-                        prom = 0;
-                    }
-                    if (prom < 3 && prom != 0) {
-                        retorno.add(mat.getEstudiante());
+    public static ArrayList<Matricula> VanPerdiendo(List<Materia> materias) {
+        ArrayList<Matricula> retorno = new ArrayList<>();
+        for (Materia materia : materias) {
+            for (Grupo grupo : materia.getGrupos()) {
+                for (Matricula matricula : grupo.getMatriculas()) {
+                    if (matricula.getNotaFinal() < 3 && matricula.porcentajeDeAvance() > 0) {
+                        retorno.add(matricula);
                     }
                 }
             }
         }
         return retorno;
     }
-
 }

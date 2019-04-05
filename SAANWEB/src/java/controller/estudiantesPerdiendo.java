@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import models.Estudiante;
 import models.Grupo;
 import models.Materia;
+import models.Matricula;
 import util.Mensajes;
 
 /**
@@ -37,26 +38,16 @@ public class estudiantesPerdiendo extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
- @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Materia> materias = new ArrayList<Materia>();
         HttpSession session = request.getSession();
-        List<String[]> materiaxestudiante = new ArrayList<>();
-        if(session.getAttribute("materias") != null) {
+        if (session.getAttribute("materias") != null) {
             materias = (ArrayList<Materia>) session.getAttribute("materias");
-            for (Materia mat: materias){
-                List<Grupo> grupo = mat.getGrupos();
-                String aux[] = new String[2];
-                aux[0] = mat.getNombre();
-                for(Estudiante est: Estudiante.VanPerdiendo(mat)){
-                    aux[1] = Long.toString(est.getIdentificacion());
-                    materiaxestudiante.add(aux);
-                }
-                
-            }
         }
-        request.setAttribute("materiasxestudiante", materiaxestudiante);
+        ArrayList<Matricula> matriculasPerdiendo = Estudiante.VanPerdiendo(materias);
+        request.setAttribute("matriculas",matriculasPerdiendo);
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));
 
@@ -81,5 +72,4 @@ public class estudiantesPerdiendo extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
 }

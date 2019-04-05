@@ -53,7 +53,15 @@
                         <span style="font-size: 70%;">Generar datos ficticios</span>
                     </a>
                 </li>
-
+                <!--Volver al menu de usuario-->
+                <c:if test="${not empty usua}">
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="./adminMenu">
+                        <img class="img-profile rounded-circle" src="https://cdn3.iconfinder.com/data/icons/flat-pro-user-management-set-4/32/user-menu-256.png">
+                        <span style="font-size: 70%;">Menu de usuario</span>
+                    </a>
+                </li>
+                </c:if>
             </ul>
             <!-- End of Sidebar -->
 
