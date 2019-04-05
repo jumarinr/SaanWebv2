@@ -18,7 +18,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Nota</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("notprof")}</h6>
                     </div>
                     <!-- Card Body -->
                     <c:if test="${not empty Not}">
@@ -26,17 +26,17 @@
                             <table class="table" style="margin-top: -10px;width: 100%;">
                                 <thead>
                                     <tr>
-                                               <th scope="col">Id</th>
-                                               <th scope="col">valor</th>
-                                               <th scope="col">Porcentaje</th>
-                                           </tr>
+                                               <th scope="col">${mensaje.get("iddprof")}</th>
+                                               <th scope="col">${mensaje.get("valprof")}</th>
+                                               <th scope="col">${mensaje.get("porcenprof")}</th>
+                                           </tr>
                                 </thead>
                                 <tbody>
-                                       <tr>
-                                                       <td><a href="./buscarnota?id=${Not.getId()}&materia=${Not.getMatricula().getGrupo().getMateria().getId()}&grupo=${Not.getMatricula().getGrupo().getNumero()}&estudiante=${Not.getMatricula().getEstudiante().getIdentificacion()}">${Not.getId()}</a></td>
-                                                       <td>${Not.getValor()}</td>
+                                       <tr>
+                                                       <td><a href="./buscarnota?id=${Not.getId()}&materia=${Not.getMatricula().getGrupo().getMateria().getId()}&grupo=${Not.getMatricula().getGrupo().getNumero()}&estudiante=${Not.getMatricula().getEstudiante().getIdentificacion()}">${Not.getId()}</a></td>
+                                                       <td>${Not.getValor()}</td>
                                             <td>${Not.getPorcentaje()}</td>
-                                                   </tr>
+                                                   </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -49,7 +49,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Edición</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("edprof")}</h6>
 
                     </div>
                     <!-- Card Body -->
@@ -57,17 +57,17 @@
                         <c:if test="${not empty Not}">
                             <form method="POST" action="./modnota?id=${Not.getId()}&materia=${Not.getMatricula().getGrupo().getMateria().getId()}&grupo=${Not.getMatricula().getGrupo().getNumero()}&estudiante=${Not.getMatricula().getEstudiante().getIdentificacion()}" onsubmit="notify()">
                                 <div class="form-group">
-                                    <label for="valor">Valor</label>
-                                    <input value="${Not.getValor()}" type="text" class="form-control" id="valor" name="valor" placeholder="Ingrese el valor" required>
+                                    <label for="valor">${mensaje.get("valprof")}</label>
+                                    <input value="${Not.getValor()}" type="text" class="form-control" id="valor" name="valor" placeholder="${mensaje.get("plhvalprof")}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="porcentaje">Porcentaje</label>
-                                    <input value="${Not.getPorcentaje()}" type="text" class="form-control" id="porcentaje" name="porcentaje" placeholder="Ingrese el porcentaje" required>
+                                    <label for="porcentaje">${mensaje.get("porcenprof")}</label>
+                                    <input value="${Not.getPorcentaje()}" type="text" class="form-control" id="porcentaje" name="porcentaje" placeholder="${mensaje.get("plhporprof")}" required>
                                 </div>
                                 <input id="estudiante" name="estudiante" type="hidden" value="${Not.getMatricula().getEstudiante().getIdentificacion()}">
                                 <input id="materia" name="materia" type="hidden" value="${Not.getMatricula().getGrupo().getMateria().getId()}">
                                 <input id="grupo" name="grupo" type="hidden" value="${Not.getMatricula().getGrupo().getNumero()}">
-                                <button type="submit" class="btn btn-primary">Modificar</button>  
+                                <button type="submit" class="btn btn-primary">${mensaje.get("modprof")}</button>  
                             </form>
                         </c:if>
                     </div>

@@ -28,25 +28,25 @@
                             <table class="table" style="margin-top: -10px;width: auto;">
                                 <thead>
                                     <tr>
-                                               <th scope="col">Id</th>
-                                               <th scope="col">Porcentaje</th>
-                                               <th scope="col">Valor</th>                                        
-                                           </tr>
+                                               <th scope="col">${mensaje.get("idprof")}</th>
+                                               <th scope="col">${mensaje.get("porcenprof")}</th>
+                                               <th scope="col">${mensaje.get("valprof")}</th>                                        
+                                           </tr>
                                 </thead>
                                 <tbody>
-                                       <c:forEach items="${Nots}" var="Nota">
-                                               <tr>
-                                                       <td><a href="./buscarnota?id=${Nota.getId()}&materia=${Nota.getMatricula().getGrupo().getMateria().getId()}&grupo=${Nota.getMatricula().getGrupo().getNumero()}&estudiante=${Nota.getMatricula().getEstudiante().getIdentificacion()}">${Nota.getId()}</a></td>
-                                                       <td>${Nota.getPorcentaje()}</td>
-                                                       <td>${Nota.getValor()}</td>                                                                                               
+                                       <c:forEach items="${Nots}" var="Nota">
+                                               <tr>
+                                                       <td><a href="./buscarnota?id=${Nota.getId()}&materia=${Nota.getMatricula().getGrupo().getMateria().getId()}&grupo=${Nota.getMatricula().getGrupo().getNumero()}&estudiante=${Nota.getMatricula().getEstudiante().getIdentificacion()}">${Nota.getId()}</a></td>
+                                                       <td>${Nota.getPorcentaje()}</td>
+                                                       <td>${Nota.getValor()}</td>                                                                                               
                                         </tr>
-                                           </c:forEach>
+                                           </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                     </c:if>
                     <c:if test="${empty Nots}">
-                        <p style="padding: 5% 5%">No hay notas que mostrar</p>
+                        <p style="padding: 5% 5%">${mensaje.get("notnotprof")}</p>
                     </c:if>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Edición</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("edprof")}</h6>
 
                     </div>
                     <!-- Card Body -->
@@ -64,14 +64,14 @@
                         <c:if test="${not empty usua}">
                         <form method="GET" action="./mejoresnotas">
                             <div class="form-group">
-                                <label for="grupo">Id grupo</label>
-                                <input type="text" class="form-control" id="grupo" name="grupo" aria-describedby="emailHelp" placeholder="Ingrese id el grupo" required>
+                                <label for="grupo">${mensaje.get("idgrupprof")}</label>
+                                <input type="text" class="form-control" id="grupo" name="grupo" aria-describedby="emailHelp" placeholder="${mensaje.get("plhidgrup")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="materia">Id materia</label>
-                                <input type="text" class="form-control" id="materia" name="materia" placeholder="Ingrese el id la materia">
+                                <label for="materia">${mensaje.get("idmatprof")}</label>
+                                <input type="text" class="form-control" id="materia" name="materia" placeholder="${mensaje.get("plidmatprof")}">
                             </div>                            
-                            <button type="submit" class="btn btn-primary">Modificar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("modprof")}</button>
                         </form>
                         </c:if>
                     </div>
