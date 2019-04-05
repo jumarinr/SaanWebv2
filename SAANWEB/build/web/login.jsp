@@ -21,25 +21,25 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Inicie sesion en SAAN</h1>
+                    <h1 class="h4 text-gray-900 mb-4">${mensaje.get("iniciar")}</h1>
                   </div>
                     <form action="./login" method="POST" class="user">
                     <div class="form-group">
-                        <input type="text" onchange="correos()" required class="form-control form-control-user" id="id" name="id" aria-describedby="emailHelp" placeholder="Ingrese su documento o email" autofocus>
+                        <input type="text"  required class="form-control form-control-user" id="id" name="id" aria-describedby="emailHelp" placeholder="${mensaje.get("placeholderCorreo")}" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="password" required class="form-control form-control-user" id="clave" name="clave" placeholder="Escriba una contraseña">
+                        <input type="password" required class="form-control form-control-user" id="clave" name="clave" placeholder="${mensaje.get("placeholderContra")}">
                     </div>
                     
-                      <input type="submit"  value="Iniciar" class="btn btn-primary btn-user btn-block"/>
+                      <input type="submit"  value="${mensaje.get("init")}" class="btn btn-primary btn-user btn-block"/>
                     
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="./recuperarContrasena">¿Desea recuperar contraseña?</a>
+                    <a class="small" href="./recuperarContrasena">${mensaje.get("recup")}</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="./inicio">Volver a inicio</a>
+                    <a class="small" href="./inicio">${mensaje.get("volver")}</a>
                   </div>
                 </div>
               </div>

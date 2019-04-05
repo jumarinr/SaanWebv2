@@ -4,28 +4,7 @@
     Author     : juann
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>SB Admin 2 - Forgot Password</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="dashboard/css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
+       <%@ include file="header2.jsp" %>
 
 <body class="bg-gradient-primary">
 
@@ -46,19 +25,18 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">¿Olvido su contraseña?</h1>
-                    <p class="mb-4">Lo entendemos, solo ingrese su correo para recuperarla.
-                    Recibira un codigo en breves momentos en su correo electronico.</p>
+                    <h1 class="h4 text-gray-900 mb-2">${mensaje.get("olvido2")}</h1>
+                    <p class="mb-4">${mensaje.get("olvidoCuerpo")}</p>
                   </div>
                   <form action="./recuperarContrasena" method="POST"  class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user"name="inputEmail" id="inputEmail" aria-describedby="emailHelp" placeholder="Ingrese su correo">
+                      <input type="string" class="form-control form-control-user"name="inputEmail" id="inputEmail" aria-describedby="emailHelp" placeholder="${mensaje.get("placeholderCorreo")}">
                     </div>
-                    <input type="submit"  value="Generar codigo" class="btn btn-primary btn-user btn-block"/>
+                    <input type="submit"  value="${mensaje.get("generarCodigo")}" class="btn btn-primary btn-user btn-block"/>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="./login">¿Ya tienes una cuenta? ¡ingresa aqui!</a>
+                    <a class="small" href="./login">${mensaje.get("yaCuenta")}</a>
                   </div>
                 </div>
               </div>
