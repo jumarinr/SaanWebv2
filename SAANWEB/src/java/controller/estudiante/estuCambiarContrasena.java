@@ -60,13 +60,16 @@ public class estuCambiarContrasena extends HttpServlet {
             
         HttpSession session = request.getSession();
         request.setAttribute("mensaje", Mensajes.mensaje);
-        request.setAttribute("usua", session.getAttribute("usua"));        
+        request.setAttribute("usua", session.getAttribute("usua"));
         if(request.getParameter("password") != null){
             String password = request.getParameter("password");
             Persona user = (Persona)session.getAttribute("usua");
             long id = user.getIdentificacion();
             Persona oc = Persona.buscarPersona((ArrayList<Persona>) session.getAttribute("personas"), (ArrayList<Estudiante>) session.getAttribute("estudiantes"), (ArrayList<Profesor>)session.getAttribute("profesores"), id);
             oc.setClave(password);
+            String imprimir = Mensajes.mensaje.get("conexit");
+            request.setAttribute("imprimir",imprimir);
+            
         }
         RequestDispatcher view = request.getRequestDispatcher("estuCambiarContrasena.jsp");
         view.forward(request, response);

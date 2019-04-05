@@ -74,6 +74,7 @@ public class AdminLogin extends HttpServlet {
             int usu = -1;
             Persona usua;
             if (extra.isInteger(id)) {
+                System.out.println(id);
                 usu = Persona.login(personas, estudiantes, profesores, Long.parseLong(id), clave);
                 usua = Persona.buscarPersona(personas, estudiantes, profesores, Long.parseLong(id));
             } else {

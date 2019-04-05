@@ -111,7 +111,7 @@ public class datosFicticios extends HttpServlet {
         Profesor pr2 = new Profesor("Pablo Antoño Ortiz", 456, "juanpablomoyaalarcon14@gmail.com", "chao");
         Profesor.registrar(personas, estudiantes, profesores, pr2);
         //Estudiante
-        Estudiante es1 = new Estudiante("Juan Pablo Moya Alarcón", 789, "juanpablomoyaalarcon14@gmail.com", "clave");
+        Estudiante es1 = new Estudiante("Juan Pablo Moya Alarcón", 789, "jmoya@unal.edu.co", "clave");
         Estudiante.registrar(personas, estudiantes, profesores, es1);
         Estudiante es2 = new Estudiante("Julian Ospina Murguetio", 135, "juospinam@unal.edu.co", "anime");
         Estudiante.registrar(personas, estudiantes, profesores, es2);
@@ -119,6 +119,9 @@ public class datosFicticios extends HttpServlet {
         Estudiante.registrar(personas, estudiantes, profesores, es3);
         Estudiante es4 = new Estudiante("Juan Felipe Usuga Villegas", 791, "jusugav@unal.edu.co", "1234");
         Estudiante.registrar(personas, estudiantes, profesores, es4);
+        
+        Estudiante es5 = new Estudiante("Camilo locaiza", 001, "cloaiza@unal.edu.co", "pajarita");
+        Estudiante.registrar(personas, estudiantes, profesores, es5);
         //Grupo
         Grupo gr1 = new Grupo(1, pr1, mat1);
         Grupo.registrar(grupos, gr1);

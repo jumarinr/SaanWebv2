@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 import models.Nota;
 import util.Mensajes;
 
@@ -53,7 +54,7 @@ public class estuBusNotas extends HttpServlet {
             notas = (ArrayList<Nota>) session.getAttribute("notas");
         }
         if (request.getParameter("doc") != null && request.getParameter("idM") != null && request.getParameter("idG") != null
-                && request.getParameter("id") != null) {
+                && request.getParameter("id") != null) {            
             long doc = Long.parseLong(request.getParameter("doc"));
             int idM = Integer.parseInt(request.getParameter("idM"));
             int idG = Integer.parseInt(request.getParameter("idG"));

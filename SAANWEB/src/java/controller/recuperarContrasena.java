@@ -71,12 +71,12 @@ public class recuperarContrasena extends HttpServlet {
                 RequestDispatcher pr = request.getRequestDispatcher("formularioContra.jsp");
                 pr.forward(request, response);
             } else {
-                request.setAttribute("imprimir", "usuario no encontrado");
+                request.setAttribute("imprimir",Mensajes.mensaje.get("userNotFound") );
                 RequestDispatcher pr = request.getRequestDispatcher("recuperarContrasena.jsp");
                 pr.forward(request, response);
             }
         } else {
-            request.setAttribute("imprimir", "usuario no encontrado");
+            request.setAttribute("imprimir", Mensajes.mensaje.get("userNotFound"));
             RequestDispatcher pr = request.getRequestDispatcher("recuperarContrasena.jsp");
             pr.forward(request, response);
         }

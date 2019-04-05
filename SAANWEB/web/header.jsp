@@ -21,7 +21,7 @@
 
 
             <div class="input-group-append" style="margin-top: 1%;">
-                <h4 style="font-size: 90%;">${mensaje.get("saan")}</h4>
+                <h4 style="font-size: 90%;">${mensaje.get("saAn")}</h4>
             </div>
 
 

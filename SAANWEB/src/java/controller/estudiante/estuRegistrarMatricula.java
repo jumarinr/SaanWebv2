@@ -109,11 +109,11 @@ public class estuRegistrarMatricula extends HttpServlet {
         String imprimir = "";
         boolean seguir = true;
         if (Materia.buscarMateria(materias, idM) == null) {
-            imprimir = "La materia no esta registrada";
+            imprimir = Mensajes.mensaje.get("matsin");
             seguir = false;
         }
         if(Grupo.buscarGrupo(grupos, num, idM)==null){
-            imprimir = "El grupo no esta registrado";
+            imprimir = Mensajes.mensaje.get("grusin");
             seguir = false;
         }
         if(seguir){

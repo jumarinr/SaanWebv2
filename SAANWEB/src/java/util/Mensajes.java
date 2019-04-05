@@ -25,7 +25,7 @@ public class Mensajes {
             put("megru", "Mejores grupos");
             put("estper", "Estudiantes que van perdiendo");
             put("ini", "Inicio");
-            put("saan", "SISTEMA ACADÉMICO ASISTENTE DE NOTAS");
+            put("saAn", "SISTEMA ACADÉMICO ASISTENTE DE NOTAS");
             put("esp", "Español");
             put("ing", "Ingles");
             put("inisec", "Iniciar sesión");
@@ -246,6 +246,9 @@ public class Mensajes {
             put("camnom","Cambiar nombre");
             put("conexit","Su contraseña ha sido cambiada exitosamente");
             put("nomexit","Su nombre ha sido cambiado exitosamente");
+            put("userNotFound", "usuario no encontrado");
+            put("contraMal", "Contraseñas no concuerdan");
+            put("codigoMal", "Codigo no concuerda");
         }
     };
 

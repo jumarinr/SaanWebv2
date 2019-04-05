@@ -49,25 +49,22 @@ public class formularioContra extends HttpServlet {
         if (session.getAttribute("usuarioAct") != null) {
             Persona usuario = (Persona) session.getAttribute("usuarioAct"); 
             if(!codigo.equals(codigoO)){
-                String error = "Codigo no concuerda";
-            session.setAttribute("error", error);
+            request.setAttribute("imprimir",Mensajes.mensaje.get("codigoMal") );
             RequestDispatcher view = request.getRequestDispatcher("formularioContra.jsp");
             view.forward(request, response);
             }else if(!Pass.equals(confirmPas)) {
-                String error = "Contraseñas no concuerdan";
-            session.setAttribute("error", error);
-            RequestDispatcher view = request.getRequestDispatcher("formularioContra.jsp");
+                request.setAttribute("imprimir",Mensajes.mensaje.get("contraMal") );
+                RequestDispatcher view = request.getRequestDispatcher("formularioContra.jsp");
             view.forward(request, response);
             }else{
       
                String error =  Persona.recuperarContraseña(codigo, codigoO, Pass, usuario);
-            session.setAttribute("error", error);
+            request.setAttribute("imprimir", error );
             RequestDispatcher view = request.getRequestDispatcher("login.jsp");
             view.forward(request, response);
             }
         } else {
-            String error = "usuario no encontrado";
-            session.setAttribute("error", error);
+            request.setAttribute("imprimir",Mensajes.mensaje.get("userNotFound") );
             RequestDispatcher view = request.getRequestDispatcher("recuperarContrasena.jsp");
             view.forward(request, response);
         }
