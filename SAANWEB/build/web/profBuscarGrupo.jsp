@@ -25,28 +25,28 @@
                     <!-- Card Body -->
                     <div style="font-size: 100%" class="card-body">
                         <c:if test="${not empty Gru}">
-                            <h5>Número:</h5>
+                            <h5>${mensaje.get("numprof")}</h5>
                             ${Gru.getNumero()}
                             <br/><br/>
-                            <h5>Profesor</h5>
-                            <h6>Id:</h6>
+                            <h5>${mensaje.get("prof")}</h5>
+                            <h6>${mensaje.get("idprof")}</h6>
                             ${Gru.getProfesor().getIdentificacion()}
                             <br/><br/>
-                            <h6>Nombre: </h6>
+                            <h6>${mensaje.get("nomprof")}</h6>
                             ${Gru.getProfesor().getNombre()}
                             <br/><br/>
-                            <h6>Correo: </h6>
+                            <h6>${mensaje.get("corrprof")}</h6>
                             ${Gru.getProfesor().getCorreo()}
                             <br/><br/>
-                            <h5>Materia</h5>
-                            <h6>Nombre: </h6>
+                            <h5>${mensaje.get("matprof")}</h5>
+                            <h6>${mensaje.get("nomprof")}</h6>
                             ${Gru.getMateria().getNombre()}
                             <br/><br/>
-                            <h6>Creditos: </h6>
+                            <h6>${mensaje.get("creprof")}</h6>
                             ${Gru.getMateria().getCreditos()}
                         </c:if>
                         <c:if test="${empty Gru}">
-                            No encontrado    
+                            ${mensaje.get("notfound")}    
                         </c:if>
                     </div>
                 </div>
@@ -57,21 +57,21 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Busqueda</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("busprof")}</h6>
 
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <form method="GET" action="./buscargrupo">
                             <div class="form-group">
-                                <label for="id">Id</label>
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Ingrese el id" required>
+                                <label for="id">${mensaje.get("idprof")}</label>
+                                <input type="text" class="form-control" id="id" name="id" placeholder="${mensaje.get("plidprof")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="materia">Id Materia</label>
-                                <input type="text" class="form-control" id="materia" name="materia" placeholder="Ingrese el id de la materia" required>
+                                <label for="materia">${mensaje.get("idmatprof")}</label>
+                                <input type="text" class="form-control" id="materia" name="materia" placeholder="${mensaje.get("plidmatprof")}" required>
                             </div>    
-                            <button type="submit" class="btn btn-primary">Buscar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("busrpro")}</button>
                         </form>                    
                     </div>
                 </div>

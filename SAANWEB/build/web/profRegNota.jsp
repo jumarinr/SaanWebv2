@@ -26,7 +26,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Notas</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("notsprof")}</h6>
                     </div>
                     <!-- Card Body -->
                     <c:if test="${not empty notas}">
@@ -34,9 +34,9 @@
                             <table class="table" style="margin-top: -10px;width: 100%;">
                                 <thead>
                                     <tr>
-                                               <th scope="col">Id</th>
-                                               <th scope="col">Valor</th>
-                                               <th scope="col">Porcentaje</th>
+                                               <th scope="col">${mensaje.get("iddprof")}</th>
+                                               <th scope="col">${mensaje.get("vallprof")}</th>
+                                               <th scope="col">${mensaje.get("porcenprof")}</th>
                                            </tr>
                                 </thead>
                                 <tbody>
@@ -59,7 +59,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Registro</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("regprof")}</h6>
 
                     </div>
                     <!-- Card Body -->
@@ -67,25 +67,25 @@
                         <form method="POST" action="./regnota">
                             <div class="form-group">
                                 <label for="ide">Id</label>
-                                <input type="number" class="form-control" id="id" name="id" placeholder="Ingrese el id" required>
+                                <input type="number" class="form-control" id="id" name="id" placeholder="${mensaje.get("plidprof")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="nom">Valor</label>
-                                <input type="text" class="form-control" id="valor" name="valor" placeholder="Ingrese el valor" required>
+                                <label for="nom">${mensaje.get("vallprof")}</label>
+                                <input type="text" class="form-control" id="valor" name="valor" placeholder="${mensaje.get("plhvalprof")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="cre">Porcentaje</label>
-                                <input type="number" class="form-control" id="porcentaje" name="porcentaje" placeholder="Ingrese porcentaje" required>
+                                <label for="cre">${mensaje.get("porcenprof")}</label>
+                                <input type="number" class="form-control" id="porcentaje" name="porcentaje" placeholder="${mensaje.get("plhporprof")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="idestudiante">Id estudiante</label>
-                                <input type="number" class="form-control" id="idestudiante" name="idestudiante" placeholder="Ingrese el id del estudiante" required>
+                                <label for="idestudiante">${mensaje.get("idestuprof")}</label>
+                                <input type="number" class="form-control" id="idestudiante" name="idestudiante" placeholder="${mensaje.get("plhidestuprof")}" required>
                             </div>                            
                             <div class="form-group">
-                                <label for="idmateria">Id Materia</label>
-                                <input type="number" class="form-control" id="idmateria" name="idmateria" placeholder="Ingrese el id de la materia" required>
+                                <label for="idmateria">${mensaje.get("idmatprof")}</label>
+                                <input type="number" class="form-control" id="idmateria" name="idmateria" placeholder="${mensaje.get("plidmatprof")}" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("plidmatprof")}</button>
                         </form>                    </div>
 
                 </div>
