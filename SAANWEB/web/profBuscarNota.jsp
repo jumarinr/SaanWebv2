@@ -5,11 +5,6 @@
 --%>
 
 <%@ include file="headerProf.jsp" %>
-<script>
-    function notify() {
-        alert("Se ha registrado la nota exitosamente");
-    }
-</script>
 
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">

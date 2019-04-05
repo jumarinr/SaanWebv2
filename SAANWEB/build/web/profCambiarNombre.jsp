@@ -5,12 +5,7 @@
 --%>
 
 <%@ include file="headerProf.jsp" %>
-<script>
-    function notify() {
-        alert("Su nombre ha sido cambiado exitosamente");
-    }
-    
-</script>
+
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
 
@@ -42,7 +37,7 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <c:if test="${not empty usua}">
-                            <form method="POST" action="./cambiarnombre" onsubmit="notify()">
+                            <form method="POST" action="./cambiarnombre">
                             <div class="form-group">
                                 <label for="name">Nombre</label>
                                 <input value="${usua.getNombre()}" type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre deseado" required>

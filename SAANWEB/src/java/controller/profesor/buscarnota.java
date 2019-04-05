@@ -77,6 +77,7 @@ public class buscarnota extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("imprimir", null);
         //Eliminar
         List<Materia> materias = new ArrayList<Materia>();
         List<Nota> notas = new ArrayList<Nota>();
@@ -110,7 +111,9 @@ public class buscarnota extends HttpServlet {
             Matricula ma = Not.getMatricula();
             
             Nota.enviarCorreoActualizarNota("borro", id, Not.getValor(), Not.getPorcentaje(), ma.getEstudiante(), ma.getGrupo().getMateria());                                
-            Nota.eliminar(notas, estu, id_materia, num_grup, id);             
+            Nota.eliminar(notas, estu, id_materia, num_grup, id);
+            String imprimir = "Nota eliminada satisfactoriamente";
+            request.setAttribute("imprimir", imprimir);            
             session.setAttribute("materias", materias);
             session.setAttribute("grupos", grupos);
             session.setAttribute("matriculas", matriculas);

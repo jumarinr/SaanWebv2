@@ -5,12 +5,6 @@
 --%>
 
 <%@ include file="headerProf.jsp" %>
-<script>
-    function notify() {
-        alert("Su contraseña ha sido cambiada exitosamente");
-    }
-    
-</script>
 
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
@@ -43,7 +37,7 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <c:if test="${not empty usua}">
-                            <form method="POST" action="./cambiarcontrasena" onsubmit="notify()">
+                            <form method="POST" action="./cambiarcontrasena">
                             <div class="form-group">
                                 <label for="password">Contraseña</label>
                                 <input value="${usua.getClave()}" type="text" class="form-control" id="password" name="password" placeholder="Ingrese el nombre deseado" required>

@@ -5,11 +5,6 @@
 --%>
 
 <%@ include file="headerProf.jsp" %>
-<script>
-    function notify() {
-        alert("Se ha creado un evento exitosamente");
-    }
-</script>
 
 <!-- Main Content -->
 <div id="content" style="font-size: auto;">
@@ -19,42 +14,6 @@
 
         <!-- Content Row -->
         <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Eventos</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <c:if test="${not empty Events}">
-                        <div class="card-body">    
-                            <table class="table" style="margin-top: -10px;width: auto;">
-                                <thead>
-                                    <tr>
-                                               <th scope="col">Nombre</th>
-                                               <th scope="col">Fecha</th>
-                                               <th scope="col">Detalles</th>
-                                               <th scope="col">ID materia</th>
-                                               <th scope="col">Num grupo</th>
-                                           </tr>
-                                </thead>
-                                <tbody>
-                                       <c:forEach items="${Events}" var="event">
-                                               <tr>
-                                                       <td></td>
-                                                       <td></td>
-                                                       <td></td>
-                                            <td></td>
-                                                   </tr>
-                                           </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                    </c:if>
-                </div>
-            </div>
 
             <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
@@ -67,7 +26,7 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <c:if test="${not empty usua}">
-                            <form method="POST" action="./crearevento" onsubmit="notify()">
+                            <form method="POST" action="./crearevento">
                             <div class="form-group">
                                 <label for="name">Nombre</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre del evento" required>

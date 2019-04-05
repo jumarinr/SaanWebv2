@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import models.Estudiante;
 import models.Grupo;
 import models.Matricula;
+import models.Profesor;
 import util.Mensajes;
 import util.EnvioDeCorreo;
 
@@ -59,6 +60,7 @@ public class crearevento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("imprimir", null);
         RequestDispatcher view;
         HttpSession session = request.getSession();
         List<Grupo> grupos = new ArrayList<Grupo>();        
@@ -70,13 +72,12 @@ public class crearevento extends HttpServlet {
             String fecha = request.getParameter("fecha");
             String detalles = request.getParameter("detalles");
             int id_materia =  Integer.parseInt(request.getParameter("materia"));
-            int num_grup = Integer.parseInt(request.getParameter("grupo"));
-            String asunto = "Correo creado " + fecha+". Con detalles: "+detalles+". ID materia: "+id_materia+". Num grupo: "+num_grup+".";
+            int num_grup = Integer.parseInt(request.getParameter("grupo"));            
             Grupo gru = Grupo.buscarGrupo(grupos, num_grup, id_materia);
             ArrayList<Matricula> matriculas = (ArrayList<Matricula>) gru.getMatriculas();
-            matriculas.forEach((t) -> {
-                EnvioDeCorreo.EnvioDeMail(t.getEstudiante().getCorreo(), name, asunto);
-            });
+            Profesor.encontrarCorreosYEnviar(matriculas, num_grup, id_materia, fecha, name, detalles);
+            String imprimir = "Evento registrado exitosamente";
+            request.setAttribute("imprimir", imprimir);
         }
         request.setAttribute("mensaje", Mensajes.mensaje);
         request.setAttribute("usua", session.getAttribute("usua"));        
