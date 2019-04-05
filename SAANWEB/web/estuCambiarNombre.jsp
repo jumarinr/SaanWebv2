@@ -25,7 +25,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Estudiante</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("est")}</h6>
                     </div>
                                         
                 </div>
@@ -36,7 +36,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Edición</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("ed")}</h6>
 
                     </div>
                     <!-- Card Body -->
@@ -44,10 +44,10 @@
                         <c:if test="${not empty usua}">
                             <form method="POST" action="./estuCambiarNombre" onsubmit="notify()">
                             <div class="form-group">
-                                <label for="name">Nombre</label>
-                                <input value="${usua.getNombre()}" type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre deseado" required>
+                                <label for="name">${mensaje.get("Nom")}</label>
+                                <input value="${usua.getNombre()}" type="text" class="form-control" id="name" name="name" placeholder="${mensaje.get("nunom")}" required>
                             </div>                            
-                            <button type="submit" class="btn btn-primary">Modificar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("modr")}</button>
                         </form>
                         </c:if>
                     </div>

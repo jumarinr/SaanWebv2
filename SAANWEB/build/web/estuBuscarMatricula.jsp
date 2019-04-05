@@ -15,28 +15,28 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Matricula</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("matr")}</h6>
                     </div>
                     <!-- Card Body -->
                     <div style="font-size: 100%" class="card-body">
                         <c:if test="${not empty Matr}">
-                            <h5>Nota final:</h5>
+                            <h5>${mensaje.get("notF")}:</h5>
                             ${Matr.getNotaFinal()}
                             <br/><br/>
-                            <h5>Semestre:</h5>
+                            <h5>${mensaje.get("sem")}:</h5>
                             ${Matr.getSemestre()}
                             <br/><br/>
-                            <h5>Grupo:</h5>
+                            <h5>${mensaje.get("gru")}:</h5>
                             ${Matr.getGrupo().getNumero()}
                             <br/><br/>
-                            <h5>Notas</h5>
+                            <h5>${mensaje.get("Not")}s</h5>
                             <c:if test="${not empty Matr.getNotas()}">
                                     <table class="table" style="margin-top: -10px;width: 100%;">
                                         <thead>
                                             <tr>
-                                                    <th scope="col">Porcentaje</th>
-                                                    <th scope="col">Id</th>
-                                                    <th scope="col">Valor</th>
+                                                    <th scope="col">${mensaje.get("por")}</th>
+                                                    <th scope="col">${mensaje.get("Id")}</th>
+                                                    <th scope="col">${mensaje.get("val")}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -57,13 +57,13 @@
                             <form method="GET" action="./estuModificarMatricula">
                                 <input id="doc" name="doc" type="hidden" value="${Matr.getEstudiante().getIdentificacion()}">
                                 <input id="mat" name="mat" type="hidden" value="${Matr.getGrupo().getMateria().getId()}">
-                                <button type="submit" class="btn btn-primary">Modificar</button>
+                                <button type="submit" class="btn btn-primary">${mensaje.get("modr")}</button>
                             </form>
                             <br/>
                             <form method="POST" action="./estuBuscarMatricula">
                                 <input id="doc" name="doc" type="hidden" value="${Matr.getEstudiante().getIdentificacion()}">
                                 <input id="idM" name="idM" type="hidden" value="${Matr.getGrupo().getMateria().getId()}">
-                                <button type="submit" class="btn btn-primary">Eliminar</button>
+                                <button type="submit" class="btn btn-primary">${mensaje.get("elir")}</button>
                             </form>  
                         </c:if>        
                          <c:if test="${empty Matr}">
@@ -77,21 +77,21 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Busqueda</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("bus")}</h6>
 
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <form method="GET" action="./estuBuscarMatricula">
                             <div class="form-group">
-                                <label for="ide">Documento</label>
-                                <input type="text" class="form-control" id="doc" name="doc" placeholder="Ingrese su documento" required>
+                                <label for="ide">${mensaje.get("Doc")}</label>
+                                <input type="text" class="form-control" id="doc" name="doc" placeholder="${mensaje.get("indoc")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="ide">Id materia</label>
-                                <input type="text" class="form-control" id="idM" name="idM" placeholder="Ingrese el id de la materia" required>
+                                <label for="ide">${mensaje.get("idmat")}</label>
+                                <input type="text" class="form-control" id="idM" name="idM" placeholder="${mensaje.get("inmat")}" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Buscar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("bus")}</button>
                         </form>                    
                     </div>
                 </div>

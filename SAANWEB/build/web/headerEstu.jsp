@@ -12,7 +12,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SAAN <sup>WEB</sup></div>
+                <div class="sidebar-brand-text mx-3">${mensaje.get("SAAN")}<sup>${mensaje.get("Web")}</sup></div>
             </a>
 
             <!-- Divider -->

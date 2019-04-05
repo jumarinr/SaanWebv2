@@ -26,7 +26,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Estudiante</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("est")}</h6>
                     </div>
                                         
                 </div>
@@ -37,7 +37,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Edición</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("ed")}</h6>
 
                     </div>
                     <!-- Card Body -->
@@ -45,10 +45,10 @@
                         <c:if test="${not empty usua}">
                             <form method="POST" action="./estuCambiarContrasena" onsubmit="notify()">
                             <div class="form-group">
-                                <label for="password">Contraseña</label>
-                                <input value="${usua.getClave()}" type="password" class="form-control" id="password" name="password" placeholder="Ingrese el nombre deseado" required>
+                                <label for="password">${mensaje.get("cont")}</label>
+                                <input value="${usua.getClave()}" type="password" class="form-control" id="password" name="password" placeholder="${mensaje.get("nucon")}" required>
                             </div>                            
-                            <button type="submit" class="btn btn-primary">Modificar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("modr")}</button>
                         </form>
                         </c:if>
                     </div>

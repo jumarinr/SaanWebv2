@@ -27,7 +27,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Estudiantes</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("matr")}</h6>
                     </div>
                     <!-- Card Body -->
                     <c:if test="${not empty matriculas}">
@@ -36,9 +36,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                                   <th scope="col">Nota final</th>
-                                                   <th scope="col">Semestre</th>
-                                                   <th scope="col">Grupo</th>
+                                                   <th scope="col">${mensaje.get("notF")}</th>
+                                                   <th scope="col">${mensaje.get("sem")}</th>
+                                                   <th scope="col">${mensaje.get("gru")}</th>
                                                </tr>
                                     </thead>
                                     <tbody>
@@ -62,29 +62,29 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Registro</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("regi")}</h6>
 
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <form method="POST" action="./estuRegistrarMatricula">
                             <div class="form-group">
-                                <label for="ide">Semestre</label>
-                                <input type="number" class="form-control" id="Semestre" name="Semestre" placeholder="Ingrese el semestre" required>
+                                <label for="ide">${mensaje.get("sem")}</label>
+                                <input type="number" class="form-control" id="Semestre" name="Semestre" placeholder="${mensaje.get("insem")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="ide">Documento</label>
-                                <input type="number" class="form-control" id="doc" name="doc" placeholder="Ingrese su documento" required>
+                                <label for="ide">${mensaje.get("Doc")}</label>
+                                <input type="number" class="form-control" id="doc" name="doc" placeholder="${mensaje.get("indoc")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="ide">Id materia</label>
-                                <input type="number" class="form-control" id="idM" name="idM" placeholder="Ingrese el id de la materia" required>
+                                <label for="ide">${mensaje.get("idmat")}</label>
+                                <input type="number" class="form-control" id="idM" name="idM" placeholder="${mensaje.get("inmat")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="ide">Numero del Grupo</label>
-                                <input type="number" class="form-control" id="num" name="num" placeholder="Ingrese el numero del grupo " required>
+                                <label for="ide">${mensaje.get("num")}</label>
+                                <input type="number" class="form-control" id="num" name="num" placeholder="${mensaje.get("ingru")}" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("regir")}</button>
                         </form>                    
                     </div>
 

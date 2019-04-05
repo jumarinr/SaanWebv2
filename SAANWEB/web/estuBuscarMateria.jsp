@@ -15,28 +15,28 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Materia</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("mat")}</h6>
                     </div>
                     <!-- Card Body -->
                     <div style="font-size: 100%" class="card-body">
                         <c:if test="${not empty Mat}">
-                            <h5>Id:</h5>
+                            <h5>${mensaje.get("Id")}:</h5>
                             ${Mat.getId()}
                             <br/><br/>
-                            <h5>Nombre:</h5>
+                            <h5>${mensaje.get("Nom")}:</h5>
                             ${Mat.getNombre()}
                             <br/><br/>
-                            <h5>Creditos:</h5>
+                            <h5>${mensaje.get("cre")}:</h5>
                             ${Mat.getCreditos()}
                             <br/><br/>
-                            <h5>Grupos:</h5>
+                            <h5>${mensaje.get("gru")}s:</h5>
                             <c:if test="${not empty Mat.getGrupos()}">
                                 <table class="table" style="margin-top: -10px;width: auto;">
                                     <thead>
                                         <tr>
-                                                   <th scope="col">Numero</th>
-                                                   <th scope="col">Profesor</th>
-                                                   <th scope="col">Cantidad de estudiantes</th>
+                                                   <th scope="col">${mensaje.get("num")}</th>
+                                                   <th scope="col">${mensaje.get("prof")}</th>
+                                                   <th scope="col">${mensaje.get("cantest")}</th>
                                                </tr>
                                     </thead>
                                     <tbody>
@@ -51,11 +51,11 @@
                                     </table>
                             </c:if>
                             <c:if test="${empty Mat.getGrupos()}">
-                                Ninguno
+                                ${mensaje.get("nin")}
                             </c:if>
                         </c:if>
                          <c:if test="${empty Mat}">
-                            No encontrado    
+                            ${mensaje.get("Noenc")}   
                         </c:if>
                     </div>
                 </div>
@@ -65,17 +65,17 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Busqueda</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("busq")}</h6>
 
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <form method="GET" action="./estuBuscarMateria">
                             <div class="form-group">
-                                <label for="ide">Id</label>
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Ingrese el id de la materia" required>
+                                <label for="ide">${mensaje.get("Id")}</label>
+                                <input type="text" class="form-control" id="id" name="id" placeholder="${mensaje.get("inmat")}" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Buscar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("bus")}</button>
                         </form>                    
                     </div>
                 </div>

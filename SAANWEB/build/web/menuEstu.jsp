@@ -27,16 +27,16 @@
 
                             <c:if test="${empty usu}">
                                 <div style="font-size: 100%" class="card-body">
-                                    <h5>Nombre:</h5>
+                                    <h5>${mensaje.get("Nom")}:</h5>
                                     ${usua.getNombre()}
                                     <br/><br/>
-                                    <h5>Documento:</h5>
+                                    <h5>${mensaje.get("Doc")}:</h5>
                                     ${usua.getIdentificacion()}
                                     <br/><br/>
-                                    <h5>Correo:</h5>
+                                    <h5>${mensaje.get("Corr")}:</h5>
                                     ${usua.getCorreo()}
                                     <br/><br/>
-                                    <h5>Rol:</h5>
+                                    <h5>${mensaje.get("Rol")}:</h5>
                                     Estudiante
                                 </div>
                             </c:if>
@@ -48,7 +48,7 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">SAAN</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("SAAN")}</h6>
 
                             </div>
                             <!-- Card Body -->
