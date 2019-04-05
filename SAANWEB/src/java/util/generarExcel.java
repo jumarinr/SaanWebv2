@@ -44,7 +44,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  */
 public class generarExcel {
 
-    public static String generarArchivoDeExcel(Materia materia) {
+    public static String generarArchivoDeExcel(Materia materia, String correo) {
 
         try {
 
@@ -204,8 +204,13 @@ public class generarExcel {
             /*Cerramos el flujo de datos*/
             archivo.close();
 
-            /*Y abrimos el archivo con la clase Desktop*/
-            Desktop.getDesktop().open(archivoXLS);
+            EnvioDeCorreo.EnvioDeExcelPorMail(correo, "Archivo de Excel notas "
+                    + materia.getNombre(), materia.getNombre());
+            /*Se crea el objeto de tipo File con la ruta del archivo*/
+            
+            if (archivoXLS.exists()) {
+                archivoXLS.delete();
+            }
 
         } catch (IOException ex) {
 
@@ -213,7 +218,7 @@ public class generarExcel {
 
         }
 
-        return "Archivo generado";
+        return "El archivo ha sido enviado a su correo electrinico";
 
     }
 

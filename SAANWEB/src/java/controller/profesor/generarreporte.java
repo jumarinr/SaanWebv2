@@ -35,6 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.Materia;
+import models.Persona;
 
 import util.Mensajes;
 
@@ -100,7 +101,8 @@ public class generarreporte extends HttpServlet {
 
             if (mat != null) {
 
-                imprimir = generarExcel.generarArchivoDeExcel(mat);
+                imprimir = generarExcel.generarArchivoDeExcel(mat,
+                        ((Persona)session.getAttribute("usua")).getCorreo());
 
             }else{
 

@@ -108,7 +108,7 @@ public class datosFicticios extends HttpServlet {
         //Profesor
         Profesor pr1 = new Profesor("Jose Gregorio Guardia", 123, "jgre@unal.edu.co", "hola");
         Profesor.registrar(personas, estudiantes, profesores, pr1);
-        Profesor pr2 = new Profesor("Pablo Antoño Ortiz", 456, "pano@unal.edu.co", "chao");
+        Profesor pr2 = new Profesor("Pablo Antoño Ortiz", 456, "juanpablomoyaalarcon14@gmail.com", "chao");
         Profesor.registrar(personas, estudiantes, profesores, pr2);
         //Estudiante
         Estudiante es1 = new Estudiante("Juan Pablo Moya Alarcón", 789, "jmoya@unal.edu.co", "clave");
