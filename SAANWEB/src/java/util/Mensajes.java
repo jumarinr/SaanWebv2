@@ -46,8 +46,8 @@ public class Mensajes {
             put("asunto2", " una nota");
             put("matsin","La materia no esta registrada");
             put("grusin","El grupo no esta registrado");
-            put("SAAAN","SAAN");
-            put("Web","WEb");
+            put("SAAN","SAAN");
+            put("Web","Web");
             put("Nom","Nombre");
             put("Doc","Documento");
             put("Corr","Correo");
@@ -85,6 +85,10 @@ public class Mensajes {
             put("regi","Registro");
             put("insem","Ingrese el semestre");
             put("regir","Registrar");
+            put("op","Opciones");
+            put("camcon","Cambiar contraseña");
+            put("camnom","Cambiar nombre");
+            
         }
     };
 
