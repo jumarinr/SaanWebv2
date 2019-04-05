@@ -94,12 +94,12 @@ public class AdminRegistrarGrupo extends HttpServlet {
         String imprimir = "";
         boolean seguir = true;
         if (Materia.buscarMateria(materias, idMateria) == null) {
-            imprimir = "La materia no esta registrada";
+            imprimir = Mensajes.mensaje.get("matNoReg");
             seguir = false;
         }
         if (Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
                 profesores, docProfesor) == null) {
-            imprimir = "El profesor no esta registrado";
+            imprimir = Mensajes.mensaje.get("proNoReg");
             seguir = false;
         }
         if (seguir) {

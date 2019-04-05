@@ -99,8 +99,8 @@ public class Nota {
     public static void enviarCorreoActualizarNota(String opc, int id, double nota, double porcentaje, Estudiante estudiante, Materia materia) {
         String correo_enviar = estudiante.getCorreo();
         String cuerpo = "";
-        String asunto = "Eliminación de nota";        
-        if (Mensajes.mensaje.get(opc).equals("borro")) {            
+        String asunto = Mensajes.mensaje.get("eliNota");
+        if (Mensajes.mensaje.get(opc).equals("borro")) {
             cuerpo = Mensajes.mensaje.get("cuerpo_borro") + id + Mensajes.mensaje.get("cuerpo_borro2") + materia.toString();
         } else {
             cuerpo = Mensajes.mensaje.get("cuerpo_resto") + materia.toString() + Mensajes.mensaje.get("cuerpo_resto2") + String.valueOf(id) + Mensajes.mensaje.get("cuerpo_resto3") + String.valueOf(nota) + Mensajes.mensaje.get("cuerpo_resto4") + String.valueOf(porcentaje) + '%';
@@ -119,16 +119,16 @@ public class Nota {
 
             }
         }
-        
-        Collections.sort(notas, (o1, o2) -> {            
+
+        Collections.sort(notas, (o1, o2) -> {
             if (o1.getValor() > o2.getValor())
                 return 1;
             if (o1.getValor() < o2.getValor())
                 return -1;
             return 0;
         });
-        ArrayList<Nota> ol = new ArrayList<Nota>();        
-        
+        ArrayList<Nota> ol = new ArrayList<Nota>();
+
         if (notas.size() < 3 && notas.size() > 0) {
             for(int i=notas.size()-1; i>=0; i--){
                 ol.add(notas.get(i));
@@ -146,14 +146,14 @@ public class Nota {
 
     public static boolean porcentajeDiferente100(ArrayList<Nota> notas, int id_materia, int num_grupo, int id_estudiante, double porcentaje) {
         double sum = 0;
-        for (Nota nota : notas) {            
+        for (Nota nota : notas) {
             if (nota.getMatricula().getGrupo().getNumero() == num_grupo && nota.getMatricula().getGrupo().getMateria().getId() == id_materia && nota.getMatricula().getEstudiante().getIdentificacion() == id_estudiante) {
                 sum += nota.getPorcentaje();
                 System.out.println(nota.getId()+":"+nota.getPorcentaje());
             }
         }
         double total = sum + porcentaje;
-        
+
         if (total >= 100) {
             return false;
         }
