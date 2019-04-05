@@ -27,7 +27,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Grupos</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("Grupos")}</h6>
                     </div>
                     <!-- Card Body -->
                     <c:if test="${not empty grupos}">
@@ -36,9 +36,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                                   <th scope="col">Numero</th>
-                                                   <th scope="col">Id materia</th>
-                                                   <th scope="col">Documento profesor</th>
+                                                   <th scope="col">${mensaje.get("Numero")}</th>
+                                                   <th scope="col">${mensaje.get("Idmat")}</th>
+                                                   <th scope="col">${mensaje.get("docProf")}</th>
                                                </tr>
                                     </thead>
                                     <tbody>
@@ -62,25 +62,25 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Registro</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("registro")}</h6>
 
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <form method="POST" action="./administrador_registrarGrupo">
                             <div class="form-group">
-                                <label for="num">Numero</label>
-                                <input type="number" class="form-control" id="numero" name="numero" placeholder="Ingrese el numero del grupo" required>
+                                <label for="num">${mensaje.get("Numero")}</label>
+                                <input type="number" class="form-control" id="numero" name="numero" placeholder="${mensaje.get("ingreNum")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="ide">Id materia</label>
-                                <input type="number" class="form-control" id="id" name="id" placeholder="Ingrese el Id de la materia" required>
+                                <label for="ide">${mensaje.get("Idmat")}</label>
+                                <input type="number" class="form-control" id="id" name="id" placeholder="${mensaje.get("ingreGrup")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="pro">Documento profesor</label>
-                                <input type="number" class="form-control" id="doc" name="doc" placeholder="Ingrese el documento del profesor" required>
+                                <label for="pro">${mensaje.get("docProf")}</label>
+                                <input type="number" class="form-control" id="doc" name="doc" placeholder="${mensaje.get("ingreDoc")}" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("Registrar")}</button>
                         </form>                    </div>
 
                 </div>

@@ -20,7 +20,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Grupos</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("Grupos")}</h6>
                     </div>
                     <!-- Card Body -->
                     <c:if test="${not empty grupos}">
@@ -29,9 +29,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                                   <th scope="col">Numero</th>
-                                                   <th scope="col">Id materia</th>
-                                                   <th scope="col">Documento profesor</th>
+                                                   <th scope="col">${mensaje.get("Numero")}</th>
+                                                   <th scope="col">${mensaje.get("Idmat")}</th>
+                                                   <th scope="col">${mensaje.get("docProf")}</th>
                                                </tr>
                                     </thead>
                                     <tbody>
@@ -55,7 +55,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Edición</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("edic")}</h6>
 
                     </div>
                     <!-- Card Body -->
@@ -63,20 +63,20 @@
                         <c:if test="${not empty gru}">
                             <form method="POST" action="./administrador_modificarGrupo">
                                 <div class="form-group">
-                                    <label for="num">Numero</label>
-                                    <input value="${gru.getNumero()}" type="number" class="form-control" id="numero" name="numero" placeholder="Ingrese el numero del grupo" required>
+                                    <label for="num">${mensaje.get("Numero")}</label>
+                                    <input value="${gru.getNumero()}" type="number" class="form-control" id="numero" name="numero" placeholder="${mensaje.get("ingreNum")}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pro">Id materia</label><br/>
+                                    <label for="pro">${mensaje.get("Idmat")}</label><br/>
                                     <h6>${gru.getMateria().getId()}</h6>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pro">Documento profesor</label>
-                                    <input value="${gru.getProfesor().getIdentificacion()}" type="number" class="form-control" id="doc" name="doc" placeholder="Ingrese el documento del profesor" required>
+                                    <label for="pro">${mensaje.get("docProf")}</label>
+                                    <input value="${gru.getProfesor().getIdentificacion()}" type="number" class="form-control" id="doc" name="doc" placeholder="${mensaje.get("ingreDoc")}" required>
                                 </div>
                                 <input id="numa" name="numa" type="hidden" value="${gru.getNumero()}">
                                 <input id="mat" name="mat" type="hidden" value="${gru.getMateria().getId()}">
-                                <button type="submit" class="btn btn-primary">Modificar</button>
+                                <button type="submit" class="btn btn-primary">${mensaje.get("modi")}</button>
                             </form>
                         </c:if>
                     </div>

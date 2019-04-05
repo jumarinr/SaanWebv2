@@ -27,7 +27,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Profesor</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("Profesor")}</h6>
                     </div>
                     <!-- Card Body -->
                     <c:if test="${not empty profesores}">
@@ -36,10 +36,10 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                                   <th scope="col">Nombre</th>
-                                                   <th scope="col">Identificación</th>
-                                                   <th scope="col">Correo</th>
-                                            <th scope="col">Contraseña</th>
+                                                   <th scope="col">${mensaje.get("nombre")}</th>
+                                                   <th scope="col">${mensaje.get("ideti")}</th>
+                                                   <th scope="col">${mensaje.get("correo")}</th>
+                                            <th scope="col">${mensaje.get("contras")}</th>
                                                </tr>
                                     </thead>
                                     <tbody>
@@ -64,29 +64,29 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Registro</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">${mensaje.get("registro")}</h6>
 
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <form method="POST" action="./administrador_registrarProfesor">
                             <div class="form-group">
-                                <label for="ide">Identificación</label>
-                                <input type="number" class="form-control" id="identificacion" name="identificacion" placeholder="Ingrese el documento de identidad" required>
+                                <label for="ide">${mensaje.get("ideti")}</label>
+                                <input type="number" class="form-control" id="identificacion" name="identificacion" placeholder="${mensaje.get("ingreName")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="nom">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
+                                <label for="nom">${mensaje.get("nombre")}</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="${mensaje.get("ingrete")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="cor">Correo</label>
-                                <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="Ingrese el correo electronico" required>
+                                <label for="cor">${mensaje.get("correo")}</label>
+                                <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="${mensaje.get("ingreCor")}" required>
                             </div>
                             <div class="form-group">
-                                <label for="con">Contraseña</label>
-                                <input type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la contraseña">
+                                <label for="con">${mensaje.get("contras")}</label>
+                                <input type="password" class="form-control" id="clave" name="clave" placeholder="${mensaje.get("ingreCon")}">
                             </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <button type="submit" class="btn btn-primary">${mensaje.get("Registrar")}</button>
                         </form>                    
                     </div>
                 </div>

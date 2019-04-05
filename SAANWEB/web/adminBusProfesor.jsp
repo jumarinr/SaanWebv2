@@ -26,26 +26,26 @@
                     <!-- Card Body -->
                     <div style="font-size: 100%" class="card-body">
                         <c:if test="${not empty usu}">
-                            <h5>Nombre:</h5>
+                            <h5>${mensaje.get("nom:")}</h5>
                             ${usu.getNombre()}
                             <br/><br/>
-                            <h5>Documento:</h5>
+                            <h5>${mensaje.get("doc:")}</h5>
                             ${usu.getIdentificacion()}
                             <br/><br/>
-                            <h5>Correo:</h5>
+                            <h5>${mensaje.get("cor:")}</h5>
                             ${usu.getCorreo()}
                             <br/><br/>
-                            <h5>Contraseña:</h5>
+                            <h5>${mensaje.get("con:")}</h5>
                             ${usu.getClave()}
                             <br/><br/>
-                            <h5>Materias en las que enseña</h5>
+                            <h5>${mensaje.get("matEn")}</h5>
                             <c:if test="${not empty usu.getGrupos()}">
                                   <table class="table" style="margin-top: -10px;width: auto;">
                                     <thead>
                                         <tr>
-                                                   <th scope="col">Id</th>
-                                                   <th scope="col">Nombre</th>
-                                                   <th scope="col">Grupo</th>
+                                                   <th scope="col">${mensaje.get("Id:")}</th>
+                                                   <th scope="col">${mensaje.get("nombre")}</th>
+                                                   <th scope="col">${mensaje.get("gru")}</th>
                                                </tr>
                                     </thead>
                                     <tbody>

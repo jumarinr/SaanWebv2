@@ -42,7 +42,7 @@
                                     ${usua.getCorreo()}
                                     <br/><br/>
                                     <h5>Rol:</h5>
-                                    Administrador
+                                    ${mensaje.get("rolAd")}
                                 </div>
                             </c:if>
                         </div>
