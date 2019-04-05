@@ -105,7 +105,7 @@ public class Materia {
             Materia.guardarCambios(materias);
             return Mensajes.mensaje.get("eli");
         }
-        return "err";
+        return Mensajes.mensaje.get("err");
     }
 
     public static void cargarMaterias(List<Materia> materias) {

@@ -67,7 +67,7 @@ public class AdminBuscarEstudiante extends HttpServlet {
                 est = (Estudiante) Estudiante.buscarPersona(new ArrayList<Persona>(),
                         estudiantes, new ArrayList<Profesor>(), id);
             } else {
-                request.setAttribute("imprimir", "Correo invalido");
+                request.setAttribute("imprimir", Mensajes.mensaje.get("corInv"));
             }
             request.setAttribute("usu", est);
         }

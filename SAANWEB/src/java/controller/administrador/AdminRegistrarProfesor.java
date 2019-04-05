@@ -94,7 +94,7 @@ public class AdminRegistrarProfesor extends HttpServlet {
             imprimir = Profesor.registrar(personas,
                     estudiantes, profesores, p);
         } else {
-            imprimir =  "Correo invalido";
+            imprimir =  Mensajes.mensaje.get("corInv");
         }
         request.setAttribute("imprimir", imprimir);
         session.setAttribute("profesores", profesores);

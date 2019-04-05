@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import util.EnvioDeCorreo;
+import util.Mensajes;
 
 /**
  *
@@ -36,7 +37,7 @@ public class Profesor extends Persona {
         Profesor pro = (Profesor) Persona.buscarPersona(personas, estudiantes, profesores, identificacion);
         if (pro != null) {
             if (pro.getGrupos().size() > 0) {
-                return "No se puede eliminar al profesor, ya que tiene grupos en los que enseña";
+                return Mensajes.mensaje.get("noSePuede");
             }
         }
         return Persona.eliminar(personas, estudiantes, profesores, identificacion);

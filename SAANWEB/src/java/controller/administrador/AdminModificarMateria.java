@@ -91,7 +91,7 @@ public class AdminModificarMateria extends HttpServlet {
         boolean seguir = true;
         if (id != idAnterior) {
             if (Materia.buscarMateria(materias, id) != null) {
-                imprimir = "El id ya esta registrado";
+                imprimir = Mensajes.mensaje.get("idReg");
             }
         }
         Materia m = Materia.buscarMateria(materias, idAnterior);
@@ -101,7 +101,7 @@ public class AdminModificarMateria extends HttpServlet {
             m.setNombre(nom);
             m.setCreditos(cre);
             Materia.guardarCambios(materias);
-            imprimir = "Materia modificada";
+            imprimir = Mensajes.mensaje.get("matMod");
             session.setAttribute("materias", materias);
         }
         request.setAttribute("imprimir", imprimir);

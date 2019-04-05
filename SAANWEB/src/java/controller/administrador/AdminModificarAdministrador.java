@@ -101,18 +101,18 @@ public class AdminModificarAdministrador extends HttpServlet {
         String imprimir = "";
         boolean seguir = true;
         if (!extra.esEmailCorrecto(correo)) {
-            imprimir = "Correo invalido";
+            imprimir = Mensajes.mensaje.get("corInv");
             seguir = false;
         }
         if (documento != doc) {
             if (Persona.buscarPersona(administradores, estudiantes, profesores, documento) != null) {
-                imprimir = "El documento ya esra registrado";
+                imprimir = Mensajes.mensaje.get("docReg");
                 seguir = false;
             }
         }
         if (!correo.equals(cor)) {
             if (Persona.buscarPersona(administradores, estudiantes, profesores, correo) != null) {
-                imprimir = "El correo ya esta registrado";
+                imprimir = Mensajes.mensaje.get("corReg");
                 seguir = false;
             }
         }
@@ -124,7 +124,7 @@ public class AdminModificarAdministrador extends HttpServlet {
             p.setIdentificacion(documento);
             p.setClave(clave);
             p.setCorreo(correo);
-            imprimir = "Administrador modificado";
+            imprimir = Mensajes.mensaje.get("adminMod");
             session.setAttribute("personas", administradores);
         }
         request.setAttribute("imprimir", imprimir);

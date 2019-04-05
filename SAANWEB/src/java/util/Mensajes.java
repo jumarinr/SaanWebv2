@@ -10,6 +10,7 @@ public class Mensajes {
 
     public static HashMap<String, String> mensaje = new HashMap<String, String>() {
         {
+            put("tit","SAAN");
             put("err", "Error");
             put("reg", "Registrado");
             put("usuInc", "Usuario o contraseña incorrecto");
@@ -31,9 +32,9 @@ public class Mensajes {
             put("menu", "Menú");
             put("Ganosinno", "El estudiante no va perdiendo o no tiene notas");
             put("Noestnot", "Estudiante sin notas");
-            put("registro","registro");
+            put("registro", "registro");
             put("modifico", "modifico");
-            put("matrM","Matricula modificada");
+            put("matrM", "Matricula modificada");
             put("borro", "borro");
             put("cuerpo_borro", "se le borro la nota con identificación ");
             put("cuerpo_borro2", " de la materia ");
@@ -42,7 +43,7 @@ public class Mensajes {
             put("cuerpo_resto3", " fue de ");
             put("cuerpo_resto4", " y vale ");
             put("cuerpo_resto5", " % de la nota final");
-            put( "asunto", "se le ");
+            put("asunto", "se le ");
             put("asunto2", " una nota");
             put("nomprof", "Nombre:");
             put("docprof", "Documento:");
@@ -62,7 +63,7 @@ public class Mensajes {
             put("idmatprof", "Id Materia");
             put("plidmatprof", "Ingrese el id de la materia");
             put("busrpro", "Buscar");
-            put("mattprof", "Materia");   
+            put("mattprof", "Materia");
             put("notprof", "Nota");
             put("valprof", "Valor:");
             put("porcenprof", "Porcentaje");
@@ -90,6 +91,33 @@ public class Mensajes {
             put("notsprof", "Notas");
             put("vallprof", "Valor");
             put("regnotprof", "Registrar");
+            put("eliNota", "Eliminación de nota");
+            put("noSePuede", "No se puede eliminar al profesor, ya que tiene grupos en los que enseña");
+            put("corInv", "Correo invalido");
+            put("docReg", "El documento ya esta registrado");
+            put("corReg", "El correo ya esta registrado");
+            put("adminMod", "Administrador modificado");
+            put("estuMod", "Estudiante modificado");
+            put("maYaReg", "La materia ya tiene ese numero registrado");
+            put("proNoReg", "El profesor no esta registrado");
+            put("gruMod", "Grupo modificado");
+            put("idReg", "El id ya esta registrado");
+            put("matMod", "Materia modificada");
+            put("proMod","Profesor modificado");
+            put("matNoReg","La materia no esta registrada");
+            put("infoUsu","Información usuario");
+            put("adm","Administrador");
+            put("nom:","Nombre:");
+            put("doc:","Documento:");
+            put("cor:","Correo:");
+            put("con:","Contraseña:");
+            put("noEnc","No encontrado");
+            put("ideOCor","Identificación o correo");
+            put("ingDocOCor","Ingrese el documento de identidad o correo electronico");
+            put("busc","Buscar");
+            put("busq","Busqueda");
+            put("modi","Modificar");
+            put("elim","Eliminar");
         }
     };
 

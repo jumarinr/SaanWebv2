@@ -104,13 +104,13 @@ public class AdminModificarGrupo extends HttpServlet {
         boolean seguir = true;
         if (num != numAnterior) {
             if (Grupo.buscarGrupo(grupos, num, idMateria) != null) {
-                imprimir = "La materia ya tiene ese numero registrado";
+                imprimir = Mensajes.mensaje.get("maYaReg");
                 seguir = false;
             }
         }
         if (Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
                 profesores, docProfesor) == null) {
-            imprimir = "El profesor no esta registrado";
+            imprimir = Mensajes.mensaje.get("proNoReg");
             seguir = false;
         }
         Grupo g = Grupo.buscarGrupo(grupos, numAnterior, idMateria);
@@ -119,7 +119,7 @@ public class AdminModificarGrupo extends HttpServlet {
             g.setProfesor((Profesor)Profesor.buscarPersona(new ArrayList<Persona>(), new ArrayList<Estudiante>(),
                     profesores, docProfesor));
             g.setNumero(num);
-            imprimir = "Grupo modificado";
+            imprimir = Mensajes.mensaje.get("gruMod");
             session.setAttribute("grupos", grupos);
         }
         request.setAttribute("imprimir", imprimir);

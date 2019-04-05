@@ -33,6 +33,15 @@ public class Matricula {
         this.notas = new ArrayList<Nota>();
     }
 
+    public double porcentajeDeAvance() {
+        double porcentaje = 0;
+        for (Nota nota : this.getNotas()) {
+            porcentaje += nota.getPorcentaje();
+        }
+        porcentaje = Double.parseDouble(String.format("%.2f", porcentaje).replaceAll(",", "."));
+        return porcentaje;
+    }
+
     public double getNotaFinal() {
         double not;
         not = 0;
@@ -136,7 +145,7 @@ public class Matricula {
     public static void eliminarPorGrupo(List<Matricula> matriculas, List<Nota> notas, int num_grupo, int id_materia) {
         int bor = 0;
         for (int i = 0; i < matriculas.size(); i++) {
-            Matricula mat = matriculas.get(i-bor);
+            Matricula mat = matriculas.get(i - bor);
             if (mat.getGrupo().getNumero() == num_grupo
                     && mat.getGrupo().getMateria().getId() == id_materia) {
                 Matricula.cancelar(matriculas, notas, mat.getEstudiante().getIdentificacion(), id_materia);
@@ -148,7 +157,7 @@ public class Matricula {
     public static void eliminarPorEstudiante(List<Matricula> matriculas, List<Nota> notas, long identificacion) {
         int bor = 0;
         for (int i = 0; i < matriculas.size(); i++) {
-            Matricula mat = matriculas.get(i-bor);
+            Matricula mat = matriculas.get(i - bor);
             if (mat.getEstudiante().getIdentificacion() == identificacion) {
                 Matricula.cancelar(matriculas, notas, identificacion, mat.getGrupo().getMateria().getId());
                 bor++;

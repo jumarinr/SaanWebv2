@@ -62,6 +62,9 @@
                                         </tbody>
                                     </table>
                             </c:if>
+                            <c:if test="${empty gru.getMatriculas()}">
+                                Ninguno
+                            </c:if>
                             <br/><br/>
                             <form method="GET" action="./administrador_modificarGrupo">
                                 <input id="id" name="id" type="hidden" value="${gru.getMateria().getId()}">
